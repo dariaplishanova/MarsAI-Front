@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority';
 
 export const buttonVariant = {
   default: 'border border-white hover:bg-white/30',
-  purple: 'bg-primary shadow-md shadow-primary',
+  purple: 'bg-primary hover:bg-secondary-foreground hover:text-primary',
   connexion: 'bg-background border border-accent text-accent hover:text-foreground hover:bg-background/60',
   green: 'bg-accent border-accent hover:bg-accent/80',
   ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',

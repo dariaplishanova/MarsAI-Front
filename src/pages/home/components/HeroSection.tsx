@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <section
       style={{ backgroundImage: `url(${heroImage})` }}
-      className="over relative z-1 flex h-150 min-h-150 w-full flex-col items-center justify-center bg-cover bg-center md:max-h-186"
+      className="relative z-1 flex h-150 min-h-150 w-full flex-col items-center justify-center bg-cover bg-center md:max-h-186"
     >
       <div className="absolute inset-0 bg-black/50"></div>
       <div className="relative z-10 container mx-auto flex flex-col items-center space-y-8 px-4 text-center text-white md:max-w-[50%]">
