@@ -1,6 +1,7 @@
 import { Trophy, Users, Video } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import StatCard from '../ui/StatCard';
+import { motion } from 'motion/react';
 
 export default function StatsSection() {
   const { t } = useTranslation();
@@ -30,14 +31,25 @@ export default function StatsSection() {
   ];
 
   return (
+    
     <section className="flex py-7 bg-[#171b29] border border-[#2a3242] md:px-80">
       <div className="container mx-auto px-4">
+         <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          
           {stats.map((stat, index) => (
             <StatCard key={index} {...stat} />
           ))}
+           
         </div>
+         </motion.div>
       </div>
+          
     </section>
+  
   );
 }

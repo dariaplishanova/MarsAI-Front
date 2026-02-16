@@ -30,12 +30,7 @@ export default function HeroSection() {
       <Button className="mt-3" icon={<LogIn size={15} />} variant="connexion">
         Se connecter
       </Button>
-      <Button className="mt-3" icon={<LogIn size={15} />} variant="ghost">
-        Ghost
-      </Button>
-      <Button className="mt-3" icon={<LogIn size={15} />} variant="active">
-        active
-      </Button>
+     
     </section>
   );
 }

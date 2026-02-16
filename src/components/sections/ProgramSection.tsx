@@ -2,7 +2,9 @@ import { Award, Presentation, Users, Video } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import ProgramCard from '../ui/ProgramCard';
 import Card from '../ui/Card';
-import { Button } from '../ui/button';
+import  Button from '../ui/button';
+import { motion } from 'motion/react';
+
 
 export default function ProgramSection() {
   const { t } = useTranslation();
@@ -43,6 +45,7 @@ export default function ProgramSection() {
   ];
 
   return (
+    
     <section className="py-20 container mx-auto px-4">
       <article className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -50,12 +53,22 @@ export default function ProgramSection() {
         </h2>
         <p className="text-muted-foreground">{t('landing.program.subtitle')}</p>
       </article>
+      <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+            >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          
         {programs.map((program, index) => (
+          
           <ProgramCard key={index} {...program} />
         ))}
+       
       </div>
+      </motion.div>
       <div className="flex justify-center mt-16 w-full">
+       
         <Card className="text-center p-4">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Users className="w-6 h-6 text-accent" />
@@ -66,14 +79,17 @@ export default function ProgramSection() {
           <p className="text-muted-foreground mb-8 text-lg max-w-xl ">
             {t('landing.cta.description')}
           </p>
+          <div className='flex justify-center'>
           <Button
-            size="lg"
             className="bg-accent hover:bg-accent/90 shadow-[0_0_20px_rgba(16,185,129,0.4)]"
           >
+            
             <Users />
             {t('landing.cta.button')}
           </Button>
+          </div>
         </Card>
+       
       </div>
     </section>
   );
