@@ -46,7 +46,7 @@ export function SubmitForm03() {
           <p className="text-muted-foreground">{t('submit.step3.description')}</p>
         </div>
         <div className="grid grid-cols-2 gap-4"></div>
-        <Label required>Classification de l'oeuvre</Label>
+        <Label required>{t('submit.step3.classification.label')}</Label>
         <FormGroup>
           <RadioGroup
             value={values.civility}
@@ -58,30 +58,30 @@ export function SubmitForm03() {
             <div className="border-border hover:border-primary flex flex-row gap-2 rounded-lg border p-4">
               <RadioGroupItem value="M" id="m" />
               <Label htmlFor="m">
-                Génération intégrale (100% IA){' '}
-                <span className="text-secondary">
-                  Le film est entièrement créé par des outils d'intelligence artificielle
+                {t('submit.step3.classification.full')}{' '}
+                <span className="text-muted-foreground">
+                  {t('submit.step3.classification.full.help')}
                 </span>
               </Label>
             </div>
             <div className="border-border hover:border-primary flex flex-row gap-2 rounded-lg border p-4">
               <RadioGroupItem value="Mme" id="mme" />
               <Label htmlFor="mme">
-                Production hybride (Prises de vues réelles + apports IA){' '}
-                <span className="text-secondary">
-                  Le film est entièrement créé par des outils d'intelligence artificielle
+                {t('submit.step3.classification.hybrid')}{' '}
+                <span className="text-muted-foreground">
+                  {t('submit.step3.classification.hybrid.help')}
                 </span>
               </Label>
             </div>
           </RadioGroup>
         </FormGroup>
         <FormGroup>
-          <Label required>Outils d'intelligence artificielle utilisés</Label>
-          <TextArea placeholder="Liste détaillée des outils utilisés : Script (ChatGPT, Claude...), Image (Midjourney, Stable Diffusion...), Animation (Runway, Pika...), Audio (ElevenLabs, Suno...)..." />
+          <Label required>{t('submit.step3.tools.label')}</Label>
+          <TextArea className="placeholder:text-muted-foreground placeholder:text-wrap" placeholder={t('submit.step3.tools.placeholder')} />
         </FormGroup>
         <FormGroup>
-          <Label required>Outils d'intelligence artificielle utilisés</Label>
-          <TextArea placeholder="Liste détaillée des outils utilisés : Script (ChatGPT, Claude...), Image (Midjourney, Stable Diffusion...), Animation (Runway, Pika...), Audio (ElevenLabs, Suno...)..." />
+          <Label required>{t('submit.step3.methodology.label')}</Label>
+          <TextArea className="placeholder:text-muted-foreground placeholder:text-wrap" placeholder={t('submit.step3.methodology.placeholder')} />
         </FormGroup>
       </Form>
     </>

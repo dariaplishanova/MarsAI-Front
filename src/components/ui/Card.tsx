@@ -4,8 +4,8 @@ import { cartVariants } from '../utils/variants';
 import { CardTitleVariants } from '../utils/variants';
 import { cn } from './utils';
 
-const CardHeader = ({ children }: { children: React.ReactNode }) => {
-  return <div className="flex flex-col p-3">{children}</div>;
+const CardHeader = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+  return <div className={cn('flex flex-col p-3', className)}>{children}</div>;
 };
 
 const CardDescription = ({ children, className }: DescribeProps) => {
@@ -34,5 +34,14 @@ function Card({ children, className, variant = 'default', ...props }: CardProps)
     </div>
   );
 }
+function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-content"
+      className={cn("px-6 [&:last-child]:pb-6", className)}
+      {...props}
+    />
+  );
+}
 
-export { Card, CardTitle, CardDescription, CardHeader };
+export { Card, CardTitle, CardDescription, CardHeader, CardContent };

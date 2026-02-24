@@ -54,6 +54,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   variant?: keyof typeof buttonVariant;
   icon?: React.ReactNode;
   position?: 'left' | 'right';
+  size?: 'sm' | 'md' | 'lg'| 'icon';
 }
 
 export type AITool = 'Image' | 'Sound' | 'Video' | 'Voice' | 'Script';

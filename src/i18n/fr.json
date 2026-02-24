@@ -292,5 +292,17 @@
   "instagram.name": "Instagram",
   "linkedin.name": "Linkedin",
   "facebook.name": "Facebook",
-  "twitter.name": "Twitter"
+  "twitter.name": "Twitter",
+
+  "submit.step3.classification.label": "Classification de l'œuvre",
+
+  "submit.step3.classification.full": "Génération intégrale (100% IA)",
+  "submit.step3.classification.full.help": "Le film est entièrement créé par des outils d'intelligence artificielle",
+
+  "submit.step3.classification.hybrid": "Production hybride (Prises de vues réelles + apports IA)",
+  "submit.step3.classification.hybrid.help": "Le film combine des prises de vues réelles et des outils d'intelligence artificielle",
+
+  "submit.step3.tools.label": "Outils d'intelligence artificielle utilisés",
+  "submit.step3.tools.placeholder": "Liste détaillée des outils utilisés : Script (ChatGPT, Claude...), Image (Midjourney, Stable Diffusion...), Animation (Runway, Pika...), Audio (ElevenLabs, Suno...)..."
 }
+

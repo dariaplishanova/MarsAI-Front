@@ -2,13 +2,14 @@ import { ButtonProps } from '@/types/home';
 import { buttonVariant } from '../utils/variants';
 import { cn } from './utils';
 
-const Button = ({ children, className, variant = 'default', icon, position = 'left', ...props }: ButtonProps) => {
+const Button = ({ children,size, className, variant = 'default', icon, position = 'left', ...props }: ButtonProps) => {
   return (
     <button
       className={cn(
         'z-10 flex h-fit w-fit items-center gap-3 rounded-md px-2 py-1 text-nowrap transition',
         buttonVariant[variant],
-        className
+        className,
+        size === 'sm' ? 'text-sm' : size === 'lg' ? 'text-lg' : 'text-base',
       )}
       {...props}
     >

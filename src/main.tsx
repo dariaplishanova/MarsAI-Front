@@ -10,6 +10,7 @@ import { Home } from './pages/home/Home.js';
 import SubmissionForm from './pages/submission/SubmissionForm.js';
 import './styles/index.css';
 import './styles/index.css';
+import { AdminDashboard } from './pages/admin/AdminDashboard.js';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/" element={<Home />} />
           <Route path="/submit" element={<SubmissionForm />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </main>
       <Footer />

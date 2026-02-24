@@ -288,5 +288,17 @@
   "instagram.name": "Instagram",
   "linkedin.name": "Linkedin",
   "facebook.name": "Facebook",
-  "twitter.name": "Twitter"
+  "twitter.name": "Twitter",
+
+  "submit.step3.classification.label": "Work Classification",
+
+  "submit.step3.classification.full": "Fully AI Generated (100% AI)",
+  "submit.step3.classification.full.help": "The film is entirely created using artificial intelligence tools",
+
+  "submit.step3.classification.hybrid": "Hybrid Production (Live-action + AI)",
+  "submit.step3.classification.hybrid.help": "The film combines live-action footage with artificial intelligence tools",
+
+  "submit.step3.tools.label": "Artificial Intelligence Tools Used",
+  "submit.step3.tools.placeholder": "Detailed list of tools used: Script (ChatGPT, Claude...), Image (Midjourney, Stable Diffusion...), Animation (Runway, Pika...), Audio (ElevenLabs, Suno...)..."
+
 }
