@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Upload } from 'lucide-react';
-import heroImage from '@/assets/hero.jpg';
-import Button from '@/components/ui/Button';
+import heroImage from '@/assets/hero2.jpg';
+import Button from '@/components/ui/button';
 import { Card } from '@/components/ui/Card';
 import CountDown from '@/components/ui/CountDown';
 

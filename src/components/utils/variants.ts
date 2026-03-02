@@ -1,6 +1,6 @@
 export const buttonVariants = {
   default: 'border border-white hover:bg-white/30',
-  purple: 'bg-primary shadow-sm shadow-primary/60',
+  purple: 'bg-primary/60 shadow-sm shadow-primary/60',
   connexion: 'bg-background border border-accent text-accent hover:text-foreground hover:bg-background/60',
   green: 'bg-accent border-accent hover:bg-accent/80',
   ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
