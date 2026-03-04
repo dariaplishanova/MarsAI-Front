@@ -1,21 +1,27 @@
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
-import { FormGroup, Input, Label } from '@/components/ui/Form';
-import { CollaboratorType } from '@/types/form';
+import { useFormContext } from 'react-hook-form';
+import { FormGroup, Input, Label, ErrorParagraph } from '@/components/ui/form';
+import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
 
 interface TeamMemberProps {
   index: number;
-  data: CollaboratorType;
-  onUpdate: (field: keyof CollaboratorType, value: string) => void;
   onDelete: () => void;
 }
 
-export default function TeamMember({ index, data, onUpdate, onDelete }: TeamMemberProps) {
+export default function TeamMember({ index, onDelete }: TeamMemberProps) {
   const { t } = useTranslation();
+  const { register, formState: { errors } } = useFormContext<FilmSubmissionData>();
+
+  const memberErrors = (errors.collaborators as any)?.[index];
 
   return (
     <div className="relative space-y-6 rounded-xl border border-slate-800 bg-slate-900/40 p-6">
-      <button type="button" onClick={onDelete} className="absolute top-4 right-4 p-1 text-slate-500 hover:text-red-500">
+      <button 
+        type="button" 
+        onClick={onDelete} 
+        className="absolute top-4 right-4 p-1 text-slate-500 hover:text-red-500 transition-colors"
+      >
         <X className="size-5" />
       </button>
 
@@ -29,39 +35,46 @@ export default function TeamMember({ index, data, onUpdate, onDelete }: TeamMemb
         <FormGroup>
           <Label required>{t('submit.step1.firstname')}</Label>
           <Input
-            value={data.firstname}
-            onChange={e => onUpdate('firstname', e.target.value)}
+            {...register(`collaborators.${index}.firstName` as const)}
             placeholder={t('placeholder.submitform1.firstname')}
+            className={memberErrors?.firstname ? 'border-red-500' : ''}
           />
+          {memberErrors?.firstname && <ErrorParagraph>{memberErrors.firstname.message}</ErrorParagraph>}
         </FormGroup>
+        
         <FormGroup>
           <Label required>{t('submit.step1.lastname')}</Label>
           <Input
-            value={data.lastname}
-            onChange={e => onUpdate('lastname', e.target.value)}
+            {...register(`collaborators.${index}.lastName` as const)}
             placeholder={t('placeholder.submitform1.lastname')}
+            className={memberErrors?.lastname ? 'border-red-500' : ''}
           />
+          {memberErrors?.lastname && <ErrorParagraph>{memberErrors.lastname.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 
-      <FormGroup>
-        <Label required>{t('submit.step5.role')}</Label>
-        <Input
-          value={data.job}
-          onChange={e => onUpdate('job', e.target.value)}
-          placeholder={t('submit.step5.role.placeholder')}
-        />
-      </FormGroup>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <FormGroup>
+          <Label required>{t('submit.step5.role')}</Label>
+          <Input
+            {...register(`collaborators.${index}.job` as const)}
+            placeholder={t('submit.step5.role.placeholder')}
+            className={memberErrors?.job ? 'border-red-500' : ''}
+          />
+          {memberErrors?.job && <ErrorParagraph>{memberErrors.job.message}</ErrorParagraph>}
+        </FormGroup>
 
-      <FormGroup>
-        <Label required>{t('submit.step5.email')}</Label>
-        <Input
-          type="email"
-          value={data.email}
-          onChange={e => onUpdate('email', e.target.value)}
-          placeholder={t('placeholder.submitform1.email')}
-        />
-      </FormGroup>
+        <FormGroup>
+          <Label required>{t('submit.step5.email')}</Label>
+          <Input
+            type="email"
+            {...register(`collaborators.${index}.email` as const)}
+            placeholder={t('placeholder.submitform1.email')}
+            className={memberErrors?.email ? 'border-red-500' : ''}
+          />
+          {memberErrors?.email && <ErrorParagraph>{memberErrors.email.message}</ErrorParagraph>}
+        </FormGroup>
+      </div>
     </div>
   );
 }

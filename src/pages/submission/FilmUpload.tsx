@@ -1,40 +1,159 @@
-import FormAi from './components/FormAi';
-import FormData from './components/FormData';
-import FormIdentity from './components/FormIdentity';
-import FormMedia from './components/FormMedia';
-import FormMember from './components/FormMember';
-import ProgressBarComponent from './components/ProgressBarComponent';
-import { useStepper } from './components/StepRule';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { Send } from 'lucide-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import Button from '@/components/ui/button';
+import Form from '@/components/ui/form';
+import { FilmSubmissionData, filmSubmissionSchema } from '@/schemas/filmSubmission.schema';
+import AiSection from './components/AiSection';
+import IdentitySection from './components/IdentitySection';
+import MediaSection from './components/MediaSection';
+import MemberSection from './components/MemberSection';
 
 export function FilmUpload() {
-  const { currentStep, steps, progress, formData, nextStep, prevStep } = useStepper();
+  const { t } = useTranslation();
 
-  const renderStep = () => {
-    switch (currentStep) {
-      case 1:
-        return <FormIdentity onNext={nextStep} />;
-      case 2:
-        return <FormData onNext={nextStep} onBack={prevStep} />;
-      case 3:
-        return <FormAi onNext={nextStep} onBack={prevStep} />;
-      case 4:
-        return <FormMedia onNext={nextStep} onBack={prevStep} />;
+  const methods = useForm({
+    resolver: zodResolver(filmSubmissionSchema(t)),
+    defaultValues: {
+      civility: 'M.',
+      firstName: '',
+      lastName: '',
+      birthDate: '',
+      email: '',
+      mobile: '',
+      address: '',
+      postCode: '',
+      city: '',
+      country: '',
+      job: '',
+      source: '',
+      newsletter: false,
+      youtube: '',
+      instagram: '',
+      linkedin: '',
+      facebook: '',
+      twitter: '',
 
-      case 5:
-        return <FormMember onBack={prevStep} masterData={formData} />;
+      aiClassification: '100',
+      techStack: '',
+      methodology: '',
 
-      default:
-        return <FormIdentity onNext={nextStep} />;
+      title: '',
+      titleEn: '',
+      synopsis: '',
+      synopsisEn: '',
+      duration: 0,
+      language: '',
+      semanticTags: '',
+      youtubeUrl: '',
+      hasSubtitles: false,
+      thumbnail: undefined,
+      gallery: [],
+
+      collaborators: [],
+    },
+  });
+
+  const onSubmit = async (data: FilmSubmissionData) => {
+    const formData = new FormData();
+
+    /**
+     * 1️⃣ TEXT / SIMPLE FIELDS
+     * Everything here becomes a string in FormData
+     */
+    const textFields: Record<string, string> = {
+      civility: data.civility,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      birthDate: data.birthDate,
+      email: data.email,
+      mobile: data.mobile,
+      address: data.address,
+      postCode: data.postCode,
+      city: data.city,
+      country: data.country,
+      job: data.job,
+      source: data.source,
+
+      youtube: data.youtube ?? '',
+      instagram: data.instagram ?? '',
+      linkedin: data.linkedin ?? '',
+      facebook: data.facebook ?? '',
+      twitter: data.twitter ?? '',
+
+      aiClassification: data.aiClassification,
+      techStack: data.techStack,
+      methodology: data.methodology,
+
+      title: data.title,
+      titleEn: data.titleEn,
+      synopsis: data.synopsis,
+      synopsisEn: data.synopsisEn,
+      language: data.language,
+      semanticTags: data.semanticTags ?? '',
+      youtubeUrl: data.youtubeUrl ?? '',
+
+      // numbers & booleans → string
+      duration: String(data.duration),
+      hasSubtitles: String(data.hasSubtitles),
+      newsletter: String(data.newsletter),
+    };
+
+    Object.entries(textFields).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+
+    /**
+     * 2️⃣ FILES
+     */
+    if (data.thumbnail) {
+      formData.append('thumbnail', data.thumbnail);
     }
+
+    data.gallery?.forEach(file => {
+      formData.append('gallery', file);
+    });
+
+    /**
+     * 3️⃣ COMPLEX DATA (arrays / objects)
+     */
+    formData.append('collaborators', JSON.stringify(data.collaborators ?? []));
+
+    /**
+     * 4️⃣ SEND TO BACKEND
+     */
+    await fetch('http://localhost:3000/submissions', {
+      method: 'POST',
+      body: formData,
+    });
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 pb-20">
-      <div className="m-auto mt-10 w-full max-w-4xl px-4">
-        <ProgressBarComponent steps={steps} currentStep={currentStep} variant="purple" progress={progress} />
-      </div>
+    <div className="min-h-screen bg-[#06080D] py-12">
+      <FormProvider {...methods}>
+        <Form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className="mx-auto max-w-4xl space-y-8 border-none bg-transparent p-0 ring-0"
+        >
+          <IdentitySection />
+          <AiSection />
+          <MediaSection />
+          <MemberSection />
 
-      <div className="flex flex-col gap-10">{renderStep()}</div>
+          <div className="pt-6">
+            <Button
+              type="submit"
+              variant="purple"
+              icon={<Send className="size-5" />}
+              position="right"
+              className="w-full justify-center rounded-xl bg-purple-600 py-4 text-lg font-bold text-white shadow-lg shadow-purple-600/20 hover:bg-purple-700"
+            >
+              {t('common.submit')}
+            </Button>
+          </div>
+        </Form>
+      </FormProvider>
     </div>
   );
 }
