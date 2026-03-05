@@ -5,7 +5,7 @@ import { LogIn, LogOut, Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useAuth } from '../hooks/useAuth';
 import { MarsAILogo } from './MarsAILogo';
-import Button from './ui/Button';
+import Button from './ui/button';
 import { LanguageSwitcher } from './ui/LanguageSwitcher';
 
 const navLinks = [

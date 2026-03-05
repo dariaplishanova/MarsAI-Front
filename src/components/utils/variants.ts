@@ -1,6 +1,6 @@
 export const buttonVariants = {
   default: 'border border-white hover:bg-white/30',
-  purple: 'bg-primary shadow-sm shadow-primary/60',
+  purple: 'bg-primary/60 shadow-sm shadow-primary/60',
   connexion: 'bg-background border border-accent text-accent hover:text-foreground hover:bg-background/60',
   green: 'bg-accent border-accent hover:bg-accent/80',
   ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
@@ -30,6 +30,7 @@ export const cartVariants = {
   time_green: 'bg-black/30 border-accent/20 hover:bg-accent/20',
   time_purple: 'ring-primary/30 text-primary hover:bg-primary/20 bg-black/30 border-primary/20',
   dashboard: 'rounded-2xl border border-slate-800 bg-slate-900/40 p-4 md:p-6',
+  formSection: 'bg-[#0B0F19] border-slate-800 shadow-lg',
 };
 
 export const CardTitleVariants = {

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@/hooks/useAuth';
-import { registerSchema } from '@/schemas/register.schema';
-import useForm from '../hooks/useForm';
+import { registerSchema, type RegisterFormData } from '@/schemas/register.schema';
 import Button from './ui/button';
 import Form, { ErrorParagraph, FormGroup, Input, Label } from './ui/form';
 
@@ -11,39 +12,41 @@ const Register = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const schema = registerSchema(t);
-
   const [loading, setLoading] = useState(false);
-
-  const { handleChange, handleSubmit, values, errors } = useForm(
-    { firstname: '', lastname: '', email: '', password: '', festival_id: 1 },
-    schema
-  );
-
   const { login: authLogin } = useAuth();
 
-  const onSubmit = async (formValues: typeof values) => {
-    const API_URL = import.meta.env.VITE_API_URL;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      festival_id: 1, 
+    },
+  });
 
+  const onSubmit = async (data: RegisterFormData) => {
+    const API_URL = import.meta.env.VITE_API_URL;
     try {
       setLoading(true);
       const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
-
       if (!response.ok) {
         alert(result.message || 'Erreur de connexion');
         return;
       }
 
-      // 2. ON UTILISE LE PROVIDER (C'est l'étape magique)
-      // On passe le token et l'objet 'user' que l'on voit sur ta capture Postman
       authLogin(result.token, result.user);
-
-      // 3. Redirection (si pas déjà gérée dans le provider)
       navigate('/');
     } catch (err) {
       console.error('Erreur réseau :', err);
@@ -53,7 +56,7 @@ const Register = () => {
   };
 
   return (
-    <Form noValidate={true} className="mx-auto w-full max-w-md space-y-6" onSubmit={handleSubmit(onSubmit)}>
+    <Form noValidate className="mx-auto w-full max-w-md space-y-6" onSubmit={handleSubmit(onSubmit)}>
       <div>
         <h2 className="pb-3 text-2xl font-semibold">{t('register_title')}</h2>
         <p className="text-muted-foreground">{t('register_subtitle')}</p>
@@ -63,24 +66,20 @@ const Register = () => {
         <FormGroup>
           <Label required>Prénom</Label>
           <Input
-            name="firstname"
             type="text"
             placeholder={t('placeholder.submitform1.firstname')}
-            value={values.firstname}
-            onChange={handleChange}
+            {...register('firstname')} 
           />
-          {errors.firstname && <ErrorParagraph>{errors.firstname}</ErrorParagraph>}
+          {errors.firstname && <ErrorParagraph>{errors.firstname.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>Nom</Label>
           <Input
-            name="lastname"
             type="text"
             placeholder={t('placeholder.submitform1.lastname')}
-            value={values.lastname}
-            onChange={handleChange}
+            {...register('lastname')}
           />
-          {errors.lastname && <ErrorParagraph>{errors.lastname}</ErrorParagraph>}
+          {errors.lastname && <ErrorParagraph>{errors.lastname.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 
@@ -88,29 +87,23 @@ const Register = () => {
         <FormGroup>
           <Label required>Email</Label>
           <Input
-            id="email"
-            name="email"
             type="email"
             placeholder="contact@example.com"
-            value={values.email}
-            onChange={handleChange}
+            {...register('email')}
             className={errors.email ? 'border-red-500 focus:ring-red-500' : ''}
           />
-          {errors.email && <ErrorParagraph>{errors.email}</ErrorParagraph>}
+          {errors.email && <ErrorParagraph>{errors.email.message}</ErrorParagraph>}
         </FormGroup>
 
         <FormGroup>
           <Label required>{t('form.pass')}</Label>
           <Input
-            id="password"
-            name="password"
             type="password"
             placeholder="**********"
-            value={values.password}
-            onChange={handleChange}
+            {...register('password')}
             className={errors.password ? 'border-red-500 focus:ring-red-500' : ''}
           />
-          {errors.password && <ErrorParagraph>{errors.password}</ErrorParagraph>}
+          {errors.password && <ErrorParagraph>{errors.password.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 
@@ -120,4 +113,5 @@ const Register = () => {
     </Form>
   );
 };
+
 export default Register;
