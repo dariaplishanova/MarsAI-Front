@@ -55,20 +55,12 @@ export default function IdentitySection() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FormGroup>
           <Label required>{t('submit.step1.firstname')}</Label>
-          <Input
-            {...register('firstName')}
-            placeholder={t('placeholder.submitform1.firstname')}
-            className={errors.firstName ? 'border-red-500' : ''}
-          />
+          <Input {...register('firstName')} placeholder={t('placeholder.submitform1.firstname')} />
           {errors.firstName && <ErrorParagraph>{errors.firstName.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>{t('submit.step1.lastname')}</Label>
-          <Input
-            {...register('lastName')}
-            placeholder={t('placeholder.submitform1.lastname')}
-            className={errors.lastName ? 'border-red-500' : ''}
-          />
+          <Input {...register('lastName')} placeholder={t('placeholder.submitform1.lastname')} />
           {errors.lastName && <ErrorParagraph>{errors.lastName.message}</ErrorParagraph>}
         </FormGroup>
       </div>
@@ -76,38 +68,24 @@ export default function IdentitySection() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <FormGroup>
           <Label required>{t('submit.step1.birthdate')}</Label>
-          <Input type="date" {...register('birthDate')} className={errors.birthDate ? 'border-red-500' : ''} />
+          <Input type="date" {...register('birthDate')} />
           {errors.birthDate && <ErrorParagraph>{errors.birthDate.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>{t('submit.step1.email')}</Label>
-          <Input
-            type="email"
-            {...register('email')}
-            placeholder={t('placeholder.submitform1.email')}
-            className={errors.email ? 'border-red-500' : ''}
-          />
+          <Input type="email" {...register('email')} placeholder={t('placeholder.submitform1.email')} />
           {errors.email && <ErrorParagraph>{errors.email.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>{t('submit.step1.mobile')}</Label>
-          <Input
-            type="tel"
-            {...register('mobile')}
-            placeholder={t('placeholder.submitform1.mobile')}
-            className={errors.mobile ? 'border-red-500' : ''}
-          />
+          <Input type="tel" {...register('mobile')} placeholder={t('placeholder.submitform1.mobile')} />
           {errors.mobile && <ErrorParagraph>{errors.mobile.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 
       <FormGroup>
         <Label required>{t('submit.step1.address')}</Label>
-        <Input
-          {...register('address')}
-          placeholder={t('placeholder.submitform1.address')}
-          className={errors.address ? 'border-red-500' : ''}
-        />
+        <Input {...register('address')} placeholder={t('placeholder.submitform1.address')} />
         {errors.address && <ErrorParagraph>{errors.address.message}</ErrorParagraph>}
       </FormGroup>
 

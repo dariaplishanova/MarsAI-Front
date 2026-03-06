@@ -1,6 +1,6 @@
+import { useFieldArray, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Plus, Users } from 'lucide-react';
-import { useFieldArray, useFormContext } from 'react-hook-form';
 import { Card } from '@/components/ui/Card';
 import Button from '@/components/ui/button';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
@@ -13,7 +13,7 @@ export default function MemberSection() {
   // This hook manages the collaborators list for us
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "collaborators"
+    name: 'collaborators',
   });
 
   const handleAddMember = () => {
@@ -22,7 +22,7 @@ export default function MemberSection() {
   };
 
   return (
-    <Card variant="formSection" className="p-6 md:p-10 space-y-8">
+    <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div className="space-y-2">
           <h2 className="text-3xl font-bold text-white">
@@ -34,7 +34,7 @@ export default function MemberSection() {
         <Button
           variant="default"
           type="button"
-          className="bg-primary/10 text-primary border-primary/20 flex items-center gap-2 border px-6 hover:bg-primary/20"
+          className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 flex items-center gap-2 border px-6"
           onClick={handleAddMember}
         >
           <Plus className="size-4" />

@@ -1,10 +1,10 @@
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@/hooks/useAuth';
-import { registerSchema, type RegisterFormData } from '@/schemas/register.schema';
+import { type RegisterFormData, registerSchema } from '@/schemas/register.schema';
 import Button from './ui/button';
 import Form, { ErrorParagraph, FormGroup, Input, Label } from './ui/form';
 
@@ -26,7 +26,7 @@ const Register = () => {
       lastname: '',
       email: '',
       password: '',
-      festival_id: 1, 
+      festival_id: 1,
     },
   });
 
@@ -65,20 +65,12 @@ const Register = () => {
       <div className="grid grid-cols-2 gap-4">
         <FormGroup>
           <Label required>Prénom</Label>
-          <Input
-            type="text"
-            placeholder={t('placeholder.submitform1.firstname')}
-            {...register('firstname')} 
-          />
+          <Input type="text" placeholder={t('placeholder.submitform1.firstname')} {...register('firstname')} />
           {errors.firstname && <ErrorParagraph>{errors.firstname.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>Nom</Label>
-          <Input
-            type="text"
-            placeholder={t('placeholder.submitform1.lastname')}
-            {...register('lastname')}
-          />
+          <Input type="text" placeholder={t('placeholder.submitform1.lastname')} {...register('lastname')} />
           {errors.lastname && <ErrorParagraph>{errors.lastname.message}</ErrorParagraph>}
         </FormGroup>
       </div>

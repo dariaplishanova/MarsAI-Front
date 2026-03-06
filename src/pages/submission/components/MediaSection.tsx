@@ -76,19 +76,25 @@ export default function MediaSection() {
 
       <div className="flex h-full flex-col">
         <FormGroup>
-          <Label required className="mb-2 flex-1">{t('submit.step2.duration')}</Label>
+          <Label required className="mb-2 flex-1">
+            {t('submit.step2.duration')}
+          </Label>
           <Input type="number" {...register('duration', { valueAsNumber: true })} placeholder="Seconds" />
           {errors.duration && <ErrorParagraph>{errors.duration.message}</ErrorParagraph>}
         </FormGroup>
 
         <FormGroup>
-          <Label required className="mb-2 flex-1">{t('submit.step2.language')}</Label>
+          <Label required className="mb-2 flex-1">
+            {t('submit.step2.language')}
+          </Label>
           <Input {...register('language')} placeholder={t('placeholder.submitform2.language')} />
           {errors.language && <ErrorParagraph>{errors.language.message}</ErrorParagraph>}
         </FormGroup>
 
         <FormGroup>
-          <Label required className="mb-2 flex-1">{t('submit.step2.tags')}</Label>
+          <Label required className="mb-2 flex-1">
+            {t('submit.step2.tags')}
+          </Label>
           <Input {...register('semanticTags')} placeholder={t('placeholder.submitform2.tag')} />
           {errors.semanticTags && <ErrorParagraph>{errors.semanticTags.message}</ErrorParagraph>}
         </FormGroup>

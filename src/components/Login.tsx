@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@/hooks/useAuth';
 // Import the type we just created
-import { loginSchema, type LoginFormData } from '../schemas/login.schema';
+import { type LoginFormData, loginSchema } from '../schemas/login.schema';
 import Button from './ui/button';
 import Form, { FormGroup, Input, Label } from './ui/form';
 
@@ -60,21 +60,13 @@ const Login = () => {
       <div className="flex flex-col gap-5">
         <FormGroup>
           <Label required>Email</Label>
-          <Input
-            type="email"
-            placeholder="contact@example.com"
-            {...register('email')}
-          />
+          <Input type="email" placeholder="contact@example.com" {...register('email')} />
           {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
         </FormGroup>
 
         <FormGroup>
           <Label required>{t('form.pass')}</Label>
-          <Input
-            type="password"
-            placeholder="**********"
-            {...register('password')}
-          />
+          <Input type="password" placeholder="**********" {...register('password')} />
           {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
         </FormGroup>
       </div>

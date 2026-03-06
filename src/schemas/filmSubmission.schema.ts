@@ -37,9 +37,9 @@ export const filmSubmissionSchema = (t: TFunction) => {
     youtubeUrl: z
       .string()
       .min(1, { message: t('errors.required') })
-      .url({ message: t('errors.invalidUrl') }) 
+      .url({ message: t('errors.invalidUrl') })
       .refine(url => /(youtube\.com|youtu\.be)/.test(url), {
-        message: t('errors.invalid_youtube'), 
+        message: t('errors.invalid_youtube'),
       }),
     hasSubtitles: z.boolean().default(false),
     thumbnail: z
