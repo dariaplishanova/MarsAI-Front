@@ -1,9 +1,10 @@
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, Film, Image as ImageIcon } from 'lucide-react';
+import { Card } from '@/components/ui/Card';
 import { ErrorParagraph, FormGroup, Input, Label, TextArea } from '@/components/ui/form';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
-import { Card } from '@/components/ui/Card';
 
 export default function MediaSection() {
   const { t } = useTranslation();
@@ -20,8 +21,23 @@ export default function MediaSection() {
     }
   };
 
+  const { watch } = useFormContext();
+  const thumbnail = watch('thumbnail');
+
+  const [preview, setPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!thumbnail) return;
+
+    const url = URL.createObjectURL(thumbnail);
+    setPreview(url);
+
+    return () => URL.revokeObjectURL(url);
+  }, [thumbnail]);
+
+  const hasErrors = Object.keys(errors).length > 0;
   return (
-    <Card variant="formSection" className="p-6 md:p-10 space-y-8">
+    <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div>
         <h2 className="pb-3 text-2xl font-semibold text-white">
           <span className="text-primary">3. </span>
@@ -58,21 +74,21 @@ export default function MediaSection() {
         </FormGroup>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="flex h-full flex-col">
         <FormGroup>
-          <Label required>{t('submit.step2.duration')}</Label>
+          <Label required className="mb-2 flex-1">{t('submit.step2.duration')}</Label>
           <Input type="number" {...register('duration', { valueAsNumber: true })} placeholder="Seconds" />
           {errors.duration && <ErrorParagraph>{errors.duration.message}</ErrorParagraph>}
         </FormGroup>
 
         <FormGroup>
-          <Label required>{t('submit.step2.language')}</Label>
+          <Label required className="mb-2 flex-1">{t('submit.step2.language')}</Label>
           <Input {...register('language')} placeholder={t('placeholder.submitform2.language')} />
           {errors.language && <ErrorParagraph>{errors.language.message}</ErrorParagraph>}
         </FormGroup>
 
         <FormGroup>
-          <Label required>{t('submit.step2.tags')}</Label>
+          <Label required className="mb-2 flex-1">{t('submit.step2.tags')}</Label>
           <Input {...register('semanticTags')} placeholder={t('placeholder.submitform2.tag')} />
           {errors.semanticTags && <ErrorParagraph>{errors.semanticTags.message}</ErrorParagraph>}
         </FormGroup>
@@ -100,10 +116,24 @@ export default function MediaSection() {
             onChange={handleFileChange}
             className="file:bg-primary/10 file:text-primary cursor-pointer text-slate-300"
           />
+
+          {preview && (
+            <div className="mt-3 h-32 w-32 overflow-hidden rounded-md border">
+              <img src={preview} alt="Thumbnail preview" className="h-full w-full object-cover" />
+            </div>
+          )}
+
           <p className="text-muted-foreground mt-1 text-xs">{t('submit.step4.thumbnail.hint')}</p>
           {errors.thumbnail && <ErrorParagraph>{errors.thumbnail.message}</ErrorParagraph>}
         </FormGroup>
       </div>
+
+      {hasErrors && (
+        <div className="bg-destructive/10 border-destructive/20 text-destructive flex items-center gap-2 rounded-md border p-3 text-sm">
+          <AlertCircle className="size-4" />
+          <p>{t('submit.validation.error')}</p>
+        </div>
+      )}
     </Card>
   );
 }

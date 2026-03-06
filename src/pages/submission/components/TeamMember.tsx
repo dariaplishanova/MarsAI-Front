@@ -37,9 +37,9 @@ export default function TeamMember({ index, onDelete }: TeamMemberProps) {
           <Input
             {...register(`collaborators.${index}.firstName` as const)}
             placeholder={t('placeholder.submitform1.firstname')}
-            className={memberErrors?.firstname ? 'border-red-500' : ''}
+            className={memberErrors?.firstName ? 'border-red-500' : ''}
           />
-          {memberErrors?.firstname && <ErrorParagraph>{memberErrors.firstname.message}</ErrorParagraph>}
+          {memberErrors?.firstName && <ErrorParagraph>{memberErrors.firstName.message}</ErrorParagraph>}
         </FormGroup>
         
         <FormGroup>
@@ -47,9 +47,9 @@ export default function TeamMember({ index, onDelete }: TeamMemberProps) {
           <Input
             {...register(`collaborators.${index}.lastName` as const)}
             placeholder={t('placeholder.submitform1.lastname')}
-            className={memberErrors?.lastname ? 'border-red-500' : ''}
+            className={memberErrors?.lastName ? 'border-red-500' : ''}
           />
-          {memberErrors?.lastname && <ErrorParagraph>{memberErrors.lastname.message}</ErrorParagraph>}
+          {memberErrors?.lastName && <ErrorParagraph>{memberErrors.lastName.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 

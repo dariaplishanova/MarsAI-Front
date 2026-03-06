@@ -12,7 +12,7 @@ export default function AiSection() {
   const { register, formState: { errors }, watch, setValue } = useFormContext<FilmSubmissionData>();
 
   const aiClassification = watch('aiClassification');
-  const hasErrors = Object.keys(errors).length > 0;
+  
 
   return (
     <Card variant="formSection" className="p-6 md:p-10 space-y-8">
@@ -74,12 +74,7 @@ export default function AiSection() {
         </FormGroup>
       </div>
 
-      {hasErrors && (
-        <div className="bg-destructive/10 border-destructive/20 text-destructive flex items-center gap-2 rounded-md border p-3 text-sm">
-          <AlertCircle className="size-4" />
-          <p>{t('submit.validation.error')}</p>
-        </div>
-      )}
+      
     </Card>
   );
 }

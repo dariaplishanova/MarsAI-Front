@@ -29,7 +29,7 @@ export default function IdentitySection() {
 
       <div className="space-y-2">
         <Label className="text-base font-semibold">
-          Civilité <span className="text-primary">*</span>
+          {t('submit.step1.civility')} <span className="text-primary">*</span>
         </Label>
         <RadioGroup
           value={civilityValue}
@@ -39,13 +39,13 @@ export default function IdentitySection() {
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="M." id="m" />
             <Label htmlFor="m" className="cursor-pointer font-normal text-slate-200">
-              M.
+              {t('submit.step1.civility1')}
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="Mme" id="mme" />
             <Label htmlFor="mme" className="cursor-pointer font-normal text-slate-200">
-              Mme
+              {t('submit.step1.civility2')}
             </Label>
           </div>
         </RadioGroup>
@@ -167,6 +167,7 @@ export default function IdentitySection() {
           {...register('source')}
           className="focus:ring-primary w-full rounded-md border border-slate-800 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
         >
+          <option value="">{t('placeholder.submitform1.select')}</option>
           <option value="Moteur de recherche">{t('submit.step1.source.search')}</option>
           <option value="Bouche-à-oreille">{t('submit.step1.source.word_of_mouth')}</option>
           <option value="Presse / Média">{t('submit.step1.source.press')}</option>
