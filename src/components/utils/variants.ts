@@ -1,36 +1,41 @@
 export const buttonVariants = {
-  default: 'border border-white hover:bg-white/30',
-  purple: 'bg-primary/60 shadow-sm shadow-primary/60',
-  connexion: 'bg-background border border-accent text-accent hover:text-foreground hover:bg-background/60',
-  green: 'bg-accent border-accent hover:bg-accent/80',
-  ghost: 'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
+  default: 'border border-border hover:bg-muted text-foreground',
+  purple: 'bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 transition-all',
+  connexion: 'bg-transparent border-2 border-primary text-primary hover:bg-primary/10',
+  green: 'bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all',
+  ghost: 'hover:bg-muted hover:text-muted-foreground',
   link: 'text-primary underline-offset-4 hover:underline',
-  active: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-  outline:
-    'border bg-background text-foreground hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
-  destructive: 'bg-destructive text-secondary-foreground hover:bg-secondary/80',
+  active: 'bg-primary text-primary-foreground',
+  outline: 'border border-border bg-background text-foreground hover:bg-muted',
+  destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
   dropdown:
     'bg-card border-border hover:border-primary focus:ring-primary focus:ring-offset-background flex items-center gap-2 rounded-lg border px-3 py-1.5 transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none',
 } as const;
 
 export const iconVariants = {
   default: 'bg-muted ring-border text-muted-foreground',
-  purple: 'bg-primary/10 ring-primary/30 text-primary hover:bg-primary/20',
-  green: 'bg-emerald-500/10 ring-emerald-500/30 text-emerald-500 hover:bg-accent/20',
-  blue: 'bg-blue-500/10 ring-blue-500/30 text-blue-500',
-  gold: 'bg-amber-400/10 ring-amber-400/30 text-amber-400 hover:bg-amber-500/20',
+  // Blush Pink
+  purple: 'bg-[#F4A3A4]/20 ring-[#F4A3A4]/40 text-[#D87D7D] hover:bg-[#F4A3A4]/30',
+  // Soft Sage Green
+  green: 'bg-[#AEC3B0]/30 ring-[#AEC3B0]/50 text-[#7A8C7C] hover:bg-[#AEC3B0]/40',
+  // Dusty Blue
+  blue: 'bg-[#9BA8B5]/20 ring-[#9BA8B5]/40 text-[#6B7988]',
+  // Warm Gold/Sand
+  gold: 'bg-[#D9C589]/20 ring-[#D9C589]/40 text-[#A6935B] hover:bg-[#D9C589]/30',
 } as const;
 
 export const cartVariants = {
-  default: 'bg-card/20 border-primary/20',
-  purple: 'border-primary/50 bg-primary/5 hover:border-primary',
-  green: 'border-emerald-500/50 bg-emerald-500/5 hover:border-emerald-500',
-  blue: 'border-blue-500/50 bg-blue-500/5 hover:border-blue-500',
-  gold: 'border-amber-400/50 bg-amber-400/5 hover:border-amber-400',
-  time_green: 'bg-black/30 border-accent/20 hover:bg-accent/20',
-  time_purple: 'ring-primary/30 text-primary hover:bg-primary/20 bg-black/30 border-primary/20',
-  dashboard: 'rounded-2xl border border-slate-800 bg-slate-900/40 p-4 md:p-6',
-  formSection: 'bg-[#0B0F19] border-slate-800 shadow-lg',
+  default: 'bg-card border-border shadow-sm text-foreground',
+  // Cards now have distinct soft backgrounds and borders!
+  purple: 'border-[#F4A3A4]/40 bg-[#F4A3A4]/10 hover:bg-[#F4A3A4]/20 transition-colors',
+  green: 'border-[#AEC3B0]/40 bg-[#AEC3B0]/10 hover:bg-[#AEC3B0]/20 transition-colors',
+  blue: 'border-[#9BA8B5]/40 bg-[#9BA8B5]/10',
+  gold: 'border-[#D9C589]/40 bg-[#D9C589]/10 hover:bg-[#D9C589]/20 transition-colors',
+  // Keep the rest the same...
+  time_green: 'bg-white/60 border-secondary/50 backdrop-blur-md shadow-sm',
+  time_purple: 'bg-white/80 border-primary/30 backdrop-blur-md ring-primary/20 shadow-sm',
+  dashboard: 'rounded-2xl border border-border bg-card shadow-sm p-4 md:p-6',
+  formSection: 'bg-card border-border shadow-lg shadow-primary/5 rounded-2xl p-6',
 };
 
 export const CardTitleVariants = {

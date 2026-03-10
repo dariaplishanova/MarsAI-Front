@@ -19,17 +19,17 @@ export default function TeamMember({ index, onDelete }: TeamMemberProps) {
   const memberErrors = (errors.collaborators as any)?.[index];
 
   return (
-    <div className="relative space-y-6 rounded-xl border border-slate-800 bg-slate-900/40 p-6">
+    <div className="relative space-y-6 rounded-xl border border-border bg-muted/30 p-6">
       <button
         type="button"
         onClick={onDelete}
-        className="absolute top-4 right-4 p-1 text-slate-500 transition-colors hover:text-red-500"
+        className="absolute top-4 right-4 p-1 text-muted-foreground transition-colors hover:text-destructive"
       >
         <X className="size-5" />
       </button>
 
       <div className="border-primary flex items-center gap-2 border-l-4 pl-4">
-        <h3 className="text-lg font-medium text-white">
+        <h3 className="text-lg font-medium">
           {t('submit.step5.collaborator')} #{index + 1}
         </h3>
       </div>

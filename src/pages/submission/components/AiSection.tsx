@@ -1,6 +1,5 @@
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { AlertCircle } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import RadioGroup, { RadioGroupItem } from '@/components/ui/RadioGroup';
 import { ErrorParagraph, FormGroup, Label, TextArea } from '@/components/ui/form';
@@ -21,7 +20,7 @@ export default function AiSection() {
   return (
     <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div>
-        <h2 className="pb-3 text-2xl font-semibold text-white">
+        <h2 className="pb-3 text-2xl font-semibold">
           <span className="text-primary">2. </span>
           {t('submit.step3.title')}
         </h2>
@@ -29,7 +28,7 @@ export default function AiSection() {
       </div>
 
       <FormGroup className="space-y-4">
-        <Label required className="text-base text-slate-200">
+        <Label required className="text-base">
           {t('submit.step3.type')}
         </Label>
         <RadioGroup
@@ -38,22 +37,22 @@ export default function AiSection() {
           className="grid grid-cols-1 gap-4"
         >
           <div
-            className={`flex items-start gap-3 rounded-xl border p-4 transition-all md:p-5 ${aiClassification === '100' ? 'border-primary bg-primary/5' : 'border-slate-800 bg-slate-900/50'}`}
+            className={`flex items-start gap-3 rounded-xl border p-4 transition-all md:p-5 ${aiClassification === '100' ? 'border-primary bg-primary/10' : 'border-border bg-background'}`}
           >
             <RadioGroupItem value="100" id="type-100" className="mt-1 shrink-0" />
-            <Label htmlFor="type-100" className="cursor-pointer font-medium text-slate-200">
+            <Label htmlFor="type-100" className="cursor-pointer font-medium">
               {t('submit.step3.type.100')}
-              <span className="mt-1 block text-sm font-normal text-slate-400">{t('submit.step3.type.100.desc')}</span>
+              <span className="text-muted-foreground mt-1 block text-sm font-normal">{t('submit.step3.type.100.desc')}</span>
             </Label>
           </div>
 
           <div
-            className={`flex items-start gap-3 rounded-xl border p-4 transition-all md:p-5 ${aiClassification === 'hybrid' ? 'border-primary bg-primary/5' : 'border-slate-800 bg-slate-900/50'}`}
+            className={`flex items-start gap-3 rounded-xl border p-4 transition-all md:p-5 ${aiClassification === 'hybrid' ? 'border-primary bg-primary/10' : 'border-border bg-background'}`}
           >
             <RadioGroupItem value="hybrid" id="type-hybrid" className="mt-1 shrink-0" />
-            <Label htmlFor="type-hybrid" className="cursor-pointer font-medium text-slate-200">
+            <Label htmlFor="type-hybrid" className="cursor-pointer font-medium">
               {t('submit.step3.type.hybrid')}
-              <span className="mt-1 block text-sm font-normal text-slate-400">
+              <span className="text-muted-foreground mt-1 block text-sm font-normal">
                 {t('submit.step3.type.hybrid.desc')}
               </span>
             </Label>

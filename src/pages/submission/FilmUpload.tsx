@@ -1,17 +1,18 @@
+import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { Send, AlertCircle } from 'lucide-react';
+import { AlertCircle, Send } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '@/components/ui/button';
 import Form from '@/components/ui/form';
+import i18n from '@/i18n';
 import { FilmSubmissionData, filmSubmissionSchema } from '@/schemas/filmSubmission.schema';
 import AiSection from './components/AiSection';
 import IdentitySection from './components/IdentitySection';
 import MediaSection from './components/MediaSection';
 import MemberSection from './components/MemberSection';
 import SubmissionSuccessPopup from './components/SubmissionSuccessPopup';
-import { useState } from 'react';
 
 export function FilmUpload() {
   const { t } = useTranslation();
@@ -64,7 +65,15 @@ export function FilmUpload() {
     },
   });
 
-  const { isSubmitting } = methods.formState;
+  useEffect(() => {
+    const activeErrorFields = Object.keys(errors);
+
+    if (activeErrorFields.length > 0) {
+      methods.trigger(activeErrorFields as any);
+    }
+  }, [i18n.language]);
+
+  const { isSubmitting, errors } = methods.formState;
 
   const onSubmit = async (data: FilmSubmissionData) => {
     setServerError(null);
@@ -84,7 +93,7 @@ export function FilmUpload() {
     });
 
     if (data.video && data.video.length > 0) {
-      formData.append('video', data.video[0]); 
+      formData.append('video', data.video[0]);
     }
 
     if (data.thumbnail) {
@@ -107,19 +116,18 @@ export function FilmUpload() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Erreur serveur (500)");
+        throw new Error(errorData.message || 'Erreur serveur (500)');
       }
 
       setShowSuccess(true);
-      
     } catch (error: any) {
-      console.error("Submission failed:", error);
-      setServerError(error.message); 
+      console.error('Submission failed:', error);
+      setServerError(error.message);
     }
   };
 
   return (
-    <div className="min-h-screen bg-[#06080D] py-12">
+    <div className="bg-background min-h-screen py-12">
       <FormProvider {...methods}>
         <Form
           onSubmit={methods.handleSubmit(onSubmit)}
@@ -142,7 +150,7 @@ export function FilmUpload() {
               type="submit"
               variant="purple"
               disabled={isSubmitting}
-              className="w-full justify-center rounded-xl bg-purple-600 py-4 text-lg font-bold text-white shadow-lg shadow-purple-600/20 hover:bg-purple-700"
+              className="w-full justify-center rounded-xl py-4 text-lg font-bold shadow-lg"
             >
               {isSubmitting ? t('submission.sending') : t('submission.submit')}
             </Button>

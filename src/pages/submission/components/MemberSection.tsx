@@ -10,14 +10,12 @@ export default function MemberSection() {
   const { t } = useTranslation();
   const { control } = useFormContext<FilmSubmissionData>();
 
-  // This hook manages the collaborators list for us
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'collaborators',
   });
 
   const handleAddMember = () => {
-    // We append a clean object
     append({ firstName: '', lastName: '', job: '', email: '' });
   };
 
@@ -25,16 +23,16 @@ export default function MemberSection() {
     <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div className="space-y-2">
-          <h2 className="text-3xl font-bold text-white">
+          <h2 className="text-3xl font-bold">
             <span className="text-primary">4. </span>
             {t('submit.step5.title')}
           </h2>
-          <p className="text-slate-400">{t('submit.step5.description')}</p>
+          <p className="text-muted-foreground">{t('submit.step5.description')}</p>
         </div>
         <Button
           variant="default"
           type="button"
-          className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 flex items-center gap-2 border px-6"
+          className="bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 flex items-center gap-2 border px-6 transition-colors"
           onClick={handleAddMember}
         >
           <Plus className="size-4" />
@@ -44,14 +42,14 @@ export default function MemberSection() {
 
       <div className="space-y-6">
         {fields.length === 0 ? (
-          <Card className="flex flex-col items-center justify-center border-dashed border-slate-800 bg-slate-900/20 py-16 text-slate-500">
-            <Users className="mb-4 size-16 opacity-20" />
-            <p className="text-lg font-medium text-slate-400">{t('submit.step5.empty')}</p>
+          <Card className="flex flex-col items-center justify-center border-dashed border-border bg-muted/30 py-16 text-muted-foreground">
+            <Users className="mb-4 size-16 opacity-30" />
+            <p className="text-lg font-medium">{t('submit.step5.empty')}</p>
           </Card>
         ) : (
           fields.map((field, index) => (
             <TeamMember
-              key={field.id} // useFieldArray provides a unique 'id'
+              key={field.id}
               index={index}
               onDelete={() => remove(index)}
             />

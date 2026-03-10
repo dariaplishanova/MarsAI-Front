@@ -17,14 +17,14 @@ export default function StatsSection() {
       icon: Video,
       value: '600+',
       label: t('landing.stats.films'),
-      color: 'text-accent',
+      color: 'text-[#AEC3B0]',
       variant: 'green' as const,
     },
     {
       icon: Trophy,
       value: '50 000$',
       label: t('landing.stats.prize'),
-      color: 'text-amber-400',
+      color: 'text-[#D9C589]',
       variant: 'gold' as const,
     },
   ];

@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Brain, Send, Star } from 'lucide-react';
-import Button from '@/components/ui/Button';
+import Button from '@/components/ui/button';
 import { Card } from '@/components/ui/Card';
-import { FormGroup, Label, TextArea } from '@/components/ui/Form';
+import { FormGroup, Label, TextArea } from '@/components/ui/form';
 
-// Helper to safely extract the YouTube ID from various URL formats
 const getYouTubeId = (url: string) => {
   if (!url) return '';
   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -18,7 +17,7 @@ export default function FilmEvaluator({ film }: { film: any }) {
 
   const averageScore = Math.round((scores.creativity + scores.technical + scores.narrative) / 3);
 
-  if (!film) return <div className="flex h-full items-center justify-center text-slate-500">Sélectionnez un film</div>;
+  if (!film) return <div className="flex h-full items-center justify-center text-muted-foreground">Sélectionnez un film</div>;
 
   const videoId = getYouTubeId(film.yt_url);
 
@@ -27,10 +26,9 @@ export default function FilmEvaluator({ film }: { film: any }) {
       <Card variant="dashboard">
         <div className="mb-6 flex items-start justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-white md:text-3xl">{film.title}</h1>
-            {/* Note: Director name is not in movie table, only director_id. need to join the users table later if you want the name! */}
-            <p className="text-sm text-slate-400">
-              Language: {film.main_language} • Duration: {film.duration}s
+            <h1 className="text-2xl font-bold text-foreground md:text-3xl">{film.title}</h1>
+            <p className="text-sm text-muted-foreground">
+              Language: {film.language || 'Non spécifié'} • Duration: {film.duration}s
             </p>
           </div>
           <span className="bg-primary/10 text-primary border-primary/20 rounded-full border px-3 py-1 text-xs font-medium">
@@ -41,82 +39,73 @@ export default function FilmEvaluator({ film }: { film: any }) {
           <iframe src={`https://www.youtube.com/embed/${videoId}`} className="h-full w-full border-0" allowFullScreen />
         </div>
         <div className="mt-4">
-          <h3 className="font-semibold text-white">Synopsis</h3>
-          <p className="text-sm text-slate-400">{film.synopsis_fr}</p>
+          <h3 className="font-semibold text-foreground">Synopsis</h3>
+          <p className="text-sm text-muted-foreground">{film.synopsis || film.synopsis_fr}</p>
         </div>
       </Card>
 
       <Card variant="dashboard">
         <div className="text-primary mb-1 flex items-center gap-2">
           <Brain className="size-5" />
-          <h2 className="text-lg font-semibold text-white">Carte d'Identité IA</h2>
+          <h2 className="text-lg font-semibold text-foreground">Carte d'Identité IA</h2>
         </div>
-        <p className="mb-6 text-sm text-slate-400">Outils et méthodologie utilisés</p>
+        <p className="mb-6 text-sm text-muted-foreground">Outils et méthodologie utilisés</p>
 
         <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
           {[
             {
               label: 'Type de Classification IA',
-              value:
-                film.ia_type === '100' ? '100% IA' : film.ia_type === 'hybrid' ? 'Production Hybride' : film.ia_type,
+              value: film.ia_type === '100' ? '100% IA' : film.ia_type === 'hybrid' ? 'Production Hybride' : film.ia_type,
               active: !!film.ia_type,
             },
             {
               label: 'Outils Utilisés (Stack)',
-              value: film.stack || 'Non renseigné',
-              active: !!film.stack && film.stack.trim() !== '',
+              value: film.ai_tools || film.stack || 'Non renseigné',
+              active: !!film.ai_tools || (!!film.stack && film.stack.trim() !== ''),
             },
           ].map((item, i) => (
             <div
               key={i}
               className={`rounded-xl border p-4 transition-colors ${
-                item.active ? 'border-primary/50 bg-primary/5' : 'border-slate-800 bg-slate-900/50'
+                item.active ? 'border-primary/50 bg-primary/5' : 'border-border bg-muted/30'
               }`}
             >
-              <span className="mb-1 block text-xs text-slate-500">{item.label}</span>
-              <span className={`text-sm font-medium ${item.active ? 'text-white' : 'text-slate-500'}`}>
+              <span className="mb-1 block text-xs text-muted-foreground">{item.label}</span>
+              <span className={`text-sm font-medium ${item.active ? 'text-foreground' : 'text-muted-foreground'}`}>
                 {item.value}
               </span>
             </div>
           ))}
         </div>
 
-        <Card variant="dashboard" className="rounded-xl border border-slate-800 bg-slate-900/50 p-4">
-          <span className="mb-2 block text-xs text-slate-500">Méthodologie Créative</span>
-          <p className="text-sm leading-relaxed text-slate-300">
+        <Card variant="dashboard" className="rounded-xl border border-border bg-muted/30 p-4">
+          <span className="mb-2 block text-xs text-muted-foreground">Méthodologie Créative</span>
+          <p className="text-sm leading-relaxed text-foreground">
             {film.methodology || 'Aucune méthodologie détaillée.'}
           </p>
         </Card>
       </Card>
 
-      <Card className="rounded-2xl border border-slate-800 bg-slate-900/40 p-4 md:p-6">
+      <Card className="rounded-2xl border border-border bg-card p-4 md:p-6 shadow-sm">
         <div className="text-primary mb-6 flex items-center gap-2">
           <Star className="size-5" />
-          <h2 className="text-lg font-semibold text-white">Votre Évaluation</h2>
+          <h2 className="text-lg font-semibold text-foreground">Votre Évaluation</h2>
         </div>
 
-        <div className="mb-10 rounded-xl border border-slate-800 bg-slate-950/50 py-6 text-center">
-          <p className="text-sm text-slate-500">Note Moyenne (Règle des 3)</p>
+        <div className="mb-10 rounded-xl border border-border bg-muted/30 py-6 text-center">
+          <p className="text-sm text-muted-foreground">Note Moyenne (Règle des 3)</p>
           <div className="text-primary my-2 text-4xl font-bold">
-            {averageScore} <span className="text-xl text-slate-500">/10</span>
+            {averageScore} <span className="text-xl text-muted-foreground">/10</span>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-muted-foreground">
             Créativité: {scores.creativity} | Technique: {scores.technical} | Narration: {scores.narrative}
           </p>
         </div>
 
         <div className="space-y-10">
           {[
-            {
-              id: 'creativity',
-              label: '1. Créativité & Innovation',
-              desc: "Originalité du concept, usage innovant de l'IA",
-            },
-            {
-              id: 'technical',
-              label: '2. Qualité Technique',
-              desc: 'Maîtrise des outils IA, qualité visuelle et sonore',
-            },
+            { id: 'creativity', label: '1. Créativité & Innovation', desc: "Originalité du concept, usage innovant de l'IA" },
+            { id: 'technical', label: '2. Qualité Technique', desc: 'Maîtrise des outils IA, qualité visuelle et sonore' },
             { id: 'narrative', label: '3. Narration & Impact', desc: "Cohérence de l'histoire, émotion, message" },
           ].map(slider => {
             const score = scores[slider.id as keyof typeof scores];
@@ -125,14 +114,14 @@ export default function FilmEvaluator({ film }: { film: any }) {
             return (
               <div key={slider.id} className="space-y-3">
                 <div className="flex items-end justify-between">
-                  <Label className="text-base font-semibold text-white">{slider.label}</Label>
+                  <Label className="text-base font-semibold text-foreground">{slider.label}</Label>
                   <span className="text-primary text-2xl font-bold">
-                    {score} <span className="text-sm text-slate-500">/10</span>
+                    {score} <span className="text-sm text-muted-foreground">/10</span>
                   </span>
                 </div>
 
                 <div className="relative flex h-4 items-center">
-                  <div className="absolute h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                  <div className="absolute h-2 w-full overflow-hidden rounded-full bg-muted">
                     <div
                       className="bg-primary h-full transition-all duration-150 ease-out"
                       style={{ width: `${fillPercentage}%` }}
@@ -140,7 +129,7 @@ export default function FilmEvaluator({ film }: { film: any }) {
                   </div>
 
                   <div
-                    className="bg-primary absolute h-4 w-4 rounded-full shadow-[0_0_10px_rgba(168,85,247,0.6)] transition-all duration-150 ease-out"
+                    className="bg-primary absolute h-4 w-4 rounded-full shadow-sm shadow-primary/40 transition-all duration-150 ease-out"
                     style={{ left: `calc(${fillPercentage}% - 8px)` }}
                   />
 
@@ -155,28 +144,28 @@ export default function FilmEvaluator({ film }: { film: any }) {
                 </div>
 
                 <div>
-                  <div className="mb-1 flex justify-between text-xs text-slate-500">
+                  <div className="mb-1 flex justify-between text-xs text-muted-foreground">
                     <span>1 - Faible</span>
                     <span className="text-primary font-medium">Moyen</span>
                     <span>10 - Excellent</span>
                   </div>
-                  <p className="text-xs text-slate-400">{slider.desc}</p>
+                  <p className="text-xs text-muted-foreground">{slider.desc}</p>
                 </div>
               </div>
             );
           })}
         </div>
 
-        <div className="mt-10 border-t border-slate-800 pt-6">
+        <div className="mt-10 border-t border-border pt-6">
           <FormGroup>
-            <Label className="text-sm text-white">Private Internal Comments</Label>
+            <Label className="text-sm text-foreground">Private Internal Comments</Label>
             <TextArea
               value={comment}
               onChange={e => setComment(e.target.value)}
               placeholder="Share your thoughts for deliberation..."
-              className="mt-2 min-h-25 bg-slate-950 text-white"
+              className="mt-2 min-h-25"
             />
-            <p className="mt-2 text-xs text-slate-500">These comments are confidential</p>
+            <p className="mt-2 text-xs text-muted-foreground">These comments are confidential</p>
           </FormGroup>
           <Button variant="purple" className="mt-6 flex w-full items-center justify-center gap-2 py-3">
             <Send className="size-4" /> Submit Rating

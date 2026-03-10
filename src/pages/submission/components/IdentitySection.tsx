@@ -20,7 +20,7 @@ export default function IdentitySection() {
   return (
     <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div>
-        <h2 className="pb-3 text-2xl font-semibold text-white">
+        <h2 className="pb-3 text-2xl font-semibold">
           <span className="text-primary">1. </span>
           {t('submit.step1.title')}
         </h2>
@@ -38,13 +38,13 @@ export default function IdentitySection() {
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="M." id="m" />
-            <Label htmlFor="m" className="cursor-pointer font-normal text-slate-200">
+            <Label htmlFor="m" className="cursor-pointer font-normal">
               {t('submit.step1.civility1')}
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="Mme" id="mme" />
-            <Label htmlFor="mme" className="cursor-pointer font-normal text-slate-200">
+            <Label htmlFor="mme" className="cursor-pointer font-normal">
               {t('submit.step1.civility2')}
             </Label>
           </div>
@@ -113,7 +113,7 @@ export default function IdentitySection() {
         {errors.job && <ErrorParagraph>{errors.job.message}</ErrorParagraph>}
       </FormGroup>
 
-      <div className="space-y-4 border-t border-slate-800 pt-6">
+      <div className="space-y-4 border-t border-border pt-6">
         <Label className="text-lg font-semibold">{t('submit.step1.social')}</Label>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <FormGroup>
@@ -143,7 +143,7 @@ export default function IdentitySection() {
         <Label required>{t('submit.step1.question')}</Label>
         <select
           {...register('source')}
-          className="focus:ring-primary w-full rounded-md border border-slate-800 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
+          className="focus:ring-primary w-full rounded-md border border-border bg-background px-3 py-2 text-foreground outline-none focus:ring-2"
         >
           <option value="">{t('placeholder.submitform1.select')}</option>
           <option value="Moteur de recherche">{t('submit.step1.source.search')}</option>
@@ -156,14 +156,14 @@ export default function IdentitySection() {
         {errors.source && <ErrorParagraph>{errors.source.message}</ErrorParagraph>}
       </FormGroup>
 
-      <FormGroup className="flex flex-row items-center gap-3 space-y-0 rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+      <FormGroup className="flex flex-row items-center gap-3 space-y-0 rounded-xl border border-border bg-muted/50 p-5">
         <input
           type="checkbox"
           id="newsletter"
           {...register('newsletter')}
           className="accent-primary size-5 cursor-pointer"
         />
-        <Label htmlFor="newsletter" className="m-0 cursor-pointer font-normal text-slate-300">
+        <Label htmlFor="newsletter" className="m-0 cursor-pointer font-normal">
           {t('submit.step1.newsletter')}
         </Label>
       </FormGroup>

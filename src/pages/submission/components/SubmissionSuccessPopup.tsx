@@ -17,7 +17,7 @@ export default function SubmissionSuccessPopup({ open, onClose }: SubmissionSucc
       <div className="flex flex-col items-center text-center">
         <IconBadge variant="green" icon={BadgeCheck} />
         <h2 className="mb-4 text-2xl font-bold">{t('submission.success_title', 'Success!')}</h2>
-        <p className="mb-8 text-gray-600">
+        <p className="mb-8 text-muted-foreground">
           {t('submission.success_message', 'Your movie has been submitted successfully.')}
         </p>
 

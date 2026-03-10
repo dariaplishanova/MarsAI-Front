@@ -28,12 +28,12 @@ export default function MediaSection() {
   const hasErrors = Object.keys(errors).length > 0;
 
   const fileInputClasses =
-    'block w-full cursor-pointer rounded-lg border border-border bg-background p-2 text-sm text-muted-foreground file:mr-4 file:rounded-md file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-foreground hover:file:bg-primary/90';
+    'block w-full cursor-pointer rounded-lg border border-border bg-background p-2 text-sm text-muted-foreground file:mr-4 file:rounded-md file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-foreground hover:file:bg-primary/90 transition-colors';
 
   return (
     <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div>
-        <h2 className="pb-3 text-2xl font-semibold text-white">
+        <h2 className="pb-3 text-2xl font-semibold">
           <span className="text-primary">3. </span>
           {t('submit.step2.title')} & {t('submit.step4.title')}
         </h2>
@@ -68,7 +68,7 @@ export default function MediaSection() {
         </FormGroup>
       </div>
 
-      <div className="flex h-full flex-col">
+      <div className="flex h-full flex-col gap-6">
         <FormGroup>
           <Label required className="mb-2 flex-1">
             {t('submit.step2.duration')}
@@ -94,7 +94,7 @@ export default function MediaSection() {
         </FormGroup>
       </div>
 
-      <div className="space-y-6 border-t border-slate-800 pt-6">
+      <div className="space-y-6 border-t border-border pt-6">
         <FormGroup>
           <Label required className="flex items-center gap-2">
             <Film className="text-primary size-4" />
@@ -136,7 +136,7 @@ export default function MediaSection() {
           />
 
           {thumbnailPreview && (
-            <div className="border-border mt-3 h-32 w-32 overflow-hidden rounded-md border">
+            <div className="border-border mt-3 h-32 w-32 overflow-hidden rounded-md border bg-muted/30">
               <img src={thumbnailPreview} alt="Thumbnail preview" className="h-full w-full object-cover" />
             </div>
           )}
@@ -163,7 +163,7 @@ export default function MediaSection() {
           {galleryPreviews.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-3">
               {galleryPreviews.map((url, index) => (
-                <div key={index} className="border-border h-24 w-24 overflow-hidden rounded-md border">
+                <div key={index} className="border-border h-24 w-24 overflow-hidden rounded-md border bg-muted/30">
                   <img src={url} alt={`Gallery preview ${index + 1}`} className="h-full w-full object-cover" />
                 </div>
               ))}
