@@ -1,6 +1,7 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Send } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Send, AlertCircle } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '@/components/ui/button';
 import Form from '@/components/ui/form';
@@ -9,14 +10,25 @@ import AiSection from './components/AiSection';
 import IdentitySection from './components/IdentitySection';
 import MediaSection from './components/MediaSection';
 import MemberSection from './components/MemberSection';
+import SubmissionSuccessPopup from './components/SubmissionSuccessPopup';
+import { useState } from 'react';
 
 export function FilmUpload() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  const handleClosePopup = () => {
+    navigate('/');
+  };
 
   const methods = useForm({
     resolver: zodResolver(filmSubmissionSchema(t)),
+    mode: 'onTouched',
     defaultValues: {
-      civility: 'M.',
+      civility: '',
       firstName: '',
       lastName: '',
       birthDate: '',
@@ -34,11 +46,9 @@ export function FilmUpload() {
       linkedin: '',
       facebook: '',
       twitter: '',
-
       aiClassification: '100',
       techStack: '',
       methodology: '',
-
       title: '',
       titleEn: '',
       synopsis: '',
@@ -46,87 +56,66 @@ export function FilmUpload() {
       duration: 0,
       language: '',
       semanticTags: '',
-      youtubeUrl: '',
       hasSubtitles: false,
+      video: undefined,
       thumbnail: undefined,
       gallery: [],
-
       collaborators: [],
     },
   });
 
+  const { isSubmitting } = methods.formState;
+
   const onSubmit = async (data: FilmSubmissionData) => {
+    setServerError(null);
     const formData = new FormData();
 
-    /**
-     * 1️⃣ TEXT / SIMPLE FIELDS
-     * Everything here becomes a string in FormData
-     */
-    const textFields: Record<string, string> = {
-      civility: data.civility,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      birthDate: data.birthDate,
-      email: data.email,
-      mobile: data.mobile,
-      address: data.address,
-      postCode: data.postCode,
-      city: data.city,
-      country: data.country,
-      job: data.job,
-      source: data.source,
-
-      youtube: data.youtube ?? '',
-      instagram: data.instagram ?? '',
-      linkedin: data.linkedin ?? '',
-      facebook: data.facebook ?? '',
-      twitter: data.twitter ?? '',
-
-      aiClassification: data.aiClassification,
-      techStack: data.techStack,
-      methodology: data.methodology,
-
-      title: data.title,
-      titleEn: data.titleEn,
-      synopsis: data.synopsis,
-      synopsisEn: data.synopsisEn,
-      language: data.language,
-      semanticTags: data.semanticTags ?? '',
-      youtubeUrl: data.youtubeUrl ?? '',
-
-      // numbers & booleans → string
+    const textFields: Record<string, any> = {
+      ...data,
       duration: String(data.duration),
       hasSubtitles: String(data.hasSubtitles),
       newsletter: String(data.newsletter),
     };
 
+    ['video', 'thumbnail', 'gallery', 'collaborators'].forEach(k => delete textFields[k]);
+
     Object.entries(textFields).forEach(([key, value]) => {
-      formData.append(key, value);
+      formData.append(key, value as string);
     });
 
-    /**
-     * 2️⃣ FILES
-     */
+    if (data.video && data.video.length > 0) {
+      formData.append('video', data.video[0]); 
+    }
+
     if (data.thumbnail) {
       formData.append('thumbnail', data.thumbnail);
     }
 
-    data.gallery?.forEach(file => {
-      formData.append('gallery', file);
-    });
+    if (data.gallery && data.gallery.length > 0) {
+      data.gallery.forEach((file: File) => {
+        formData.append('gallery', file);
+      });
+    }
 
-    /**
-     * 3️⃣ COMPLEX DATA (arrays / objects)
-     */
     formData.append('collaborators', JSON.stringify(data.collaborators ?? []));
 
-    /**
-     * 4️⃣ SEND TO BACKEND
-     */
-    await fetch('http://localhost:3000/submissions', {
-      method: 'POST',
-      body: formData,
-    });
+    try {
+      const response = await fetch('http://localhost:3000/submissions', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Erreur serveur (500)");
+      }
+
+      setShowSuccess(true);
+      
+    } catch (error: any) {
+      console.error("Submission failed:", error);
+      setServerError(error.message); 
+    }
   };
 
   return (
@@ -141,19 +130,27 @@ export function FilmUpload() {
           <MediaSection />
           <MemberSection />
 
+          {serverError && (
+            <div className="bg-destructive/10 border-destructive/20 text-destructive flex items-center gap-3 rounded-xl border p-4">
+              <AlertCircle className="size-5" />
+              <p className="text-sm font-medium">Erreur : {serverError}</p>
+            </div>
+          )}
+
           <div className="pt-6">
             <Button
               type="submit"
               variant="purple"
-              icon={<Send className="size-5" />}
-              position="right"
+              disabled={isSubmitting}
               className="w-full justify-center rounded-xl bg-purple-600 py-4 text-lg font-bold text-white shadow-lg shadow-purple-600/20 hover:bg-purple-700"
             >
-              {t('common.submit')}
+              {isSubmitting ? t('submission.sending') : t('submission.submit')}
             </Button>
           </div>
         </Form>
       </FormProvider>
+
+      <SubmissionSuccessPopup open={showSuccess} onClose={handleClosePopup} />
     </div>
   );
 }

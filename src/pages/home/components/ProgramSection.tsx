@@ -3,6 +3,7 @@ import { Award, Presentation, Users, Video } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import ProgramCard from '@/components/ui/ProgramCard';
 import Button from '@/components/ui/button';
+import { iconVariants } from '@/components/utils/variants';
 
 export default function ProgramSection() {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.competition.capacity'),
       icon: Video,
       variant: 'purple' as const,
+      iconVariant: 'purple' as const
     },
     {
       title: t('landing.program.cards.masterclass.title'),
@@ -23,6 +25,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.masterclass.capacity'),
       icon: Presentation,
       variant: 'green' as const,
+      iconVariant: 'green' as const
     },
     {
       title: t('landing.program.cards.conference.title'),
@@ -31,6 +34,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.conference.capacity'),
       icon: Users,
       variant: 'purple' as const,
+      iconVariant: 'purple' as const
     },
     {
       title: t('landing.program.cards.night.title'),
@@ -39,6 +43,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.night.capacity'),
       icon: Award,
       variant: 'gold' as const,
+      iconVariant: 'gold' as const
     },
   ];
 

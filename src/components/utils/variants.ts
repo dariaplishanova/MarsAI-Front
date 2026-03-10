@@ -19,7 +19,7 @@ export const iconVariants = {
   green: 'bg-emerald-500/10 ring-emerald-500/30 text-emerald-500 hover:bg-accent/20',
   blue: 'bg-blue-500/10 ring-blue-500/30 text-blue-500',
   gold: 'bg-amber-400/10 ring-amber-400/30 text-amber-400 hover:bg-amber-500/20',
-};
+} as const;
 
 export const cartVariants = {
   default: 'bg-card/20 border-primary/20',

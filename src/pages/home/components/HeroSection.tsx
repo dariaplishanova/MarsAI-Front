@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 import { Upload } from 'lucide-react';
 import heroImage from '@/assets/hero2.jpg';
 import { Card } from '@/components/ui/Card';
@@ -7,7 +8,11 @@ import Button from '@/components/ui/button';
 
 export default function HeroSection() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
+  const handleNaviagte = () => {
+    navigate('/submit');
+  };
   return (
     <section
       style={{ backgroundImage: `url(${heroImage})` }}
@@ -20,7 +25,6 @@ export default function HeroSection() {
           <p className="text-lg font-light text-gray-300 md:text-xl">{t('hero.subtitle')}</p>
         </div>
 
-        {/* 3. L'INSERTION DU DÉCOMPTE (DANS UNE CARD) */}
         <Card
           variant="purple"
           className="border-primary/20 w-full bg-white/5 p-4 shadow-md backdrop-blur-xs md:max-w-fit md:p-6"
@@ -28,8 +32,8 @@ export default function HeroSection() {
           <CountDown />
         </Card>
         <div className="flex flex-wrap justify-center gap-4">
-          <Button icon={<Upload size={15} />} variant="purple" className="px-3 py-2 text-xl">
-            Soumettre mon Film
+          <Button icon={<Upload size={15} />} variant="purple" onClick={handleNaviagte} className="px-3 py-2 text-xl">
+            {t('nav.submit')}
           </Button>
         </div>
       </div>

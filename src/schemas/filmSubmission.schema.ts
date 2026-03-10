@@ -3,10 +3,11 @@ import { z } from 'zod';
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB limit
 const ACCEPTED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const MAX_VIDEO_SIZE = 524288000;
 
 export const filmSubmissionSchema = (t: TFunction) => {
   return z.object({
-    civility: z.enum(['M.', 'Mme'], { required_error: t('errors.required') }),
+    civility: z.string().min(1, { message: t('errors.required') }),
     firstName: z.string().min(2, { message: t('errors.tooShort') }),
     lastName: z.string().min(2, { message: t('errors.tooShort') }),
     birthDate: z.string().min(1, { message: t('errors.required') }),
@@ -26,20 +27,21 @@ export const filmSubmissionSchema = (t: TFunction) => {
     twitter: z.string().optional().or(z.literal('')),
     aiClassification: z.string().min(1, { message: t('errors.required') }),
     techStack: z.string().min(2, { message: t('errors.required') }),
-    methodology: z.string().min(10, { message: t('errors.required') }),
+    methodology: z.string().min(2, { message: t('errors.required') }),
     title: z.string().min(2, { message: t('errors.required') }),
     titleEn: z.string().min(2, { message: t('errors.required') }),
-    synopsis: z.string().min(10, { message: t('errors.required') }),
-    synopsisEn: z.string().min(10, { message: t('errors.required') }),
+    synopsis: z.string().min(2, { message: t('errors.required') }),
+    synopsisEn: z.string().min(2, { message: t('errors.required') }),
     duration: z.coerce.number().min(1, { message: t('errors.required') }),
     language: z.string().min(2, { message: t('errors.required') }),
     semanticTags: z.string().min(1, { message: t('errors.required') }),
-    youtubeUrl: z
-      .string()
-      .min(1, { message: t('errors.required') })
-      .url({ message: t('errors.invalidUrl') })
-      .refine(url => /(youtube\.com|youtu\.be)/.test(url), {
-        message: t('errors.invalid_youtube'),
+    video: z
+      .any()
+      .refine(files => files instanceof FileList && files.length > 0, {
+        message: t('errors.videoRequired'),
+      })
+      .refine(files => files?.[0]?.size <= MAX_VIDEO_SIZE, {
+        message: t('errors.videoTooLarge'),
       }),
     hasSubtitles: z.boolean().default(false),
     thumbnail: z
@@ -48,7 +50,7 @@ export const filmSubmissionSchema = (t: TFunction) => {
       .refine(file => file?.size <= MAX_FILE_SIZE, t('errors.fileTooLarge'))
       .refine(file => ACCEPTED_IMAGE_TYPES.includes(file?.type), t('errors.invalidFileType')),
     gallery: z
-      .array(z.any())
+      .array(z.any()) 
       .max(3, { message: t('errors.maxFiles') })
       .optional(),
     collaborators: z
