@@ -51,7 +51,7 @@ export default function CountDown() {
         >
           <Card
             variant={unit.variant as keyof typeof cartVariants}
-            className="bg-background/50 border-primary/20 flex flex-col rounded-md border p-2 backdrop-blur-sm sm:min-w-30"
+            className="flex flex-col items-center justify-center rounded-md border p-2 sm:min-w-30 text-center"
           >
             {/* CHIFFRE : Tabular-nums pour éviter que ça bouge + couleurs primaires/accent */}
             <span

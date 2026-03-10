@@ -20,7 +20,7 @@ export default function IdentitySection() {
   return (
     <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div>
-        <h2 className="pb-3 text-2xl font-semibold text-white">
+        <h2 className="pb-3 text-2xl font-semibold">
           <span className="text-primary">1. </span>
           {t('submit.step1.title')}
         </h2>
@@ -29,7 +29,7 @@ export default function IdentitySection() {
 
       <div className="space-y-2">
         <Label className="text-base font-semibold">
-          Civilité <span className="text-primary">*</span>
+          {t('submit.step1.civility')} <span className="text-primary">*</span>
         </Label>
         <RadioGroup
           value={civilityValue}
@@ -38,14 +38,14 @@ export default function IdentitySection() {
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="M." id="m" />
-            <Label htmlFor="m" className="cursor-pointer font-normal text-slate-200">
-              M.
+            <Label htmlFor="m" className="cursor-pointer font-normal">
+              {t('submit.step1.civility1')}
             </Label>
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="Mme" id="mme" />
-            <Label htmlFor="mme" className="cursor-pointer font-normal text-slate-200">
-              Mme
+            <Label htmlFor="mme" className="cursor-pointer font-normal">
+              {t('submit.step1.civility2')}
             </Label>
           </div>
         </RadioGroup>
@@ -55,20 +55,12 @@ export default function IdentitySection() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <FormGroup>
           <Label required>{t('submit.step1.firstname')}</Label>
-          <Input
-            {...register('firstName')}
-            placeholder={t('placeholder.submitform1.firstname')}
-            className={errors.firstName ? 'border-red-500' : ''}
-          />
+          <Input {...register('firstName')} placeholder={t('placeholder.submitform1.firstname')} />
           {errors.firstName && <ErrorParagraph>{errors.firstName.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>{t('submit.step1.lastname')}</Label>
-          <Input
-            {...register('lastName')}
-            placeholder={t('placeholder.submitform1.lastname')}
-            className={errors.lastName ? 'border-red-500' : ''}
-          />
+          <Input {...register('lastName')} placeholder={t('placeholder.submitform1.lastname')} />
           {errors.lastName && <ErrorParagraph>{errors.lastName.message}</ErrorParagraph>}
         </FormGroup>
       </div>
@@ -76,38 +68,24 @@ export default function IdentitySection() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <FormGroup>
           <Label required>{t('submit.step1.birthdate')}</Label>
-          <Input type="date" {...register('birthDate')} className={errors.birthDate ? 'border-red-500' : ''} />
+          <Input type="date" {...register('birthDate')} />
           {errors.birthDate && <ErrorParagraph>{errors.birthDate.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>{t('submit.step1.email')}</Label>
-          <Input
-            type="email"
-            {...register('email')}
-            placeholder={t('placeholder.submitform1.email')}
-            className={errors.email ? 'border-red-500' : ''}
-          />
+          <Input type="email" {...register('email')} placeholder={t('placeholder.submitform1.email')} />
           {errors.email && <ErrorParagraph>{errors.email.message}</ErrorParagraph>}
         </FormGroup>
         <FormGroup>
           <Label required>{t('submit.step1.mobile')}</Label>
-          <Input
-            type="tel"
-            {...register('mobile')}
-            placeholder={t('placeholder.submitform1.mobile')}
-            className={errors.mobile ? 'border-red-500' : ''}
-          />
+          <Input type="tel" {...register('mobile')} placeholder={t('placeholder.submitform1.mobile')} />
           {errors.mobile && <ErrorParagraph>{errors.mobile.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 
       <FormGroup>
         <Label required>{t('submit.step1.address')}</Label>
-        <Input
-          {...register('address')}
-          placeholder={t('placeholder.submitform1.address')}
-          className={errors.address ? 'border-red-500' : ''}
-        />
+        <Input {...register('address')} placeholder={t('placeholder.submitform1.address')} />
         {errors.address && <ErrorParagraph>{errors.address.message}</ErrorParagraph>}
       </FormGroup>
 
@@ -135,7 +113,7 @@ export default function IdentitySection() {
         {errors.job && <ErrorParagraph>{errors.job.message}</ErrorParagraph>}
       </FormGroup>
 
-      <div className="space-y-4 border-t border-slate-800 pt-6">
+      <div className="space-y-4 border-t border-border pt-6">
         <Label className="text-lg font-semibold">{t('submit.step1.social')}</Label>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <FormGroup>
@@ -165,8 +143,9 @@ export default function IdentitySection() {
         <Label required>{t('submit.step1.question')}</Label>
         <select
           {...register('source')}
-          className="focus:ring-primary w-full rounded-md border border-slate-800 bg-slate-900 px-3 py-2 text-white outline-none focus:ring-2"
+          className="focus:ring-primary w-full rounded-md border border-border bg-background px-3 py-2 text-foreground outline-none focus:ring-2"
         >
+          <option value="">{t('placeholder.submitform1.select')}</option>
           <option value="Moteur de recherche">{t('submit.step1.source.search')}</option>
           <option value="Bouche-à-oreille">{t('submit.step1.source.word_of_mouth')}</option>
           <option value="Presse / Média">{t('submit.step1.source.press')}</option>
@@ -177,14 +156,14 @@ export default function IdentitySection() {
         {errors.source && <ErrorParagraph>{errors.source.message}</ErrorParagraph>}
       </FormGroup>
 
-      <FormGroup className="flex flex-row items-center gap-3 space-y-0 rounded-xl border border-slate-800 bg-slate-900/50 p-5">
+      <FormGroup className="flex flex-row items-center gap-3 space-y-0 rounded-xl border border-border bg-muted/50 p-5">
         <input
           type="checkbox"
           id="newsletter"
           {...register('newsletter')}
           className="accent-primary size-5 cursor-pointer"
         />
-        <Label htmlFor="newsletter" className="m-0 cursor-pointer font-normal text-slate-300">
+        <Label htmlFor="newsletter" className="m-0 cursor-pointer font-normal">
           {t('submit.step1.newsletter')}
         </Label>
       </FormGroup>

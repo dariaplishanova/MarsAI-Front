@@ -1,9 +1,11 @@
+import { useEffect, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { AlertCircle, Film, Image as ImageIcon } from 'lucide-react';
+import { AlertCircle, Film, Image as ImageIcon, Images } from 'lucide-react';
+import { Card } from '@/components/ui/Card';
 import { ErrorParagraph, FormGroup, Input, Label, TextArea } from '@/components/ui/form';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
-import { Card } from '@/components/ui/Card';
+import { useMediaHandling } from '@/hooks/useMediaHandling';
 
 export default function MediaSection() {
   const { t } = useTranslation();
@@ -11,19 +13,27 @@ export default function MediaSection() {
     register,
     formState: { errors },
     setValue,
+    watch,
   } = useFormContext<FilmSubmissionData>();
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setValue('thumbnail', file, { shouldValidate: true });
-    }
-  };
+ const {
+    thumbnailPreview,
+    videoPreview,
+    galleryPreviews,
+    handleThumbnailChange,
+    handleGalleryChange,
+    removeGalleryImage
+  } = useMediaHandling();
+
+  const hasErrors = Object.keys(errors).length > 0;
+
+  const fileInputClasses =
+    'block w-full cursor-pointer rounded-lg border border-border bg-background p-2 text-sm text-muted-foreground file:mr-4 file:rounded-md file:border-0 file:bg-primary file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-foreground hover:file:bg-primary/90 transition-colors';
 
   return (
-    <Card variant="formSection" className="p-6 md:p-10 space-y-8">
+    <Card variant="formSection" className="space-y-8 p-6 md:p-10">
       <div>
-        <h2 className="pb-3 text-2xl font-semibold text-white">
+        <h2 className="pb-3 text-2xl font-semibold">
           <span className="text-primary">3. </span>
           {t('submit.step2.title')} & {t('submit.step4.title')}
         </h2>
@@ -58,35 +68,59 @@ export default function MediaSection() {
         </FormGroup>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="flex h-full flex-col gap-6">
         <FormGroup>
-          <Label required>{t('submit.step2.duration')}</Label>
+          <Label required className="mb-2 flex-1">
+            {t('submit.step2.duration')}
+          </Label>
           <Input type="number" {...register('duration', { valueAsNumber: true })} placeholder="Seconds" />
           {errors.duration && <ErrorParagraph>{errors.duration.message}</ErrorParagraph>}
         </FormGroup>
 
         <FormGroup>
-          <Label required>{t('submit.step2.language')}</Label>
+          <Label required className="mb-2 flex-1">
+            {t('submit.step2.language')}
+          </Label>
           <Input {...register('language')} placeholder={t('placeholder.submitform2.language')} />
           {errors.language && <ErrorParagraph>{errors.language.message}</ErrorParagraph>}
         </FormGroup>
 
         <FormGroup>
-          <Label required>{t('submit.step2.tags')}</Label>
+          <Label required className="mb-2 flex-1">
+            {t('submit.step2.tags')}
+          </Label>
           <Input {...register('semanticTags')} placeholder={t('placeholder.submitform2.tag')} />
           {errors.semanticTags && <ErrorParagraph>{errors.semanticTags.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 
-      <div className="space-y-6 border-t border-slate-800 pt-6">
+      <div className="space-y-6 border-t border-border pt-6">
         <FormGroup>
           <Label required className="flex items-center gap-2">
             <Film className="text-primary size-4" />
-            {t('submit.step4.youtube.label')}
+            {t('submit.step4.video.label', 'Fichier vidéo')} (Max 500Mo)
           </Label>
-          <Input {...register('youtubeUrl')} type="url" placeholder="https://www.youtube.com/watch?v=..." />
-          <p className="text-muted-foreground mt-1 text-xs">{t('submit.step4.youtube.hint')}</p>
-          {errors.youtubeUrl && <ErrorParagraph>{errors.youtubeUrl.message}</ErrorParagraph>}
+
+          <Input
+            {...register('video')}
+            id="video"
+            type="file"
+            accept="video/mp4,video/webm,video/quicktime"
+            className={fileInputClasses}
+          />
+
+          {videoPreview && (
+            <div className="border-border mt-3 overflow-hidden rounded-md border">
+              <video src={videoPreview} controls className="max-h-64 w-full bg-black object-contain" />
+            </div>
+          )}
+
+          <p className="text-muted-foreground mt-1 text-xs">
+            {t('submit.step4.video.hint', 'Formats acceptés: MP4, WebM, MOV')}
+          </p>
+          {errors.video && typeof errors.video.message === 'string' && (
+            <ErrorParagraph>{errors.video.message}</ErrorParagraph>
+          )}
         </FormGroup>
 
         <FormGroup>
@@ -96,14 +130,61 @@ export default function MediaSection() {
           </Label>
           <Input
             type="file"
-            accept="image/jpeg, image/png, image/gif"
-            onChange={handleFileChange}
-            className="file:bg-primary/10 file:text-primary cursor-pointer text-slate-300"
+            accept="image/jpeg, image/png, image/webp"
+            onChange={handleThumbnailChange}
+            className={fileInputClasses}
           />
+
+          {thumbnailPreview && (
+            <div className="border-border mt-3 h-32 w-32 overflow-hidden rounded-md border bg-muted/30">
+              <img src={thumbnailPreview} alt="Thumbnail preview" className="h-full w-full object-cover" />
+            </div>
+          )}
+
           <p className="text-muted-foreground mt-1 text-xs">{t('submit.step4.thumbnail.hint')}</p>
-          {errors.thumbnail && <ErrorParagraph>{errors.thumbnail.message}</ErrorParagraph>}
+          {errors.thumbnail && typeof errors.thumbnail.message === 'string' && (
+            <ErrorParagraph>{errors.thumbnail.message}</ErrorParagraph>
+          )}
+        </FormGroup>
+
+        <FormGroup>
+          <Label className="flex items-center gap-2">
+            <Images className="text-primary size-4" />
+            {t('submit.step4.gallery.label', "Galerie d'images")} (Max 3)
+          </Label>
+          <Input
+            type="file"
+            multiple
+            accept="image/jpeg, image/png, image/webp"
+            onChange={handleGalleryChange}
+            className={fileInputClasses}
+          />
+
+          {galleryPreviews.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-3">
+              {galleryPreviews.map((url, index) => (
+                <div key={index} className="border-border h-24 w-24 overflow-hidden rounded-md border bg-muted/30">
+                  <img src={url} alt={`Gallery preview ${index + 1}`} className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          )}
+
+          <p className="text-muted-foreground mt-1 text-xs">
+            {t('submit.step4.gallery.hint', "Sélectionnez jusqu'à 3 images (JPEG, PNG, WEBP)")}
+          </p>
+          {errors.gallery && typeof errors.gallery.message === 'string' && (
+            <ErrorParagraph>{errors.gallery.message}</ErrorParagraph>
+          )}
         </FormGroup>
       </div>
+
+      {hasErrors && (
+        <div className="bg-destructive/10 border-destructive/20 text-destructive flex items-center gap-2 rounded-md border p-3 text-sm">
+          <AlertCircle className="size-4" />
+          <p>{t('submit.validation.error')}</p>
+        </div>
+      )}
     </Card>
   );
 }

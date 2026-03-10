@@ -3,6 +3,7 @@ import { Award, Presentation, Users, Video } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import ProgramCard from '@/components/ui/ProgramCard';
 import Button from '@/components/ui/button';
+import { iconVariants } from '@/components/utils/variants';
 
 export default function ProgramSection() {
   const { t } = useTranslation();
@@ -15,6 +16,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.competition.capacity'),
       icon: Video,
       variant: 'purple' as const,
+      iconVariant: 'purple' as const
     },
     {
       title: t('landing.program.cards.masterclass.title'),
@@ -23,6 +25,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.masterclass.capacity'),
       icon: Presentation,
       variant: 'green' as const,
+      iconVariant: 'green' as const
     },
     {
       title: t('landing.program.cards.conference.title'),
@@ -31,6 +34,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.conference.capacity'),
       icon: Users,
       variant: 'purple' as const,
+      iconVariant: 'purple' as const
     },
     {
       title: t('landing.program.cards.night.title'),
@@ -39,6 +43,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.night.capacity'),
       icon: Award,
       variant: 'gold' as const,
+      iconVariant: 'gold' as const
     },
   ];
 
@@ -57,7 +62,7 @@ export default function ProgramSection() {
         <Card className="shadow-accent/15 flex flex-col items-center p-8 shadow-2xl">
           <div className="mb-4 flex items-center justify-center gap-3">
             <Users className="text-accent h-6 w-6" />
-            <h2 className="text-2xl font-semibold text-white md:text-3xl">{t('landing.cta.title')}</h2>
+            <h2 className="text-2xl font-semibold md:text-3xl">{t('landing.cta.title')}</h2>
           </div>
           <p className="text-muted-foreground mb-8 max-w-xl text-lg">{t('landing.cta.description')}</p>
           <Button className="bg-accent hover:bg-accent/90 border-accent-foreground/30">

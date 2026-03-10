@@ -7,7 +7,7 @@ export function FormGroup({ className, children }: { className?: string; childre
 
 export function Label({ className, required, children, ...props }: LabelProps) {
   return (
-    <label htmlFor={props.htmlFor} className={cn('flex gap-2 text-sm font-medium md:text-base', className)} {...props}>
+    <label htmlFor={props.htmlFor} className={cn('flex gap-2 text-sm font-medium md:text-base text-foreground', className)} {...props}>
       {children}
       {required && <span className="text-primary">*</span>}
     </label>
@@ -22,7 +22,8 @@ export function Input({ className, ...props }: InputProps) {
   return (
     <input
       className={cn(
-        'border-primary/30 bg-muted focus:ring-primary/40 w-full rounded-md border px-3 py-2 transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50 md:py-1.5',
+        // Changed to clean white background with a ring color that matches the theme
+        'border-border bg-background focus:ring-ring focus:border-ring w-full rounded-md border px-3 py-2 transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50 md:py-1.5 text-foreground',
         className
       )}
       {...props}
@@ -38,7 +39,8 @@ export function TextArea({ className, ...props }: TextAreaProps) {
   return (
     <textarea
       className={cn(
-        'border-primary/30 bg-muted focus:ring-primary/40 min-h-30 w-full rounded-md border px-3 py-2 transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50',
+        // Changed to clean white background
+        'border-border bg-background focus:ring-ring focus:border-ring min-h-30 w-full rounded-md border px-3 py-2 transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50 text-foreground',
         className
       )}
       {...props}
@@ -55,7 +57,8 @@ export default function Form({ children, className, ...props }: FormProps) {
   return (
     <form
       className={cn(
-        'bg-muted/20 ring-primary/30 m-auto mt-6 flex w-full flex-col rounded-2xl border p-4 md:p-6',
+        // Cleaned up the form wrapper
+        'bg-card border-border m-auto mt-6 flex w-full flex-col rounded-2xl border p-4 md:p-6 shadow-sm',
         className
       )}
       {...props}
@@ -72,7 +75,7 @@ interface ErrorProps extends React.HTMLAttributes<HTMLParagraphElement> {
 
 export function ErrorParagraph({ children, className, ...props }: ErrorProps) {
   return (
-    <p className={cn('mt-1 text-xs font-medium text-red-500', className)} {...props}>
+    <p className={cn('mt-1 text-xs font-medium text-destructive', className)} {...props}>
       {children}
     </p>
   );
