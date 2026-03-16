@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import SearchBar from '@/components/ui/SearchBar';
 
 interface SidebarContentProps {
@@ -8,9 +9,13 @@ interface SidebarContentProps {
 }
 
 export default function SidebarContent({ films, activeFilmId, onSelectFilm, setQuery }: SidebarContentProps) {
+  const { t } = useTranslation();
+  
   return (
     <div className="flex h-full flex-col space-y-5 overflow-hidden">
-      <div className="text-sm text-muted-foreground">0/{films.length} films évalués</div>
+      <div className="text-sm text-muted-foreground">
+        {t('jury.sidebar.evaluated_count', { total: films.length })}
+      </div>
 
       <div>
         <SearchBar setQuery={setQuery} className="h-11 rounded-lg border-border bg-background text-sm" />
@@ -30,9 +35,9 @@ export default function SidebarContent({ films, activeFilmId, onSelectFilm, setQ
                   : 'border-transparent hover:bg-muted'
               }`}
             >
-              <h3 className="truncate text-base font-semibold text-foreground">{film.title}</h3>
-              <p className="mt-1 truncate text-sm text-muted-foreground">
-                {film.director || `Director ID: ${film.director_id}`}
+              <h3 className="truncate text-lg font-semibold text-foreground">{film.title}</h3>
+              <p className="mt-1 truncate text-sm text-accent-burgundy">
+                {`${film.director_firstname} ${film.director_lastname}`}
               </p>
             </button>
           );

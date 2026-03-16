@@ -38,7 +38,7 @@ export default function VideoSection() {
   if (error) return <div className="py-20 text-center text-red-500">Erreur : {error}</div>;
 
   return (
-    <section className="container mx-auto my-12 space-y-8 px-4">
+    <section className="w-full bg-white mx-auto space-y-8 px-4 py-8">
       <CardHeader className="flex flex-col gap-6">
         <div>
           <div>

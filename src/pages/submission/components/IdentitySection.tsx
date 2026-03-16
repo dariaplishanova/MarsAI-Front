@@ -2,7 +2,7 @@ import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/components/ui/Card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup';
-import { ErrorParagraph, FormGroup, Input, Label } from '@/components/ui/form';
+import { ErrorParagraph, FormGroup, Input, Label, Select } from '@/components/ui/form';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
 
 export default function IdentitySection() {
@@ -60,7 +60,14 @@ export default function IdentitySection() {
         </FormGroup>
         <FormGroup>
           <Label required>{t('submit.step1.lastname')}</Label>
-          <Input {...register('lastName')} placeholder={t('placeholder.submitform1.lastname')} />
+          <Input
+            {...register('lastName', {
+              onChange: e => {
+                e.target.value = e.target.value.toUpperCase();
+              },
+            })}
+            placeholder={t('placeholder.submitform1.lastname')}
+          />
           {errors.lastName && <ErrorParagraph>{errors.lastName.message}</ErrorParagraph>}
         </FormGroup>
       </div>
@@ -113,7 +120,7 @@ export default function IdentitySection() {
         {errors.job && <ErrorParagraph>{errors.job.message}</ErrorParagraph>}
       </FormGroup>
 
-      <div className="space-y-4 border-t border-border pt-6">
+      <div className="border-border space-y-4 border-t pt-6">
         <Label className="text-lg font-semibold">{t('submit.step1.social')}</Label>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <FormGroup>
@@ -141,10 +148,7 @@ export default function IdentitySection() {
 
       <FormGroup>
         <Label required>{t('submit.step1.question')}</Label>
-        <select
-          {...register('source')}
-          className="focus:ring-primary w-full rounded-md border border-border bg-background px-3 py-2 text-foreground outline-none focus:ring-2"
-        >
+        <Select {...register('source')}>
           <option value="">{t('placeholder.submitform1.select')}</option>
           <option value="Moteur de recherche">{t('submit.step1.source.search')}</option>
           <option value="Bouche-à-oreille">{t('submit.step1.source.word_of_mouth')}</option>
@@ -152,11 +156,11 @@ export default function IdentitySection() {
           <option value="Autre festival">{t('submit.step1.source.festival')}</option>
           <option value="Partenaire">{t('submit.step1.source.partner')}</option>
           <option value="Autre">{t('submit.step1.source.other')}</option>
-        </select>
+        </Select>
         {errors.source && <ErrorParagraph>{errors.source.message}</ErrorParagraph>}
       </FormGroup>
 
-      <FormGroup className="flex flex-row items-center gap-3 space-y-0 rounded-xl border border-border bg-muted/50 p-5">
+      <FormGroup className="border-border bg-muted/50 flex flex-row items-center gap-3 space-y-0 rounded-xl border p-5">
         <input
           type="checkbox"
           id="newsletter"

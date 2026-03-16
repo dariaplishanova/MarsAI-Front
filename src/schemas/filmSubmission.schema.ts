@@ -34,7 +34,6 @@ export const filmSubmissionSchema = (t: TFunction) => {
     synopsisEn: z.string().min(2, { message: t('errors.required') }),
     duration: z.coerce.number().min(1, { message: t('errors.required') }),
     language: z.string().min(2, { message: t('errors.required') }),
-    semanticTags: z.string().min(1, { message: t('errors.required') }),
     video: z
       .any()
       .refine(files => files instanceof FileList && files.length > 0, {

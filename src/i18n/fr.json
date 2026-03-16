@@ -185,39 +185,85 @@
     "sending": "Envoi en cours..."
   },
 
-  "jury.title": "Interface Jury marsAI",
-  "jury.subtitle": "Espace d'Évaluation Professionnel",
-  "jury.progress": "Progression",
-  "jury.progress.films": "films évalués",
-  "jury.nav.previous": "Film Précédent",
-  "jury.nav.next": "Film Suivant",
-  "jury.film": "Film",
-  "jury.film.of": "sur",
-  "jury.video.title": "Projection du Film",
-  "jury.video.duration": "Durée",
-  "jury.video.director": "Réalisateur",
-  "jury.video.replay": "Rejouer",
-  "jury.video.fullscreen": "Plein Écran",
-  "jury.ai.title": "Carte d'Identité IA",
-  "jury.ai.description": "Outils et méthodologie utilisés",
-  "jury.ai.script": "Génération de Scénario",
-  "jury.ai.image": "Génération d'Images",
-  "jury.ai.video": "Génération Vidéo",
-  "jury.ai.sound": "Son & Musique",
-  "jury.ai.notused": "Non utilisé",
-  "jury.ai.methodology": "Méthodologie Créative",
-  "jury.rating.title": "Votre Évaluation",
-  "jury.rating.subtitle": "Règle des 3",
-  "jury.rating.received": "évaluations reçues",
-  "jury.rating.score": "Note",
-  "jury.rating.poor": "Faible",
-  "jury.rating.average": "Moyen",
-  "jury.rating.excellent": "Excellent",
-  "jury.rating.comments": "Commentaires Internes Privés",
-  "jury.rating.comments.placeholder": "Partagez vos réflexions pour la délibération...",
-  "jury.rating.comments.hint": "Ces commentaires sont confidentiels",
-  "jury.rating.submit": "Soumettre l'Évaluation",
-  "jury.rating.submitted": "Évaluation Soumise",
+  "jury": {
+    "dashboard": {
+      "title": "Interface Jury marsAI",
+      "subtitle": "L'excellence au bout du curseur",
+      "mobile_title": "marsAI Jury",
+      "loading": "Chargement des films...",
+      "no_films_found": "Aucun film trouvé.",
+      "server_error": "Impossible de se connecter au serveur."
+    },
+    "sidebar": {
+      "films_button": "Films",
+      "title": "Films à évaluer",
+      "evaluated_count": "0/{{total}} films évalués"
+    },
+    "evaluator": {
+      "select_film": "Sélectionnez un film"
+    },
+    "video": {
+      "director": "Réalisateur",
+      "language": "Langue",
+      "duration": "Durée",
+      "seconds": "s",
+      "status_in_review": "En révision",
+      "unsupported": "Votre navigateur ne prend pas en charge la balise vidéo.",
+      "synopsis_title": "Synopsis",
+      "no_synopsis": "Aucun synopsis fourni."
+    },
+    "gallery": {
+      "title": "Galerie Médias",
+      "screenshot": "Capture d'écran {{number}}"
+    },
+    "ai_card": {
+      "title": "Carte d'Identité IA",
+      "subtitle": "Outils et méthodologie utilisés",
+      "classification_type": "Type de Classification IA",
+      "100_ai": "100% IA",
+      "hybrid": "Production Hybride",
+      "tools_used": "Outils Utilisés (Stack)",
+      "not_provided": "Non renseigné",
+      "methodology": "Méthodologie Créative",
+      "no_methodology": "Aucune méthodologie détaillée."
+    },
+    "rating": {
+      "title": "Votre Évaluation",
+      "average_score": "Note Moyenne (Règle des 3)",
+      "score_breakdown": "Créativité: {{creativity}} | Technique: {{technical}} | Narration: {{narrative}}",
+      "creativity": {
+        "label": "1. Créativité & Innovation",
+        "desc": "Originalité du concept, usage innovant de l'IA"
+      },
+      "technical": {
+        "label": "2. Qualité Technique",
+        "desc": "Maîtrise des outils IA, qualité visuelle et sonore"
+      },
+      "narrative": {
+        "label": "3. Narration & Impact",
+        "desc": "Cohérence de l'histoire, émotion, message"
+      },
+      "scale": {
+        "low": "1 - Faible",
+        "medium": "Moyen",
+        "high": "10 - Excellent"
+      },
+      "comments": {
+        "label": "Commentaires Internes Privés",
+        "placeholder": "Partagez vos réflexions pour la délibération...",
+        "hint": "Ces commentaires sont confidentiels"
+      },
+      "messages": {
+        "success": "Évaluation enregistrée avec succès !",
+        "error_save": "Erreur lors de l'enregistrement.",
+        "error_server": "Erreur de connexion au serveur."
+      },
+      "buttons": {
+        "submitting": "Enregistrement...",
+        "submit": "Soumettre l'Évaluation"
+      }
+    }
+  },
 
   "badge.official": "Sélection Officielle",
 

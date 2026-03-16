@@ -32,7 +32,7 @@
   
   /* Muted Elements: The light soft pink */
   --muted: #F9E8E8;
-  --muted-foreground: #8A7B7B;
+  --muted-foreground: #6B5E5E;
   
   /* Accents: Matching the primary coral */
   --accent: #F4A3A4;
@@ -66,6 +66,18 @@
   --sidebar-accent-foreground: #4A3B3B;
   --sidebar-border: #F5D6D6;
   --sidebar-ring: #F4A3A4;
+
+  /* The Deep Burgundy Accent (Rich, elegant contrast) */
+  --accent-burgundy: #8B3A42;
+  --accent-burgundy-foreground: #ffffff;
+  
+  /* The Earthy Rust Accent (Natural, terracotta pop) */
+  --accent-rust: #C25946;
+  --accent-rust-foreground: #ffffff;
+  
+  /* The Dark Slate Accent (Using your main text color as a solid block) */
+  --accent-slate: #4A3B3B;
+  --accent-slate-foreground: #ffffff;
 }
 
 @theme inline {
@@ -107,6 +119,14 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-accent-burgundy: var(--accent-burgundy);
+  --color-accent-burgundy-foreground: var(--accent-burgundy-foreground);
+  
+  --color-accent-rust: var(--accent-rust);
+  --color-accent-rust-foreground: var(--accent-rust-foreground);
+  
+  --color-accent-slate: var(--accent-slate);
+  --color-accent-slate-foreground: var(--accent-slate-foreground);
 }
 
 @layer base {

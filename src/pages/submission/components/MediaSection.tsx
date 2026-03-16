@@ -22,7 +22,6 @@ export default function MediaSection() {
     galleryPreviews,
     handleThumbnailChange,
     handleGalleryChange,
-    removeGalleryImage
   } = useMediaHandling();
 
   const hasErrors = Object.keys(errors).length > 0;
@@ -83,14 +82,6 @@ export default function MediaSection() {
           </Label>
           <Input {...register('language')} placeholder={t('placeholder.submitform2.language')} />
           {errors.language && <ErrorParagraph>{errors.language.message}</ErrorParagraph>}
-        </FormGroup>
-
-        <FormGroup>
-          <Label required className="mb-2 flex-1">
-            {t('submit.step2.tags')}
-          </Label>
-          <Input {...register('semanticTags')} placeholder={t('placeholder.submitform2.tag')} />
-          {errors.semanticTags && <ErrorParagraph>{errors.semanticTags.message}</ErrorParagraph>}
         </FormGroup>
       </div>
 

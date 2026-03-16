@@ -56,26 +56,28 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   position?: 'left' | 'right';
 }
 
-export type AITool = 'Image' | 'Sound' | 'Video' | 'Voice' | 'Script';
-
-export interface FilmType {
-  id: number;
+export interface FilmData {
+  id: string | number;
   title: string;
-  title_en: string | null; // "title_en" dans ta table SQL
-  director_id: number;
-  thumbnail: string;
-  ia_type: '100% IA' | 'Hybride' | null;
-  status: 'pending' | 'approved' | 'rejected';
-  yt_url: string;
-  duration: number | null;
-  ai_tools: AITool[];
-  countryName?: string;
-  officialSelection?: boolean;
-  created_at: string;
-  updated_at: string;
+  title_en: string;
+  duration: number;
+  language: string;
+  video_url: string;
+  thumbnail_url?: string;
+  synopsis?: string;
+  synopsis_fr?: string;
+  ia_type?: string;
+  ai_tools?: string;
+  stack?: string;
+  methodology?: string;
+  status: string;
+  director_id: string | number;
+  director_firstname?: string;
+  director_lastname?: string;
+  gallery_urls?: string;
 }
 
-export interface FilmWithDirector extends FilmType {
+export interface FilmWithDirector extends FilmData {
   director_firstname: string;
   director_lastname: string;
 }

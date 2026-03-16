@@ -48,7 +48,7 @@ export default function ProgramSection() {
   ];
 
   return (
-    <section className="container mx-auto px-4 py-20">
+    <section className="w-full bg-background mx-auto px-4 py-20">
       <article className="mb-12 text-center">
         <h2 className="mb-4 text-3xl font-bold md:text-4xl">{t('landing.program.title')}</h2>
         <p className="text-muted-foreground">{t('landing.program.subtitle')}</p>

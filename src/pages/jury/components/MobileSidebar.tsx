@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import Button from '@/components/ui/button';
 import SidebarContent from './SidebarContent';
 
 export default function MobileSidebar(props: any) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -14,7 +16,7 @@ export default function MobileSidebar(props: any) {
         onClick={() => setIsOpen(true)}
         className="flex items-center gap-2 border-border bg-background text-foreground"
       >
-        <Menu className="size-4" /> Films
+        <Menu className="size-4" /> {t('jury.sidebar.films_button')}
       </Button>
 
       <AnimatePresence>
@@ -35,7 +37,7 @@ export default function MobileSidebar(props: any) {
               className="fixed top-0 bottom-0 left-0 z-50 flex w-4/5 max-w-sm flex-col border-r border-border bg-card p-4 shadow-2xl"
             >
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-xl font-bold text-foreground">Films à évaluer</h2>
+                <h2 className="text-xl font-bold text-foreground">{t('jury.sidebar.title')}</h2>
                 <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground">
                   <X className="size-6" />
                 </button>

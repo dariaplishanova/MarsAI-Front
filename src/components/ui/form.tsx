@@ -1,3 +1,4 @@
+import { ChevronDown } from 'lucide-react';
 import { LabelProps } from '@/types/form';
 import { cn } from './utils';
 
@@ -7,7 +8,11 @@ export function FormGroup({ className, children }: { className?: string; childre
 
 export function Label({ className, required, children, ...props }: LabelProps) {
   return (
-    <label htmlFor={props.htmlFor} className={cn('flex gap-2 text-sm font-medium md:text-base text-foreground', className)} {...props}>
+    <label
+      htmlFor={props.htmlFor}
+      className={cn('text-foreground flex gap-2 text-sm font-medium md:text-base', className)}
+      {...props}
+    >
       {children}
       {required && <span className="text-primary">*</span>}
     </label>
@@ -22,8 +27,7 @@ export function Input({ className, ...props }: InputProps) {
   return (
     <input
       className={cn(
-        // Changed to clean white background with a ring color that matches the theme
-        'border-border bg-background focus:ring-ring focus:border-ring w-full rounded-md border px-3 py-2 transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50 md:py-1.5 text-foreground',
+        'border-border bg-background focus:ring-ring focus:border-ring text-foreground w-full rounded-md border px-3 py-2 text-base transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50 md:py-1.5',
         className
       )}
       {...props}
@@ -39,8 +43,7 @@ export function TextArea({ className, ...props }: TextAreaProps) {
   return (
     <textarea
       className={cn(
-        // Changed to clean white background
-        'border-border bg-background focus:ring-ring focus:border-ring min-h-30 w-full rounded-md border px-3 py-2 transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50 text-foreground',
+        'border-border bg-background focus:ring-ring focus:border-ring text-foreground min-h-30 w-full rounded-md border px-3 py-2 text-base transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50',
         className
       )}
       {...props}
@@ -57,8 +60,7 @@ export default function Form({ children, className, ...props }: FormProps) {
   return (
     <form
       className={cn(
-        // Cleaned up the form wrapper
-        'bg-card border-border m-auto mt-6 flex w-full flex-col rounded-2xl border p-4 md:p-6 shadow-sm',
+        'bg-card border-border m-auto mt-6 flex w-full flex-col rounded-2xl border p-4 shadow-sm md:p-6',
         className
       )}
       {...props}
@@ -75,8 +77,32 @@ interface ErrorProps extends React.HTMLAttributes<HTMLParagraphElement> {
 
 export function ErrorParagraph({ children, className, ...props }: ErrorProps) {
   return (
-    <p className={cn('mt-1 text-xs font-medium text-destructive', className)} {...props}>
+    <p className={cn('text-destructive mt-1 text-xs font-medium', className)} {...props}>
       {children}
     </p>
+  );
+}
+
+interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+  className?: string;
+}
+
+export function Select({ className, children, ...props }: SelectProps) {
+  return (
+    <div className="relative w-full">
+      <select
+        className={cn(
+          'border-border bg-background focus:ring-ring focus:border-ring text-foreground w-full appearance-none rounded-md border px-4 py-3.5 text-base font-medium transition-all duration-200 focus:ring-2 focus:outline-none disabled:opacity-50',
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </select>
+
+      <div className="text-muted-foreground pointer-events-none absolute inset-y-0 right-4 flex items-center">
+        <ChevronDown className="h-5 w-5" />
+      </div>
+    </div>
   );
 }

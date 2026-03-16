@@ -56,7 +56,6 @@ export function FilmUpload() {
       synopsisEn: '',
       duration: 0,
       language: '',
-      semanticTags: '',
       hasSubtitles: false,
       video: undefined,
       thumbnail: undefined,

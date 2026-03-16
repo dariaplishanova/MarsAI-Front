@@ -233,40 +233,86 @@
     "sending": "Sending..."
   },
 
-  "jury.title": "marsAI Jury Interface",
-  "jury.subtitle": "Professional Evaluation Workspace",
-  "jury.progress": "Progress",
-  "jury.progress.films": "films rated",
-  "jury.nav.previous": "Previous Film",
-  "jury.nav.next": "Next Film",
-  "jury.film": "Film",
-  "jury.film.of": "of",
-  "jury.video.title": "Film Screening",
-  "jury.video.duration": "Duration",
-  "jury.video.director": "Director",
-  "jury.video.replay": "Replay",
-  "jury.video.fullscreen": "Fullscreen",
-  "jury.ai.title": "AI Identity Card",
-  "jury.ai.description": "Tools and methodology used",
-  "jury.ai.script": "Script Generation",
-  "jury.ai.image": "Image Generation",
-  "jury.ai.video": "Video Generation",
-  "jury.ai.sound": "Sound & Music",
-  "jury.ai.notused": "Not used",
-  "jury.ai.methodology": "Creative Methodology",
-  "jury.rating.title": "Your Rating",
-  "jury.rating.subtitle": "Rule of 3",
-  "jury.rating.received": "ratings received",
-  "jury.rating.score": "Score",
-  "jury.rating.poor": "Poor",
-  "jury.rating.average": "Average",
-  "jury.rating.excellent": "Excellent",
-  "jury.rating.comments": "Private Internal Comments",
-  "jury.rating.comments.placeholder": "Share your thoughts for deliberation...",
-  "jury.rating.comments.hint": "These comments are confidential",
-  "jury.rating.submit": "Submit Rating",
-  "jury.rating.submitted": "Rating Submitted",
-
+  "jury": {
+    "dashboard": {
+      "title": "marsAI Jury Interface",
+      "subtitle": "Excellence at the tip of your cursor",
+      "mobile_title": "marsAI Jury",
+      "loading": "Loading films...",
+      "no_films_found": "No films found.",
+      "server_error": "Unable to connect to the server."
+    },
+    "sidebar": {
+      "films_button": "Films",
+      "title": "Films to evaluate",
+      "evaluated_count": "0/{{total}} films evaluated"
+    },
+    "evaluator": {
+      "select_film": "Select a film"
+    },
+    "video": {
+      "director": "Director",
+      "language": "Language",
+      "duration": "Duration",
+      "seconds": "s",
+      "status_in_review": "In review",
+      "unsupported": "Your browser does not support the video tag.",
+      "synopsis_title": "Synopsis",
+      "no_synopsis": "No synopsis provided."
+    },
+    "gallery": {
+      "title": "Media Gallery",
+      "screenshot": "Screenshot {{number}}"
+    },
+    "ai_card": {
+      "title": "AI Identity Card",
+      "subtitle": "Tools and methodology used",
+      "classification_type": "AI Classification Type",
+      "100_ai": "100% AI",
+      "hybrid": "Hybrid Production",
+      "tools_used": "Tools Used (Stack)",
+      "not_provided": "Not provided",
+      "methodology": "Creative Methodology",
+      "no_methodology": "No detailed methodology provided."
+    },
+    "rating": {
+      "title": "Your Evaluation",
+      "average_score": "Average Score (Rule of 3)",
+      "score_breakdown": "Creativity: {{creativity}} | Technical: {{technical}} | Narrative: {{narrative}}",
+      "creativity": {
+        "label": "1. Creativity & Innovation",
+        "desc": "Originality of the concept, innovative use of AI"
+      },
+      "technical": {
+        "label": "2. Technical Quality",
+        "desc": "Mastery of AI tools, visual and sound quality"
+      },
+      "narrative": {
+        "label": "3. Narrative & Impact",
+        "desc": "Coherence of the story, emotion, message"
+      },
+      "scale": {
+        "low": "1 - Poor",
+        "medium": "Average",
+        "high": "10 - Excellent"
+      },
+      "comments": {
+        "label": "Private Internal Comments",
+        "placeholder": "Share your thoughts for deliberation...",
+        "hint": "These comments are confidential"
+      },
+      "messages": {
+        "success": "Evaluation successfully saved!",
+        "error_save": "Error while saving.",
+        "error_server": "Server connection error."
+      },
+      "buttons": {
+        "submitting": "Submitting...",
+        "submit": "Submit Rating"
+      }
+    }
+  },
+  
   "badge.official": "Official Selection",
 
   "footer.tagline": "Propelling tomorrow's cinema, today.",

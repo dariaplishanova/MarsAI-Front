@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { Upload } from 'lucide-react';
-import heroImage from '@/assets/hero2.jpg';
 import { Card } from '@/components/ui/Card';
 import CountDown from '@/components/ui/CountDown';
 import Button from '@/components/ui/button';
@@ -15,33 +14,37 @@ export default function HeroSection() {
   };
 
   return (
-    <section
-      style={{ backgroundImage: `url(${heroImage})` }}
-      className="relative z-1 flex min-h-150 w-full flex-col items-center justify-center bg-cover bg-center py-20"
-    >
-      <div className="absolute inset-0 bg-[#F4A3A4] mix-blend-color opacity-60"></div>
-      
-      <div className="absolute inset-0 bg-background/70 backdrop-blur-[2px]"></div>
-      
-      <div className="relative z-10 container mx-auto flex flex-col items-center space-y-10 px-4 text-center md:max-w-[70%]">
+    <section className="bg-background relative z-1 flex min-h-[90vh] w-full flex-col items-center justify-center overflow-hidden px-4 py-20">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-[10%] -left-[20%] h-100 w-100 rounded-full bg-[#F4A3A4]/40 blur-[100px] md:h-150 md:w-150" />
+
+        <div className="absolute -right-[20%] -bottom-[10%] h-125 w-125 rounded-full bg-[#F9DFDF]/40 blur-[120px] md:h-175 md:w-175" />
+
+        <div className="absolute top-[20%] right-[10%] h-75 w-75 rounded-full bg-[#9BA8B5]/30 blur-[80px] md:h-100 md:w-100" />
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#8080800F_1px,transparent_1px),linear-gradient(to_bottom,#8080800F_1px,transparent_1px)] mask-[radial-gradient(ellipse_100%_100%_at_50%_40%,#000_60%,transparent_100%)] bg-size-[32px_32px] md:bg-size-[40px_40px]" />
+
+      <div className="relative z-10 flex w-full max-w-4xl flex-col items-center space-y-10 text-center">
         <div className="space-y-4">
-          <h1 className="text-4xl leading-tight font-semibold md:text-6xl text-[#6B5B5B]">
-            {t('hero.title')}
-          </h1>
-          <p className="text-lg font-medium text-muted-foreground md:text-xl">
-            {t('hero.subtitle')}
-          </p>
+          <h1 className="text-foreground text-4xl leading-tight font-extrabold md:text-6xl">{t('hero.title')}</h1>
+          <p className="text-muted-foreground text-lg font-medium md:text-xl">{t('hero.subtitle')}</p>
         </div>
 
         <Card
           variant="purple"
-          className="w-full p-4 shadow-md backdrop-blur-md md:max-w-fit md:p-6"
+          className="w-full border-white/40 bg-white/60 p-4 shadow-sm backdrop-blur-md md:max-w-fit md:p-6"
         >
           <CountDown />
         </Card>
-        
+
         <div className="flex flex-wrap justify-center gap-4">
-          <Button icon={<Upload size={15} />} variant="purple" onClick={handleNaviagte} className="px-3 py-2 text-xl shadow-lg">
+          <Button
+            icon={<Upload size={15} />}
+            variant="purple"
+            onClick={handleNaviagte}
+            className="px-6 py-3 text-lg shadow-md"
+          >
             {t('nav.submit')}
           </Button>
         </div>
