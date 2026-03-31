@@ -55,7 +55,7 @@ export default function CountDown() {
           >
             {/* CHIFFRE : Tabular-nums pour éviter que ça bouge + couleurs primaires/accent */}
             <span
-              className={`mb-0.5 text-xl leading-none font-bold md:text-2xl ${unit.variant === 'time_purple' ? 'text-primary' : 'text-accent'}`}
+              className={`tabular-nums mb-0.5 text-xl leading-none font-bold md:text-2xl ${unit.variant === 'time_purple' ? 'text-primary' : 'text-accent'}`}
             >
               {String(unit.value).padStart(2, '0')}
             </span>

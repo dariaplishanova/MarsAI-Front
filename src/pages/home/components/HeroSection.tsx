@@ -43,7 +43,7 @@ export default function HeroSection() {
             icon={<Upload size={15} />}
             variant="purple"
             onClick={handleNaviagte}
-            className="px-6 py-3 text-lg shadow-md"
+            className="px-6 py-3 text-lg shadow-md text-foreground"
           >
             {t('nav.submit')}
           </Button>

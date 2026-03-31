@@ -26,7 +26,6 @@ const Register = () => {
       lastname: '',
       email: '',
       password: '',
-      festival_id: 1,
     },
   });
 
