@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { Footer } from './components/Footer.js';
 import Login from './components/Login.js';
 import { Navbar } from './components/Navbar.js';
@@ -13,6 +13,30 @@ import JuryDashboard from './pages/jury/JuryDashboard.js';
 import { FilmUpload } from './pages/submission/FilmUpload.js';
 import './styles/index.css';
 import './styles/index.css';
+import { useAuth } from './hooks/useAuth.js';
+
+const AppRoutes = () => {
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <div className="h-screen flex items-center justify-center">Loading...</div>;
+  }
+
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/submit" element={<FilmUpload />} />
+      
+      {/* PROTECTED ROUTES */}
+      <Route 
+        path="/jury" 
+        element={isAuthenticated ? <JuryDashboard /> : <Navigate to="/login" />} 
+      />
+    </Routes>
+  );
+};
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -20,13 +44,7 @@ createRoot(document.getElementById('root')!).render(
       <AuthProvider>
         <Navbar />
         <main className="min-h-screen min-w-80">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/submit" element={<FilmUpload />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/jury" element={<JuryDashboard />} />
-          </Routes>
+          <AppRoutes /> 
         </main>
         <Footer />
       </AuthProvider>

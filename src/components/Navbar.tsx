@@ -9,10 +9,10 @@ import { LanguageSwitcher } from './ui/LanguageSwitcher';
 import Button from './ui/button';
 
 const navLinks = [
-  { path: '/', label: 'nav.gallery', protected: false },
-  { path: '/submit', label: 'nav.submit', protected: true },
-  { path: '/jury', label: 'nav.jury', protected: true },
-  { path: '/admin', label: 'nav.admin', protected: true, adminOnly: true },
+  { path: '/', label: 'nav.gallery', public: true },
+  { path: '/submit', label: 'nav.submit', public: true, hideForRoles: ['jury'] },
+  { path: '/jury', label: 'nav.jury', roles: ['jury', 'admin'] },
+  { path: '/admin', label: 'nav.admin', roles: ['admin'] },
 ];
 
 const mobileAnimation = {
@@ -29,11 +29,22 @@ export function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const visibleLinks = navLinks.filter(link => {
-    if (link.protected && !isAuthenticated) return false;
-    if (link.adminOnly && user?.role !== 'admin') return false;
-    return true;
-  });
+ const visibleLinks = navLinks.filter(link => {
+  // 1. If the user is a Jury member and the link says 'hide for jury', remove it
+  if (isAuthenticated && link.hideForRoles?.includes(user?.role || '')) {
+    return false;
+  }
+
+  // 2. If the link is public, show it to guests and non-jury users
+  if (link.public) return true;
+
+  // 3. If the link is private, check if the user is logged in and has the right role
+  if (isAuthenticated && link.roles) {
+    return link.roles.includes(user?.role || '');
+  }
+
+  return false;
+});
 
   const renderNavLinks = (onClick?: () => void) => (
     <>

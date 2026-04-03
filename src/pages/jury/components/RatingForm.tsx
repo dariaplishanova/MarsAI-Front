@@ -4,9 +4,11 @@ import { Send, Star } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
 import Button from '@/components/ui/button';
 import { FormGroup, Label, TextArea } from '@/components/ui/form';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function RatingForm({ filmId }: { filmId: string | number }) {
   const { t } = useTranslation();
+  const {user, token} = useAuth()
   const [scores, setScores] = useState({ creativity: 1, technical: 1, narrative: 1 });
   const [comment, setComment] = useState('');
 
@@ -21,7 +23,7 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
     const API_URL = import.meta.env.VITE_API_URL;
 
     const payload = {
-      user_id: 1,
+      user_id: user?.id,
       movie_id: Number(filmId),
       score_creativity: scores.creativity,
       score_technical: scores.technical,
@@ -35,6 +37,7 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorisation': `Bearer ${token}`
         },
         body: JSON.stringify(payload),
       });

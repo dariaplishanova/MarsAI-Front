@@ -1,43 +1,36 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react'; // Added useMemo
 import { useTranslation } from 'react-i18next';
 import FilmEvaluator from './components/FilmEvaluator';
 import MobileSidebar from './components/MobileSidebar';
 import SidebarContent from './components/SidebarContent';
+import { useFetch } from '@/hooks/useFetch';
 
 export default function JuryDashboard() {
   const { t } = useTranslation();
-  const [films, setFilms] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  
+  const { data: films, isLoading, error } = useFetch<any[]>('/movies/jury');
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilmId, setActiveFilmId] = useState<string | null>(null);
 
+  // 2. Safely filter and find films (check if films exists first)
+  // We use useMemo for performance, but simple constants work too
+  const filteredFilms = useMemo(() => {
+    return (films || []).filter(f => 
+      f.title?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [films, searchQuery]);
+
+  const activeFilm = useMemo(() => {
+    return (films || []).find(f => f.id.toString() === activeFilmId);
+  }, [films, activeFilmId]);
+
+  // 3. Set the first film as active when data arrives
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/movies/jury');
-        const result = await response.json();
-
-        if (result.success && result.data.length > 0) {
-          setFilms(result.data);
-          setActiveFilmId(result.data[0].id.toString());
-        } else {
-          setError(result.message || t('jury.dashboard.no_films_found'));
-        }
-      } catch (err) {
-        console.error('Fetch error:', err);
-        setError(t('jury.dashboard.server_error'));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchMovies();
-  }, [t]);
-
-  const filteredFilms = films.filter(f => f.title?.toLowerCase().includes(searchQuery.toLowerCase()));
-  const activeFilm = films.find(f => f.id.toString() === activeFilmId);
+    if (films && films.length > 0 && !activeFilmId) {
+      setActiveFilmId(films[0].id.toString());
+    }
+  }, [films, activeFilmId]);
 
   const sidebarProps = {
     films: filteredFilms,
@@ -46,11 +39,20 @@ export default function JuryDashboard() {
     setQuery: setSearchQuery,
   };
 
-  if (loading) {
-    return <div className="flex h-screen items-center justify-center bg-background text-foreground">{t('jury.dashboard.loading')}</div>;
+  if (isLoading) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-background text-foreground">
+        {t('jury.dashboard.loading')}
+      </div>
+    );
   }
-  if (error && films.length === 0) {
-    return <div className="flex h-screen items-center justify-center bg-background text-destructive">{error}</div>;
+
+  if (error && (!films || films.length === 0)) {
+    return (
+      <div className="flex h-screen items-center justify-center bg-background text-destructive">
+        {error}
+      </div>
+    );
   }
 
   return (
@@ -71,7 +73,7 @@ export default function JuryDashboard() {
           <MobileSidebar {...sidebarProps} />
         </header>
 
-        <div className="scrollbar flex-1 overflow-x-scroll p-4 md:p-8">
+        <div className="scrollbar flex-1 overflow-y-auto p-4 md:p-8">
           <FilmEvaluator film={activeFilm} />
         </div>
       </main>
