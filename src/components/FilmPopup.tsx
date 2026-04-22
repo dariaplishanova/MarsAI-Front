@@ -1,3 +1,4 @@
+import ImageGallery from '@/pages/jury/components/ImageGallery';
 import { FilmWithDirector } from '@/types/home';
 import Popup from './ui/Popup';
 
@@ -8,9 +9,8 @@ interface FilmPopupProps {
 }
 
 export default function FilmPopup({ open, onClose, film }: FilmPopupProps) {
-
   if (!film) return null;
-
+  const realImages = film.gallery_urls ? film.gallery_urls.split(',') : [];
   return (
     <Popup open={open} onClose={onClose} className="md:max-w-4xl">
       <div className="mb-6 pr-8">
@@ -20,18 +20,19 @@ export default function FilmPopup({ open, onClose, film }: FilmPopupProps) {
         </p>
       </div>
 
-      <div className="relative mb-6 aspect-video w-full overflow-hidden rounded-xl bg-black shadow-lg border border-border">
-        <video 
-          controls 
+      <div className="border-border relative mb-6 aspect-video w-full overflow-hidden rounded-xl border bg-black shadow-lg">
+        <video
+          controls
           controlsList="nodownload"
           className="absolute inset-0 h-full w-full object-contain"
-          src={film.video_url} 
-          poster={film.thumbnail_url} 
+          src={film.video_url}
+          poster={film.thumbnail_url}
           preload="metadata"
         >
           Your browser does not support the video tag.
         </video>
       </div>
+      <ImageGallery images={realImages} />
     </Popup>
   );
 }

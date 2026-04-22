@@ -21,7 +21,6 @@ export interface CollaboratorType {
   lastname: string;
   job: string;
   email: string;
-  gender?: string;
   movie_id?: number;
 }
 

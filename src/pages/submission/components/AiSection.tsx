@@ -68,11 +68,6 @@ export default function AiSection() {
           {errors.techStack && <ErrorParagraph>{errors.techStack.message}</ErrorParagraph>}
         </FormGroup>
 
-        <FormGroup>
-          <Label required>{t('submit.step3.methodology')}</Label>
-          <TextArea {...register('methodology')} placeholder={t('submit.step3.methodology.placeholder')} />
-          {errors.methodology && <ErrorParagraph>{errors.methodology.message}</ErrorParagraph>}
-        </FormGroup>
       </div>
     </Card>
   );

@@ -57,25 +57,29 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export interface FilmData {
-  id: string | number;
+  id: number;
   title: string;
-  title_en: string;
   duration: number;
   language: string;
   video_url: string;
   thumbnail_url?: string;
   synopsis?: string;
-  synopsis_fr?: string;
   ia_type?: string;
   ai_tools?: string;
   stack?: string;
-  methodology?: string;
-  status: string;
+  status:FilmStatus;
   director_id: string | number;
   director_firstname?: string;
   director_lastname?: string;
   gallery_urls?: string;
 }
+
+type FilmStatus =
+  | 'approved'
+  | 'official_selection'
+  | 'rejected'
+  | 'pending'
+  | 'in_review';
 
 export interface FilmWithDirector extends FilmData {
   director_firstname: string;

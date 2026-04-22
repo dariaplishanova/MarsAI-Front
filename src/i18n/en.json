@@ -315,6 +315,38 @@
   
   "badge.official": "Official Selection",
 
+  "admin": {
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "films": "Films",
+    "users": "Users",
+    "events": "Events",
+    "newsletter": "Newsletter"
+  },
+  "dashboard": {
+    "title": "Overview",
+    "total_participants": "Total Participants",
+    "total_films": "Total Films",
+    "loading": "Loading statistics..."
+  }
+},
+
+"films": {
+    "title": "Manage Films",
+    "col_title": "Title",
+    "col_name": "Director",
+    "col_status": "Status",
+    "col_actions": "Actions",
+    "empty": "No films found.",
+    "status": {
+      "pending": "Pending",
+      "in_review": "In Review",
+      "approved": "Approved",
+      "official_selection": "Official Selection",
+      "rejected": "Rejected"
+    }
+  },
+
   "footer.tagline": "Propelling tomorrow's cinema, today.",
   "footer.navigation": "Navigation",
   "footer.gallery": "Gallery",

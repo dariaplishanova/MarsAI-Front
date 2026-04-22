@@ -37,7 +37,7 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorisation': `Bearer ${token}`
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(payload),
       });

@@ -12,26 +12,12 @@ export const filmSubmissionSchema = (t: TFunction) => {
     lastName: z.string().min(2, { message: t('errors.tooShort') }),
     birthDate: z.string().min(1, { message: t('errors.required') }),
     email: z.string().email({ message: t('errors.invalidEmail') }),
-    mobile: z.string().min(5, { message: t('errors.required') }),
-    address: z.string().min(5, { message: t('errors.required') }),
-    postCode: z.string().min(2, { message: t('errors.required') }),
-    city: z.string().min(2, { message: t('errors.required') }),
     country: z.string().min(2, { message: t('errors.required') }),
-    job: z.string().min(2, { message: t('errors.required') }),
-    source: z.string().min(1, { message: t('errors.required') }),
     newsletter: z.boolean().default(false),
-    youtube: z.string().optional().or(z.literal('')),
-    instagram: z.string().optional().or(z.literal('')),
-    linkedin: z.string().optional().or(z.literal('')),
-    facebook: z.string().optional().or(z.literal('')),
-    twitter: z.string().optional().or(z.literal('')),
     aiClassification: z.string().min(1, { message: t('errors.required') }),
     techStack: z.string().min(2, { message: t('errors.required') }),
-    methodology: z.string().min(2, { message: t('errors.required') }),
     title: z.string().min(2, { message: t('errors.required') }),
-    titleEn: z.string().min(2, { message: t('errors.required') }),
     synopsis: z.string().min(2, { message: t('errors.required') }),
-    synopsisEn: z.string().min(2, { message: t('errors.required') }),
     duration: z.coerce.number().min(1, { message: t('errors.required') }),
     language: z.string().min(2, { message: t('errors.required') }),
     video: z
@@ -42,7 +28,6 @@ export const filmSubmissionSchema = (t: TFunction) => {
       .refine(files => files?.[0]?.size <= MAX_VIDEO_SIZE, {
         message: t('errors.videoTooLarge'),
       }),
-    hasSubtitles: z.boolean().default(false),
     thumbnail: z
       .any()
       .refine(file => file instanceof File, t('errors.fileRequired'))
@@ -57,10 +42,8 @@ export const filmSubmissionSchema = (t: TFunction) => {
         z.object({
           firstName: z.string().min(2, { message: t('errors.required') }),
           lastName: z.string().min(2, { message: t('errors.required') }),
-          gender: z.string().optional(),
           job: z.string().min(2, { message: t('errors.required') }),
           email: z.string().email({ message: t('errors.invalidEmail') }),
-          role: z.string().optional(),
         })
       )
       .optional(),

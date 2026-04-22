@@ -109,8 +109,8 @@
     "max_gallery": "Vous ne pouvez pas uploader plus de 3 images"
   },
 
-  "form.subtitle": "Connectez-vous à votre compte",
-  "form.title": "Se Connecter",
+  "form.subtitle": "Accédez à votre espace",
+  "form.title": "Connexion",
   "register_title": "Créer un compte",
   "register_subtitle": "Rejoignez la plateforme marsAI",
   "form.pass": "Mot de passe",
@@ -266,6 +266,38 @@
   },
 
   "badge.official": "Sélection Officielle",
+
+ "admin": {
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "films": "Films",
+    "users": "Utilisateurs",
+    "events": "Événements",
+    "newsletter": "Newsletter"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "total_participants": "Total des participants",
+    "total_films": "Total des films",
+    "loading": "Chargement des statistiques..."
+  }
+},
+
+"films": {
+    "title": "Gérer les films",
+    "col_title": "Titre",
+    "col_name": "Réalisateur",
+    "col_status": "Statut",
+    "col_actions": "Actions",
+    "empty": "Aucun film trouvé.",
+    "status": {
+      "pending": "En attente",
+      "in_review": "En cours d'examen",
+      "approved": "Accepté",
+      "official_selection": "Sélection officielle",
+      "rejected": "Rejeté"
+    }
+  },
 
   "footer.tagline": "Propulser le cinéma de demain, aujourd'hui.",
   "footer.navigation": "Navigation",

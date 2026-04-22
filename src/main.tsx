@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { Footer } from './components/Footer.js';
-import Login from './components/Login.js';
+import Login from './components/LoginPage.js';
 import { Navbar } from './components/Navbar.js';
 import Register from './components/Register.js';
 import { AuthProvider } from './context/AuthContext.js';
@@ -14,6 +14,8 @@ import { FilmUpload } from './pages/submission/FilmUpload.js';
 import './styles/index.css';
 import './styles/index.css';
 import { useAuth } from './hooks/useAuth.js';
+import DashboardPage from './pages/admin/components/DashboardPage.js';
+import FilmsPage from './pages/admin/components/FilmsPage.js';
 
 const AppRoutes = () => {
   const { isAuthenticated, isLoading } = useAuth();
@@ -28,11 +30,14 @@ const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/submit" element={<FilmUpload />} />
-      
       {/* PROTECTED ROUTES */}
       <Route 
         path="/jury" 
         element={isAuthenticated ? <JuryDashboard /> : <Navigate to="/login" />} 
+      />
+      <Route 
+        path="/admin" 
+        element={isAuthenticated ? <FilmsPage /> : <Navigate to="/login" />} 
       />
     </Routes>
   );

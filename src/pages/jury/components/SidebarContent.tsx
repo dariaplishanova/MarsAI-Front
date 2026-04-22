@@ -28,7 +28,7 @@ export default function SidebarContent({ films, activeFilmId, onSelectFilm, setQ
           return (
             <button
               key={film.id}
-              onClick={() => onSelectFilm(film.id)}
+              onClick={() => onSelectFilm(film.id.toString())}
               className={`w-full rounded-xl border p-4 text-left transition-all duration-200 ${
                 isActive
                   ? 'border-primary bg-primary/10 shadow-sm shadow-primary/20'

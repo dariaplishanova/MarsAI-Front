@@ -39,7 +39,6 @@ export default function MediaSection() {
         <p className="text-muted-foreground">{t('submit.step2.description')}</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <FormGroup>
           <Label required>{t('submit.step2.title.fr')}</Label>
           <Input {...register('title')} placeholder={t('placeholder.submitform2.title.fr')} />
@@ -47,25 +46,10 @@ export default function MediaSection() {
         </FormGroup>
 
         <FormGroup>
-          <Label required>{t('submit.step2.title.en')}</Label>
-          <Input {...register('titleEn')} placeholder={t('placeholder.submitform2.title.en')} />
-          {errors.titleEn && <ErrorParagraph>{errors.titleEn.message}</ErrorParagraph>}
-        </FormGroup>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <FormGroup>
           <Label required>{t('submit.step2.synopsis.label.fr')}</Label>
           <TextArea {...register('synopsis')} placeholder={t('placeholder.submitform2.synopsis')} />
           {errors.synopsis && <ErrorParagraph>{errors.synopsis.message}</ErrorParagraph>}
         </FormGroup>
-
-        <FormGroup>
-          <Label required>{t('submit.step2.synopsis.label.en')}</Label>
-          <TextArea {...register('synopsisEn')} placeholder={t('placeholder.submitform2.synopsis.en')} />
-          {errors.synopsisEn && <ErrorParagraph>{errors.synopsisEn.message}</ErrorParagraph>}
-        </FormGroup>
-      </div>
 
       <div className="flex h-full flex-col gap-6">
         <FormGroup>
