@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/components/ui/Card';
-import RadioGroup, { RadioGroupItem } from '@/components/ui/RadioGroup';
-import { ErrorParagraph, FormGroup, Label, TextArea } from '@/components/ui/form';
+import { ErrorParagraph, FormGroup, Label, TextArea } from '@/components/ui/Form';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
+import RadioGroup, { RadioGroupItem } from '@/components/ui/RadioGroup';
 
 export default function AiSection() {
   const { t } = useTranslation();
@@ -31,25 +31,23 @@ export default function AiSection() {
         <Label required className="text-base">
           {t('submit.step3.type')}
         </Label>
-        <RadioGroup
-          value={aiClassification}
-          onValueChange={value => setValue('aiClassification', value as '100' | 'hybrid')}
-          className="grid grid-cols-1 gap-4"
-        >
+        <RadioGroup className="grid grid-cols-1 gap-4" >
           <div
             className={`flex items-start gap-3 rounded-xl border p-4 transition-all md:p-5 ${aiClassification === '100' ? 'border-primary bg-primary/10' : 'border-border bg-background'}`}
           >
-            <RadioGroupItem value="100" id="type-100" className="mt-1 shrink-0" />
+            <RadioGroupItem value="100" id="type-100" className="mt-1 shrink-0" {...register('aiClassification')}/>
             <Label htmlFor="type-100" className="cursor-pointer font-medium">
               {t('submit.step3.type.100')}
-              <span className="text-muted-foreground mt-1 block text-sm font-normal">{t('submit.step3.type.100.desc')}</span>
+              <span className="text-muted-foreground mt-1 block text-sm font-normal">
+                {t('submit.step3.type.100.desc')}
+              </span>
             </Label>
           </div>
 
           <div
             className={`flex items-start gap-3 rounded-xl border p-4 transition-all md:p-5 ${aiClassification === 'hybrid' ? 'border-primary bg-primary/10' : 'border-border bg-background'}`}
           >
-            <RadioGroupItem value="hybrid" id="type-hybrid" className="mt-1 shrink-0" />
+            <RadioGroupItem value="hybrid" id="type-hybrid" className="mt-1 shrink-0" {...register('aiClassification')}/>
             <Label htmlFor="type-hybrid" className="cursor-pointer font-medium">
               {t('submit.step3.type.hybrid')}
               <span className="text-muted-foreground mt-1 block text-sm font-normal">
@@ -67,7 +65,6 @@ export default function AiSection() {
           <TextArea {...register('techStack')} placeholder={t('submit.step3.techstack.placeholder')} />
           {errors.techStack && <ErrorParagraph>{errors.techStack.message}</ErrorParagraph>}
         </FormGroup>
-
       </div>
     </Card>
   );

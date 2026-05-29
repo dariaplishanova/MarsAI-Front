@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useContext, useEffect, useRef, useState } from 'react';
-import { cn } from './utils';
-import Button from './button';
+import { cn } from '../../utils/utils';
+import Button from './Button';
 
 const DropdownContext = createContext<{
   open: boolean;

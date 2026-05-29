@@ -1,6 +1,6 @@
 import { IconBadgeProps } from '@/types/home';
-import { iconVariants } from '../utils/variants';
-import { cn } from './utils';
+import { cn } from '../../utils/utils';
+import { iconVariants } from '../../utils/variants';
 
 export default function IconBadge({ icon: Icon, variant = 'default', className }: IconBadgeProps) {
   const activeVariant = variant in iconVariants ? variant : 'default';

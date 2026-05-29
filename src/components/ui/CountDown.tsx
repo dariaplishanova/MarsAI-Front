@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { cartVariants } from '../utils/variants';
+import { cartVariants } from '../../utils/variants';
 import { Card } from './Card';
 
 export default function CountDown() {
@@ -51,11 +51,11 @@ export default function CountDown() {
         >
           <Card
             variant={unit.variant as keyof typeof cartVariants}
-            className="flex flex-col items-center justify-center rounded-md border p-2 sm:min-w-30 text-center"
+            className="flex flex-col items-center justify-center rounded-md border p-2 text-center sm:min-w-30"
           >
             {/* CHIFFRE : Tabular-nums pour éviter que ça bouge + couleurs primaires/accent */}
             <span
-              className={`tabular-nums mb-0.5 text-xl leading-none font-bold md:text-2xl ${unit.variant === 'time_purple' ? 'text-primary' : 'text-accent'}`}
+              className={`mb-0.5 text-xl leading-none font-bold tabular-nums md:text-2xl ${unit.variant === 'time_purple' ? 'text-primary' : 'text-accent'}`}
             >
               {String(unit.value).padStart(2, '0')}
             </span>

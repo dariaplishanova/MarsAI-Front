@@ -12,10 +12,15 @@ export interface User {
 }
 
 export interface AuthContextType {
-  user: User | null;
-  token: string | null;
   isAuthenticated: boolean;
-  isLoading: boolean;
-  login: (token: string, user: User) => void;
+  login: (token: string) => void;
   logout: () => void;
+}
+
+export interface JWTPayload {
+  userId: number;
+  email: string;
+  role: UserRole;
+  iat?: number;
+  exp?: number;
 }

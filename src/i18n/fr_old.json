@@ -1,0 +1,278 @@
+{
+  "nav.home": "Accueil",
+  "nav.admin": "Administration",
+  "nav.jury": "Interface Jury",
+  "nav.gallery": "Galerie",
+  "nav.back": "Retour",
+  "nav.language": "Sélectionner la langue",
+  "nav.super-admin": "Super-Admin",
+  "common.save": "Enregistrer",
+  "common.cancel": "Annuler",
+  "common.next": "Suivant",
+  "common.previous": "Précédent",
+  "common.submit": "Soumettre",
+  "common.loading": "Chargement...",
+  "common.required": "Obligatoire",
+  "common.optional": "Optionnel",
+  "common.search": "Rechercher...",
+  "common.filter": "Filtrer",
+  "common.clear": "Effacer",
+  "common.edit": "Modifier",
+  "common.delete": "Supprimer",
+  "common.add": "Ajouter",
+  "common.validated": "Validé",
+  "common.pending": "En attente",
+  "common.rejected": "Rejeté",
+  "landing": {
+    "program": {
+      "title": "Le Festival marsAI 2026",
+      "subtitle": "Festival international sur l'IA générative - 12-13 Juin 2026 à Marseille",
+      "cards": {
+        "competition": {
+          "title": "Concours de Films",
+          "description": "Projection des films finalistes en compétition",
+          "date": "12 Juin - 14h00",
+          "capacity": "500 places"
+        },
+        "masterclass": {
+          "title": "Masterclass",
+          "description": "Ateliers pratiques avec experts IA",
+          "date": "12 Juin - 10h00",
+          "capacity": "200 places"
+        },
+        "conference": {
+          "title": "Conférences",
+          "description": "Panels sur le futur du cinéma IA",
+          "date": "12-13 Juin",
+          "capacity": "800 places"
+        },
+        "night": {
+          "title": "marsAI Night",
+          "description": "Soirée de clôture + Remise des prix",
+          "date": "13 Juin - 19h00",
+          "capacity": "1000 places"
+        }
+      }
+    },
+    "cta": {
+      "title": "3000 Visiteurs Attendus",
+      "description": "Rejoignez-nous pour 2 jours d'événements exceptionnels dédiés à l'IA générative et au cinéma du futur",
+      "button": "S'inscrire aux Événements"
+    }
+  },
+  "errors": {
+    "invalid_email": "Veuillez entrer une adresse email valide",
+    "invalid_phone": "Format invalide (ex: 06 12 34 56 78)",
+    "invalid_zip": "Code postal invalide (5 chiffres requis)",
+    "invalid_url": "URL invalide (doit commencer par https://)",
+    "invalid_date": "Veuillez entrer une date valide",
+    "select_option": "Veuillez sélectionner une option",
+    "password_too_short": "Le mot de passe doit contenir au moins 6 caractères",
+    "password_complexity": "Le mot de passe doit contenir des majuscules et des chiffres",
+    "max_length": "Maximum 300 caractères autorisés",
+    "errors.invalid_url": "Veuillez entrer une URL valide",
+    "errors.invalid_youtube": "L'URL doit provenir de YouTube",
+    "errors.max_gallery": "Vous ne pouvez pas uploader plus de 3 images",
+    "required": "Ce champ est obligatoire",
+    "min_2_chars": "Ce champ doit contenir au moins 2 caractères",
+    "pass_min_8": "Le mot de passe doit contenir au moins 8 caractères",
+    "pass_uppercase": "Le mot de passe doit contenir au moins une majuscule",
+    "pass_number": "Le mot de passe doit contenir au moins un chiffre",
+    "invalid_festival": "ID de festival invalide",
+    "fileRequired": "Veuillez uploader un fichier",
+    "fileTooLarge": "Le fichier est trop volumineux (maximum 5 Mo)",
+    "invalidFileType": "Format de fichier invalide. Seuls les formats JPEG, PNG et WEBP sont acceptés",
+    "videoRequired": "Veuillez uploader un fichier vidéo",
+    "videoTooLarge": "La vidéo est trop volumineuse (maximum 500 Mo)",
+    "invalidVideoType": "Format vidéo invalide. Seuls les formats MP4, WebM et MOV sont acceptés",
+    "max_gallery": "Vous ne pouvez pas uploader plus de 3 images"
+  },
+  "form.footer": "Pas encore de compte?",
+  "form.event": "S'inscrire aux Événements",
+  "form.connection.error": "Erreur de connexion",
+  "submit.title": "Soumission de Film",
+  "submit.hero.title": "Devenez l'architecte du monde de demain.",
+  "submit.step": "Étape",
+  "submit.progress": "Progression",
+  "submit.step1.age.error": "Vous devez avoir au moins 18 ans",
+  "submit.step1.role": "Rôle Professionnel",
+  "submit.step1.role.placeholder": "Réalisateur, Artiste, Développeur...",
+  "submit.step1.mobile": "Mobile",
+  "submit.step1.address": "Adresse",
+  "submit.step1.zip": "Code Postal",
+  "submit.step1.city": "Ville",
+  "submit.step1.social": "E-réputation & Réseaux (Optionnel)",
+  "submit.step1.question": "Comment avez vous connu MarsAi ?",
+  "submit.step2.title.en": "Titre (Anglais)",
+  "submit.step2.duration.error": "Le film doit faire 60 secondes maximum",
+  "submit.step2.synopsis.fr": "Synopsis (Français)",
+  "submit.step2.synopsis.en": "Synopsis (Anglais)",
+  "submit.step2.synopsis.placeholder": "Décrivez votre film...",
+  "submit.step2.chars": "caractères",
+  "submit.step4.description": "Fichiers et contenus multimédias",
+  "submit.step4.youtube": "URL YouTube",
+  "submit.step4.poster": "Affiche du Film",
+  "submit.step4.poster.hint": "Format JPG, max 2MB",
+  "submit.step4.subtitles": "Fichier de Sous-titres",
+  "submit.step4.subtitles.hint": "Format SRT",
+  "submit.step5.collaborators": "Membres de l'Équipe",
+  "submit.step5.name": "Nom",
+  "submit.success": "Votre film a été soumis avec succès !",
+  "submit.final": "Soumettre le Film",
+  "submit.final.ready": "Prêt à marquer l'histoire du cinéma génératif ?",
+  "submit.previous": "Précédent",
+  "submit.next": "Suivant",
+  "submit.submit": "Soumettre le Film",
+  "submission": {
+    "success_title": "Succès !",
+    "success_message": "Votre film a été soumis avec succès.",
+    "close_btn": "Retour à l'accueil",
+    "submit": "Soumettre",
+    "sending": "Envoi en cours..."
+  },
+  "jury": {
+    "dashboard": {
+      "title": "Interface Jury marsAI",
+      "subtitle": "L'excellence au bout du curseur",
+      "mobile_title": "marsAI Jury",
+      "loading": "Chargement des films...",
+      "no_films_found": "Aucun film trouvé.",
+      "server_error": "Impossible de se connecter au serveur."
+    },
+    "sidebar": {
+      "films_button": "Films",
+      "title": "Films à évaluer",
+      "evaluated_count": "0/{{total}} films évalués"
+    },
+    "evaluator": {
+      "select_film": "Sélectionnez un film"
+    },
+    "video": {
+      "director": "Réalisateur",
+      "language": "Langue",
+      "duration": "Durée",
+      "seconds": "s",
+      "status_in_review": "En révision",
+      "unsupported": "Votre navigateur ne prend pas en charge la balise vidéo.",
+      "synopsis_title": "Synopsis",
+      "no_synopsis": "Aucun synopsis fourni."
+    },
+    "gallery": {
+      "title": "Galerie Médias",
+      "screenshot": "Capture d'écran {{number}}"
+    },
+    "ai_card": {
+      "title": "Carte d'Identité IA",
+      "subtitle": "Outils et méthodologie utilisés",
+      "classification_type": "Type de Classification IA",
+      "100_ai": "100% IA",
+      "hybrid": "Production Hybride",
+      "tools_used": "Outils Utilisés (Stack)",
+      "not_provided": "Non renseigné",
+      "methodology": "Méthodologie Créative",
+      "no_methodology": "Aucune méthodologie détaillée."
+    },
+    "rating": {
+      "title": "Votre Évaluation",
+      "average_score": "Note Moyenne (Règle des 3)",
+      "score_breakdown": "Créativité: {{creativity}} | Technique: {{technical}} | Narration: {{narrative}}",
+      "creativity": {
+        "label": "1. Créativité & Innovation",
+        "desc": "Originalité du concept, usage innovant de l'IA"
+      },
+      "technical": {
+        "label": "2. Qualité Technique",
+        "desc": "Maîtrise des outils IA, qualité visuelle et sonore"
+      },
+      "narrative": {
+        "label": "3. Narration & Impact",
+        "desc": "Cohérence de l'histoire, émotion, message"
+      },
+      "scale": {
+        "low": "1 - Faible",
+        "medium": "Moyen",
+        "high": "10 - Excellent"
+      },
+      "comments": {
+        "label": "Commentaires Internes Privés",
+        "placeholder": "Partagez vos réflexions pour la délibération...",
+        "hint": "Ces commentaires sont confidentiels"
+      },
+      "messages": {
+        "success": "Évaluation enregistrée avec succès !",
+        "error_save": "Erreur lors de l'enregistrement.",
+        "error_server": "Erreur de connexion au serveur."
+      },
+      "buttons": {
+        "submitting": "Enregistrement...",
+        "submit": "Soumettre l'Évaluation"
+      }
+    }
+  },
+  "admin": {
+    "sidebar": {
+      "dashboard": "Tableau de bord",
+      "films": "Films",
+      "users": "Utilisateurs",
+      "events": "Événements",
+      "newsletter": "Newsletter"
+    },
+    "dashboard": {
+      "title": "Tableau de bord",
+      "total_participants": "Total des participants",
+      "total_films": "Total des films",
+      "loading": "Chargement des statistiques..."
+    }
+  },
+  "films": {
+    "title": "Gérer les films",
+    "col_title": "Titre",
+    "col_name": "Réalisateur",
+    "col_status": "Statut",
+    "col_actions": "Actions",
+    "empty": "Aucun film trouvé.",
+    "status": {
+      "pending": "En attente",
+      "in_review": "En cours d'examen",
+      "approved": "Accepté",
+      "official_selection": "Sélection officielle",
+      "rejected": "Rejeté"
+    }
+  },
+  "footer.status": "Statut",
+  "footer.status.operational": "Systèmes Opérationnels",
+  "placeholder.submitform1.mobile": "+33 6 12 34 56 78",
+  "placeholder.submitform1.address": "123 Rue de la République",
+  "placeholder.submitform1.zip": "75001",
+  "placeholder.submitform1.city": "Paris",
+  "placeholder.submitform1.job": "Réalisateur, Designer, Développeur...",
+  "placeholder.submitform1.youtubelink": "https://www.youtube.com/@nomutilisateur",
+  "placeholder.submitform1.facebooklink": "https://www.facebook.com/nomutilisateur",
+  "placeholder.submitform1.instagramlink": "https://www.instagram.com/nomutilisateur",
+  "placeholder.submitform1.linkedinlink": "https://www.linkedin.com/in/nomutilisateur",
+  "placeholder.submitform1.twitterlink": "https://x.com/nomutilisateur",
+  "placeholder.submitform1.select": "Sélectionnez une option",
+  "submit.step1.source.search": "Moteur de recherche",
+  "submit.step1.source.word_of_mouth": "Bouche à oreille",
+  "submit.step1.source.press": "Presse / Média",
+  "submit.step1.source.festival": "Autre festival",
+  "submit.step1.source.partner": "Partenaire",
+  "submit.step1.source.other": "Autre",
+  "submit.step2.tags": "Tags sémantiques \"Futurs souhaitables\"",
+  "submit.step2.synopsis.label.en": "Synopsis anglais",
+  "submit.step3.methodology": "Méthodologie Créative",
+  "submit.step3.methodology.placeholder": "Décrivez votre processus créatif...",
+  "submit.step4.youtube.label": "URL YouTube du film",
+  "placeholder.submitform4.youtube": "https://youtube.com/watch?v=...",
+  "submit.step4.youtube.hint": "Format : Public ou Non-répertorié",
+  "submit.step4.subtitles.checkbox": "Présence de voix ou de textes nécessitant des sous-titres",
+  "placeholder.submitform2.title.en": "Titre en anglais",
+  "placeholder.submitform2.duration": "60",
+  "placeholder.submitform2.tag": "Écologie, Technologie, Humanisme, Innovation...",
+  "placeholder.submitform2.synopsis.en": "Décrivez votre film en quelques phrases (en anglais)...",
+  "youtube.name": "Youtube",
+  "instagram.name": "Instagram",
+  "linkedin.name": "Linkedin",
+  "facebook.name": "Facebook",
+  "twitter.name": "Twitter"
+}

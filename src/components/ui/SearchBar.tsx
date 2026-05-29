@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Search } from 'lucide-react';
+import { cn } from '../../utils/utils';
 // Adjust import based on your i18n library
 import Form, { Input } from './Form';
-import { cn } from './utils';
 
 interface SearchBarProps {
   setQuery: (query: string) => void;

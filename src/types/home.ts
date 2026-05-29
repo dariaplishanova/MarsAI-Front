@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { LucideIcon } from 'lucide-react';
-import { ButtonVariant, CardTitleVariants, cartVariants, iconVariants } from '@/components/utils/variants';
+import { ButtonVariant, CardTitleVariants, cartVariants, iconVariants } from '@/utils/variants';
+import { CollaboratorType } from './form';
 
 export interface StatCardProps {
   icon: LucideIcon;
@@ -62,24 +63,31 @@ export interface FilmData {
   duration: number;
   language: string;
   video_url: string;
-  thumbnail_url?: string;
+  country?: string;
+  release_date?: string;
+  thumbnail?: string;
   synopsis?: string;
   ia_type?: string;
   ai_tools?: string;
   stack?: string;
-  status:FilmStatus;
+  status: FilmStatus;
   director_id: string | number;
   director_firstname?: string;
   director_lastname?: string;
   gallery_urls?: string;
+  collaborators: CollaboratorType[];
+  ratings?: {
+    id: number;
+    score_creativity: number;
+    score_technical: number;
+    score_message: number;
+    comment: string;
+    jury_firstname: string;
+    jury_lastname: string;
+  }[];
 }
 
-type FilmStatus =
-  | 'approved'
-  | 'official_selection'
-  | 'rejected'
-  | 'pending'
-  | 'in_review';
+type FilmStatus = 'approved' | 'official_selection' | 'rejected' | 'pending' | 'in_review';
 
 export interface FilmWithDirector extends FilmData {
   director_firstname: string;

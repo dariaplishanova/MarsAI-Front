@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
-import Button from '@/components/ui/button';
+import Button from '@/components/ui/Button';
 import SidebarContent from './SidebarContent';
 
 export default function MobileSidebar(props: any) {
@@ -14,7 +14,7 @@ export default function MobileSidebar(props: any) {
       <Button
         variant="outline"
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 border-border bg-background text-foreground"
+        className="border-border bg-background text-foreground flex items-center gap-2"
       >
         <Menu className="size-4" /> {t('jury.sidebar.films_button')}
       </Button>
@@ -27,17 +27,17 @@ export default function MobileSidebar(props: any) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
+              className="bg-background/80 fixed inset-0 z-40 backdrop-blur-sm"
             />
             <motion.div
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-              className="fixed top-0 bottom-0 left-0 z-50 flex w-4/5 max-w-sm flex-col border-r border-border bg-card p-4 shadow-2xl"
+              className="border-border bg-card fixed top-0 bottom-0 left-0 z-50 flex w-4/5 max-w-sm flex-col border-r p-4 shadow-2xl"
             >
               <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-xl font-bold text-foreground">{t('jury.sidebar.title')}</h2>
+                <h2 className="text-foreground text-xl font-bold">{t('jury.sidebar.title')}</h2>
                 <button onClick={() => setIsOpen(false)} className="text-muted-foreground hover:text-foreground">
                   <X className="size-6" />
                 </button>

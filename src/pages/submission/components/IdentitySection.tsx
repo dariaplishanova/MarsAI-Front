@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/components/ui/Card';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/RadioGroup';
-import { ErrorParagraph, FormGroup, Input, Label, Select } from '@/components/ui/form';
+import { ErrorParagraph, FormGroup, Input, Label, Select } from '@/components/ui/Form';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
+import RadioGroup, { RadioGroupItem } from '@/components/ui/RadioGroup';
 
 export default function IdentitySection() {
   const { t } = useTranslation();
@@ -31,19 +31,15 @@ export default function IdentitySection() {
         <Label className="text-base font-semibold">
           {t('submit.step1.civility')} <span className="text-primary">*</span>
         </Label>
-        <RadioGroup
-          value={civilityValue}
-          onValueChange={value => setValue('civility', value as 'M.' | 'Mme')}
-          className="flex gap-6"
-        >
+        <RadioGroup className="flex gap-6" >
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="M." id="m" />
+            <RadioGroupItem value="M." id="m" {...register('civility')}/>
             <Label htmlFor="m" className="cursor-pointer font-normal">
               {t('submit.step1.civility1')}
             </Label>
           </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="Mme" id="mme" />
+          <div className="flex items-center space-x-2" >
+            <RadioGroupItem value="Mme" id="mme" {...register('civility')} />
             <Label htmlFor="mme" className="cursor-pointer font-normal">
               {t('submit.step1.civility2')}
             </Label>
@@ -85,11 +81,11 @@ export default function IdentitySection() {
         </FormGroup>
       </div>
 
-        <FormGroup>
-          <Label required>{t('submit.step1.country')}</Label>
-          <Input {...register('country')} placeholder={t('placeholder.submitform1.country')} />
-          {errors.country && <ErrorParagraph>{errors.country.message}</ErrorParagraph>}
-        </FormGroup>
+      <FormGroup>
+        <Label required>{t('submit.step1.country')}</Label>
+        <Input {...register('country')} placeholder={t('placeholder.submitform1.country')} />
+        {errors.country && <ErrorParagraph>{errors.country.message}</ErrorParagraph>}
+      </FormGroup>
 
       <FormGroup className="border-border bg-muted/50 flex flex-row items-center gap-3 space-y-0 rounded-xl border p-5">
         <input

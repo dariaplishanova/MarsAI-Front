@@ -4,9 +4,9 @@ import FilmPopup from '@/components/FilmPopup';
 import Pagination from '@/components/Pagination';
 import { CardDescription, CardHeader, CardTitle } from '@/components/ui/Card';
 import SearchBar from '@/components/ui/SearchBar';
-import { s } from '@/components/ui/utils';
 import { useFetch } from '@/hooks/useFetch';
 import { FilmWithDirector } from '@/types/home';
+import { s } from '@/utils/utils';
 import CardVideo from './CardVideo';
 
 export default function VideoSection() {
@@ -38,7 +38,7 @@ export default function VideoSection() {
   if (error) return <div className="py-20 text-center text-red-500">Erreur : {error}</div>;
 
   return (
-    <section className="w-full bg-white mx-auto space-y-8 px-4 py-8">
+    <section className="mx-auto w-full space-y-8 bg-white px-4 py-8">
       <CardHeader className="flex flex-col gap-6">
         <div>
           <div>

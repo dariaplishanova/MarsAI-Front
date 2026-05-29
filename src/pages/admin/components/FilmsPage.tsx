@@ -1,14 +1,20 @@
+import { useState } from 'react';
+// NEW: Import useState
 import { useTranslation } from 'react-i18next';
 import { Check, X } from 'lucide-react';
 import Badge from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { useFetch } from '@/hooks/useFetch';
-import { FilmWithDirector } from '@/types/home';
+import { FilmData } from '@/types/home';
+import AdminFilmPopup from './popup/AdminFilmPopup';
+
 
 export default function FilmsPage() {
   const { t } = useTranslation();
 
-  const { data: films, isLoading, error, refetch } = useFetch<FilmWithDirector[]>('/movies/admin');
+  const { data: films, isLoading, error, refetch } = useFetch<FilmData[]>('/movies/admin');
+
+  const [selectedFilm, setSelectedFilm] = useState<FilmData | null>(null);
 
   const handleStatusChange = async (movieId: number, newStatus: string) => {
     try {
@@ -23,10 +29,16 @@ export default function FilmsPage() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
-
         console.error('The Backend complained with:', errorData);
 
-        throw new Error(errorData?.message || `HTTP Error ${response.status}`);
+        let errorMessage = `HTTP Error ${response.status}`;
+        if (Array.isArray(errorData) && errorData[0]?.message) {
+          errorMessage = errorData[0].message;
+        } else if (errorData?.message) {
+          errorMessage = errorData.message;
+        }
+
+        throw new Error(errorMessage);
       }
 
       refetch();
@@ -45,7 +57,6 @@ export default function FilmsPage() {
   const sortedFilms = [...safeFilms].sort((a, b) => {
     const priorityA = a.status === 'pending' || a.status === 'in_review' ? 1 : 2;
     const priorityB = b.status === 'pending' || b.status === 'in_review' ? 1 : 2;
-
     return priorityA - priorityB;
   });
 
@@ -81,7 +92,11 @@ export default function FilmsPage() {
               </tr>
             ) : (
               sortedFilms.map(film => (
-                <tr key={film.id} className="hover:bg-muted/30 transition-colors">
+                <tr
+                  key={film.id}
+                  className="hover:bg-muted/30 cursor-pointer transition-colors"
+                  onClick={() => setSelectedFilm(film)}
+                >
                   <td className="p-4 font-semibold">{film.title}</td>
                   <td className="p-4">{`${film.director_firstname} ${film.director_lastname}`}</td>
                   <td className="p-4">
@@ -91,14 +106,20 @@ export default function FilmsPage() {
                   </td>
                   <td className="flex justify-end gap-2 p-4">
                     <button
-                      onClick={() => handleStatusChange(film.id, 'in_review')}
+                      onClick={e => {
+                        e.stopPropagation(); //Prevents the row click from firing
+                        handleStatusChange(film.id, 'in_review');
+                      }}
                       className="flex h-8 w-8 items-center justify-center rounded-md bg-green-50 text-green-600 transition-colors hover:bg-green-100"
                     >
                       <Check size={16} />
                     </button>
 
                     <button
-                      onClick={() => handleStatusChange(film.id, 'rejected')}
+                      onClick={e => {
+                        e.stopPropagation(); 
+                        handleStatusChange(film.id, 'rejected');
+                      }}
                       className="flex h-8 w-8 items-center justify-center rounded-md bg-red-50 text-red-600 transition-colors hover:bg-red-100"
                     >
                       <X size={16} />
@@ -110,6 +131,8 @@ export default function FilmsPage() {
           </tbody>
         </table>
       </Card>
+
+      <AdminFilmPopup film={selectedFilm} open={selectedFilm !== null} onClose={() => setSelectedFilm(null)} />
     </div>
   );
 }

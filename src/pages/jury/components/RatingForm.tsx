@@ -1,34 +1,55 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 import { Send, Star } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import Button from '@/components/ui/button';
-import { FormGroup, Label, TextArea } from '@/components/ui/form';
-import { useAuth } from '@/hooks/useAuth';
+import { FormGroup, Label, TextArea } from '@/components/ui/Form';
+import { decodedToken } from '@/utils/jwt.utils';
 
 export default function RatingForm({ filmId }: { filmId: string | number }) {
   const { t } = useTranslation();
-  const {user, token} = useAuth()
-  const [scores, setScores] = useState({ creativity: 1, technical: 1, narrative: 1 });
+  const [scores, setScores] = useState({ creativity: 1, technical: 1, message: 1 });
   const [comment, setComment] = useState('');
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
-  const averageScore = Math.round((scores.creativity + scores.technical + scores.narrative) / 3);
+  const averageScore = Math.round((scores.creativity + scores.technical + scores.message) / 3);
 
   const handleSubmitRating = async () => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      setSubmitMessage({
+        type: 'error',
+        text: t('jury.rating.messages.error_session') || 'Session expirée. Veuillez vous reconnecter.',
+      });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitMessage(null);
+
+    const userData = decodedToken(token);
+
+    if (!userData || !userData.userId) {
+      setSubmitMessage({
+        type: 'error',
+        text: 'Utilisateur introuvable. Veuillez vous reconnecter.',
+      });
+      return;
+    }
+
     const API_URL = import.meta.env.VITE_API_URL;
 
     const payload = {
-      user_id: user?.id,
+      user_id: Number(userData.userId),
       movie_id: Number(filmId),
       score_creativity: scores.creativity,
       score_technical: scores.technical,
-      score_message: scores.narrative,
-      comment: comment,
+      score_message: scores.message,
+      comment: comment.trim(),
       score_total: averageScore,
     };
 
@@ -37,19 +58,21 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(payload),
       });
+
       const data = await response.json();
-      
+
       if (response.ok) {
         setSubmitMessage({ type: 'success', text: t('jury.rating.messages.success') });
+        setComment('');
       } else {
         setSubmitMessage({ type: 'error', text: data.message || t('jury.rating.messages.error_save') });
       }
     } catch (error) {
-      console.error("Error submitting rating:", error);
+      console.error('Error submitting rating:', error);
       setSubmitMessage({ type: 'error', text: t('jury.rating.messages.error_server') });
     } finally {
       setIsSubmitting(false);
@@ -69,10 +92,10 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
           {averageScore} <span className="text-muted-foreground text-xl">/10</span>
         </div>
         <p className="text-muted-foreground text-xs">
-          {t('jury.rating.score_breakdown', { 
-            creativity: scores.creativity, 
-            technical: scores.technical, 
-            narrative: scores.narrative 
+          {t('jury.rating.score_breakdown', {
+            creativity: scores.creativity,
+            technical: scores.technical,
+            message: scores.message,
           })}
         </p>
       </div>
@@ -89,10 +112,10 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
             label: t('jury.rating.technical.label'),
             desc: t('jury.rating.technical.desc'),
           },
-          { 
-            id: 'narrative', 
-            label: t('jury.rating.narrative.label'), 
-            desc: t('jury.rating.narrative.desc') 
+          {
+            id: 'message',
+            label: t('jury.rating.message.label'),
+            desc: t('jury.rating.message.desc'),
           },
         ].map(slider => {
           const score = scores[slider.id as keyof typeof scores];
@@ -156,18 +179,22 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
         </FormGroup>
 
         {submitMessage && (
-          <div className={`mt-4 rounded-md p-3 text-sm ${submitMessage.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+          <div
+            className={`mt-4 rounded-md p-3 text-sm ${
+              submitMessage.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            }`}
+          >
             {submitMessage.text}
           </div>
         )}
 
-        <Button 
-          variant="purple" 
+        <Button
+          variant="purple"
           onClick={handleSubmitRating}
           disabled={isSubmitting}
           className="mt-6 flex w-full items-center justify-center gap-2 py-3 disabled:opacity-50"
         >
-          <Send className="size-4" /> 
+          <Send className="size-4" />
           {isSubmitting ? t('jury.rating.buttons.submitting') : t('jury.rating.buttons.submit')}
         </Button>
       </div>

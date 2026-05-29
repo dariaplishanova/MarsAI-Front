@@ -1,8 +1,8 @@
 import { useFieldArray, useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Plus, Users } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import Button from '@/components/ui/button';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
 import TeamMember from './TeamMember';
 
@@ -42,18 +42,12 @@ export default function MemberSection() {
 
       <div className="space-y-6">
         {fields.length === 0 ? (
-          <Card className="flex flex-col items-center justify-center border-dashed border-border bg-muted/30 py-16 text-muted-foreground">
+          <Card className="border-border bg-muted/30 text-muted-foreground flex flex-col items-center justify-center border-dashed py-16">
             <Users className="mb-4 size-16 opacity-30" />
             <p className="text-lg font-medium">{t('submit.step5.empty')}</p>
           </Card>
         ) : (
-          fields.map((field, index) => (
-            <TeamMember
-              key={field.id}
-              index={index}
-              onDelete={() => remove(index)}
-            />
-          ))
+          fields.map((field, index) => <TeamMember key={field.id} index={index} onDelete={() => remove(index)} />)
         )}
       </div>
     </Card>

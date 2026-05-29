@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
-import { ErrorParagraph, FormGroup, Input, Label } from '@/components/ui/form';
+import { ErrorParagraph, FormGroup, Input, Label } from '@/components/ui/Form';
 import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
 
 interface TeamMemberProps {
@@ -19,11 +19,11 @@ export default function TeamMember({ index, onDelete }: TeamMemberProps) {
   const memberErrors = (errors.collaborators as any)?.[index];
 
   return (
-    <div className="relative space-y-6 rounded-xl border border-border bg-muted/30 p-6">
+    <div className="border-border bg-muted/30 relative space-y-6 rounded-xl border p-6">
       <button
         type="button"
         onClick={onDelete}
-        className="absolute top-4 right-4 p-1 text-muted-foreground transition-colors hover:text-destructive"
+        className="text-muted-foreground hover:text-destructive absolute top-4 right-4 p-1 transition-colors"
       >
         <X className="size-5" />
       </button>

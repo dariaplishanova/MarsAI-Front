@@ -1,6 +1,6 @@
 import { StatCardProps } from '@/types/home';
+import { cn } from '../../utils/utils';
 import IconBadge from './IconBadge';
-import { cn } from './utils';
 
 export default function StatCard({ icon: Icon, value, label, color, variant = 'default', className }: StatCardProps) {
   return (

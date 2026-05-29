@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { Upload } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import CountDown from '@/components/ui/CountDown';
-import Button from '@/components/ui/button';
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -43,7 +43,7 @@ export default function HeroSection() {
             icon={<Upload size={15} />}
             variant="purple"
             onClick={handleNaviagte}
-            className="px-6 py-3 text-lg shadow-md text-foreground"
+            className="text-foreground px-6 py-3 text-lg shadow-md"
           >
             {t('nav.submit')}
           </Button>

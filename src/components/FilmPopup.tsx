@@ -20,13 +20,17 @@ export default function FilmPopup({ open, onClose, film }: FilmPopupProps) {
         </p>
       </div>
 
+      <div>
+        
+      </div>
+
       <div className="border-border relative mb-6 aspect-video w-full overflow-hidden rounded-xl border bg-black shadow-lg">
         <video
           controls
           controlsList="nodownload"
           className="absolute inset-0 h-full w-full object-contain"
           src={film.video_url}
-          poster={film.thumbnail_url}
+          poster={film.thumbnail}
           preload="metadata"
         >
           Your browser does not support the video tag.

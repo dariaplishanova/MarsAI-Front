@@ -17,7 +17,7 @@ export const filmSubmissionSchema = (t: TFunction) => {
     aiClassification: z.string().min(1, { message: t('errors.required') }),
     techStack: z.string().min(2, { message: t('errors.required') }),
     title: z.string().min(2, { message: t('errors.required') }),
-    synopsis: z.string().min(2, { message: t('errors.required') }),
+    synopsis: z.string().trim().min(10, { message: t('errors.required') }),
     duration: z.coerce.number().min(1, { message: t('errors.required') }),
     language: z.string().min(2, { message: t('errors.required') }),
     video: z

@@ -40,13 +40,6 @@ export default function AiIdentityCard({ film }: { film: FilmData }) {
           </div>
         ))}
       </div>
-
-      <Card variant="dashboard" className="rounded-xl border border-border bg-muted/30 p-4 shadow-none">
-        <span className="mb-2 block text-xs text-muted-foreground">{t('jury.ai_card.methodology')}</span>
-        <p className="text-sm leading-relaxed text-foreground">
-          {film.methodology || t('jury.ai_card.no_methodology')}
-        </p>
-      </Card>
     </Card>
   );
 }

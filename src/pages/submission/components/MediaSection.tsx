@@ -3,9 +3,9 @@ import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { AlertCircle, Film, Image as ImageIcon, Images } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
-import { ErrorParagraph, FormGroup, Input, Label, TextArea } from '@/components/ui/form';
-import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
+import { ErrorParagraph, FormGroup, Input, Label, TextArea } from '@/components/ui/Form';
 import { useMediaHandling } from '@/hooks/useMediaHandling';
+import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
 
 export default function MediaSection() {
   const { t } = useTranslation();
@@ -16,13 +16,8 @@ export default function MediaSection() {
     watch,
   } = useFormContext<FilmSubmissionData>();
 
- const {
-    thumbnailPreview,
-    videoPreview,
-    galleryPreviews,
-    handleThumbnailChange,
-    handleGalleryChange,
-  } = useMediaHandling();
+  const { thumbnailPreview, videoPreview, galleryPreviews, handleThumbnailChange, handleGalleryChange } =
+    useMediaHandling();
 
   const hasErrors = Object.keys(errors).length > 0;
 
@@ -39,17 +34,17 @@ export default function MediaSection() {
         <p className="text-muted-foreground">{t('submit.step2.description')}</p>
       </div>
 
-        <FormGroup>
-          <Label required>{t('submit.step2.title.fr')}</Label>
-          <Input {...register('title')} placeholder={t('placeholder.submitform2.title.fr')} />
-          {errors.title && <ErrorParagraph>{errors.title.message}</ErrorParagraph>}
-        </FormGroup>
+      <FormGroup>
+        <Label required>{t('submit.step2.title.fr')}</Label>
+        <Input {...register('title')} placeholder={t('placeholder.submitform2.title.fr')} />
+        {errors.title && <ErrorParagraph>{errors.title.message}</ErrorParagraph>}
+      </FormGroup>
 
-        <FormGroup>
-          <Label required>{t('submit.step2.synopsis.label.fr')}</Label>
-          <TextArea {...register('synopsis')} placeholder={t('placeholder.submitform2.synopsis')} />
-          {errors.synopsis && <ErrorParagraph>{errors.synopsis.message}</ErrorParagraph>}
-        </FormGroup>
+      <FormGroup>
+        <Label required>{t('submit.step2.synopsis.label.fr')}</Label>
+        <TextArea {...register('synopsis')} placeholder={t('placeholder.submitform2.synopsis')} />
+        {errors.synopsis && <ErrorParagraph>{errors.synopsis.message}</ErrorParagraph>}
+      </FormGroup>
 
       <div className="flex h-full flex-col gap-6">
         <FormGroup>
@@ -69,7 +64,7 @@ export default function MediaSection() {
         </FormGroup>
       </div>
 
-      <div className="space-y-6 border-t border-border pt-6">
+      <div className="border-border space-y-6 border-t pt-6">
         <FormGroup>
           <Label required className="flex items-center gap-2">
             <Film className="text-primary size-4" />
@@ -111,7 +106,7 @@ export default function MediaSection() {
           />
 
           {thumbnailPreview && (
-            <div className="border-border mt-3 h-32 w-32 overflow-hidden rounded-md border bg-muted/30">
+            <div className="border-border bg-muted/30 mt-3 h-32 w-32 overflow-hidden rounded-md border">
               <img src={thumbnailPreview} alt="Thumbnail preview" className="h-full w-full object-cover" />
             </div>
           )}
@@ -138,7 +133,7 @@ export default function MediaSection() {
           {galleryPreviews.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-3">
               {galleryPreviews.map((url, index) => (
-                <div key={index} className="border-border h-24 w-24 overflow-hidden rounded-md border bg-muted/30">
+                <div key={index} className="border-border bg-muted/30 h-24 w-24 overflow-hidden rounded-md border">
                   <img src={url} alt={`Gallery preview ${index + 1}`} className="h-full w-full object-cover" />
                 </div>
               ))}

@@ -38,7 +38,7 @@ export default function VideoPlayer({ film }: { film: FilmData }) {
       <div className="mt-4">
         <h3 className="font-semibold text-foreground">{t('jury.video.synopsis_title')}</h3>
         <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-          {film.synopsis || film.synopsis_fr || t('jury.video.no_synopsis')}
+          {film.synopsis}
         </p>
       </div>
     </Card>

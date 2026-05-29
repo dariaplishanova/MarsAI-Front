@@ -1,6 +1,6 @@
 import { ButtonProps } from '@/types/home';
-import { buttonVariants } from '../utils/variants';
-import { cn } from './utils';
+import { cn } from '../../utils/utils';
+import { buttonVariants } from '../../utils/variants';
 
 const Button = ({ children, className, variant = 'default', icon, position = 'left', ...props }: ButtonProps) => {
   return (

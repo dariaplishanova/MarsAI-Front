@@ -1,8 +1,8 @@
 import { CardProps, DescribeProps } from '@/types/home';
 import { TitleProps } from '@/types/home';
-import { cartVariants } from '../utils/variants';
-import { CardTitleVariants } from '../utils/variants';
-import { cn } from './utils';
+import { cn } from '../../utils/utils';
+import { cartVariants } from '../../utils/variants';
+import { CardTitleVariants } from '../../utils/variants';
 
 const CardHeader = ({ className, children }: { children: React.ReactNode; className: string }) => {
   return <div className={cn('flex flex-col p-3', className)}>{children}</div>;

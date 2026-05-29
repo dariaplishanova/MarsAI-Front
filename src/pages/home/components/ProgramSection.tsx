@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Award, Presentation, Users, Video } from 'lucide-react';
+import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import ProgramCard from '@/components/ui/ProgramCard';
-import Button from '@/components/ui/button';
-import { iconVariants } from '@/components/utils/variants';
+import { iconVariants } from '@/utils/variants';
 
 export default function ProgramSection() {
   const { t } = useTranslation();
@@ -16,7 +16,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.competition.capacity'),
       icon: Video,
       variant: 'purple' as const,
-      iconVariant: 'purple' as const
+      iconVariant: 'purple' as const,
     },
     {
       title: t('landing.program.cards.masterclass.title'),
@@ -25,7 +25,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.masterclass.capacity'),
       icon: Presentation,
       variant: 'green' as const,
-      iconVariant: 'green' as const
+      iconVariant: 'green' as const,
     },
     {
       title: t('landing.program.cards.conference.title'),
@@ -34,7 +34,7 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.conference.capacity'),
       icon: Users,
       variant: 'purple' as const,
-      iconVariant: 'purple' as const
+      iconVariant: 'purple' as const,
     },
     {
       title: t('landing.program.cards.night.title'),
@@ -43,12 +43,12 @@ export default function ProgramSection() {
       capacity: t('landing.program.cards.night.capacity'),
       icon: Award,
       variant: 'gold' as const,
-      iconVariant: 'gold' as const
+      iconVariant: 'gold' as const,
     },
   ];
 
   return (
-    <section className="w-full bg-background mx-auto px-4 py-20">
+    <section className="bg-background mx-auto w-full px-4 py-20">
       <article className="mb-12 text-center">
         <h2 className="mb-4 text-3xl font-bold md:text-4xl">{t('landing.program.title')}</h2>
         <p className="text-muted-foreground">{t('landing.program.subtitle')}</p>

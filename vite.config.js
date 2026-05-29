@@ -12,6 +12,11 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  test: {
+    globals: true,             // 🌟 Crucial: links expect globally
+    environment: 'jsdom',       // 🌟 Crucial: simulates the browser
+    setupFiles: ['./src/setupTests.ts'], // 🌟 Crucial: loads matchers before tests run
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

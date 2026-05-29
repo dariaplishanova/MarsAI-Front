@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAuth } from '@/hooks/useAuth';
 import { type RegisterFormData, registerSchema } from '@/schemas/register.schema';
-import Button from './ui/button';
-import Form, { ErrorParagraph, FormGroup, Input, Label } from './ui/form';
+import Button from '../../../components/ui/Button';
+import Form, { ErrorParagraph, FormGroup, Input, Label } from '../../../components/ui/Form';
 
 const Register = () => {
   const { t } = useTranslation();

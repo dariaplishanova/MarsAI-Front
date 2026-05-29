@@ -1,9 +1,9 @@
 import { Calendar, Users } from 'lucide-react';
 import { ProgramCardProps } from '@/types/home';
+import { cn } from '../../utils/utils';
 import Badge from './Badge';
 import { Card, CardContent } from './Card';
 import IconBadge from './IconBadge';
-import { cn } from './utils';
 
 export default function ProgramCard({
   title,
