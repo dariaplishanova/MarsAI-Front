@@ -12,8 +12,8 @@ import { LanguageSwitcher } from './ui/LanguageSwitcher';
 
 const navLinks = [
   { path: '/', label: 'nav.gallery', public: true },
-  { path: '/submit', label: 'nav.submit', public: true, hideForRoles: ['jury'] },
-  { path: '/jury', label: 'nav.jury', roles: ['jury', 'admin'] },
+  { path: '/submit', label: 'nav.submit', public: true, hideForRoles: ['jury', 'admin'] },
+  { path: '/jury', label: 'nav.jury', roles: ['jury'] },
   { path: '/admin', label: 'nav.admin', roles: ['admin'] },
 ];
 

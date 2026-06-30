@@ -58,6 +58,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 export interface FilmData {
+  score_total: number;
   id: number;
   title: string;
   duration: number;
@@ -74,7 +75,7 @@ export interface FilmData {
   director_id: string | number;
   director_firstname?: string;
   director_lastname?: string;
-  gallery_urls?: string;
+  gallery_urls?: string[];
   collaborators: CollaboratorType[];
   ratings?: {
     id: number;
@@ -84,7 +85,10 @@ export interface FilmData {
     comment: string;
     jury_firstname: string;
     jury_lastname: string;
+    score_total: number;
   }[];
+  created_at?: string;
+  updated_at?: string;
 }
 
 type FilmStatus = 'approved' | 'official_selection' | 'rejected' | 'pending' | 'in_review';

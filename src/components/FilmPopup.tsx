@@ -10,7 +10,7 @@ interface FilmPopupProps {
 
 export default function FilmPopup({ open, onClose, film }: FilmPopupProps) {
   if (!film) return null;
-  const realImages = film.gallery_urls ? film.gallery_urls.split(',') : [];
+  const realImages = film.gallery_urls || [];
   return (
     <Popup open={open} onClose={onClose} className="md:max-w-4xl">
       <div className="mb-6 pr-8">

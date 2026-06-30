@@ -15,6 +15,7 @@ export interface AuthContextType {
   isAuthenticated: boolean;
   login: (token: string) => void;
   logout: () => void;
+  token: string | null;
 }
 
 export interface JWTPayload {

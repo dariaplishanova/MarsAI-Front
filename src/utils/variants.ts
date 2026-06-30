@@ -48,4 +48,12 @@ export const CardSubTitleVariant = {
   videoSection: 'text-6 text-muted-foreground',
 };
 
+export const filmStatusStyles = {
+  approved: 'bg-green-100 text-green-700',
+  official_selection: 'bg-green-100 text-green-700',
+  rejected: 'bg-red-100 text-red-700',
+  pending: 'bg-yellow-100 text-yellow-700',
+  in_review: 'bg-yellow-100 text-yellow-700',
+};
+
 export type ButtonVariant = keyof typeof buttonVariants;

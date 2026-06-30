@@ -12,7 +12,7 @@ export default function FilmEvaluator({ film }: { film: FilmData | undefined }) 
     return <div className="text-muted-foreground flex h-full items-center justify-center">{t('jury.evaluator.select_film')}</div>;
   }
   
-  const realImages = film.gallery_urls ? film.gallery_urls.split(',') : [];
+  const realImages = film.gallery_urls ?? []; 
   
   return (
     <div className="mx-auto max-w-4xl space-y-6 pb-20">

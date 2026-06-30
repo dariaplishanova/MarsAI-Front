@@ -25,7 +25,7 @@ export default function VideoSection() {
     const search = query.toLowerCase().trim();
     if (search.length < 3) return movies;
 
-    return movies.filter(m => m.title.toLowerCase().includes(search) || m.title_en?.toLowerCase().includes(search));
+    return movies.filter(m => m.title.toLowerCase().includes(search));
   }, [query, movies]);
 
   // Calcul de la pagination

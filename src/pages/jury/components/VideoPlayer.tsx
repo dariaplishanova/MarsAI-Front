@@ -28,7 +28,7 @@ export default function VideoPlayer({ film }: { film: FilmData }) {
           controlsList="nodownload"
           className="h-full w-full object-contain"
           src={film.video_url}
-          poster={film.thumbnail_url}
+          poster={film.thumbnail}
           preload="metadata"
         >
           {t('jury.video.unsupported')}

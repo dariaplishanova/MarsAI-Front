@@ -7,7 +7,7 @@
   "nav.language": "Sélectionner la langue",
   "nav.super-admin": "Super-Admin",
   "nav.submit": "Soumettre un Film",
-  
+
   "common.save": "Enregistrer",
   "common.cancel": "Annuler",
   "common.next": "Suivant",
@@ -53,6 +53,7 @@
   "button.logout": "Se déconnecter",
   "button.connect": "Connexion",
   "button.signin": "Se connecter",
+  "button.invite_jury": "+ Inviter le jury",
 
   "form.title": "Connexion",
   "form.subtitle": "Connectez-vous à votre compte",
@@ -100,7 +101,7 @@
   "submit.final": "Soumettre le Film",
   "submit.final.ready": "Prêt à marquer l'histoire du cinéma génératif ?",
   "submit.validation.error": "Veuillez remplir tous les champs obligatoires avant de continuer.",
-  
+
   "submit.step1.title": "Identité",
   "submit.step1.description": "Vos informations personnelles",
   "submit.step1.civility": "Civilité",
@@ -219,13 +220,13 @@
   "jury.dashboard.loading": "Chargement des films...",
   "jury.dashboard.no_films_found": "Aucun film trouvé.",
   "jury.dashboard.server_error": "Impossible de se connecter au serveur.",
-  
+
   "jury.sidebar.title": "Films à évaluer",
   "jury.sidebar.films_button": "Films",
   "jury.sidebar.evaluated_count": "0/{{total}} films évalués",
-  
+
   "jury.evaluator.select_film": "Sélectionnez un film",
-  
+
   "jury.video.director": "Réalisateur",
   "jury.video.language": "Langue",
   "jury.video.duration": "Durée",
@@ -325,10 +326,71 @@
   "errors.invalid_zip": "Code postal invalide (5 chiffres requis)",
   "errors.invalid_youtube": "L'URL doit provenir de YouTube",
   "errors.max_gallery": "Vous ne pouvez pas uploader plus de 3 images",
+  "errors.pass_special_char": "Le mot de passe doit contenir au moins un caractère spécial",
 
   "pagination.displaying": "Affichage de",
   "pagination.of": "sur",
   "pagination.films": "films",
   "pagination.page": "Page",
-  "pagination.to": "sur"
+  "pagination.to": "sur",
+
+  "admin": {
+    "sidebar": {
+      "dashboard": "Tableau de bord",
+      "films": "Gérer les films",
+      "users": "Gérer les utilisateurs",
+      "menu_button": "Menu",
+      "logout": "Déconnexion"
+    },
+    "dashboard": {
+      "title": "Tableau de bord Admin",
+      "loading": "Chargement des données du tableau de bord...",
+      "total_participants": "Total Participants",
+      "total_films": "Total Films Soumis"
+    },
+    "collaborators": {
+      "title": "Équipe du film"
+    },
+    "evaluations": {
+      "title": "Évaluations du Jury",
+      "none": "Le jury n'a pas encore évalué ce film."
+    },
+    "users": {
+      "title": "Gérer les utilisateurs",
+      "col_name": "Nom / Prénom",
+      "col_email": "Adresse Email",
+      "col_role": "Rôle Plateforme",
+      "col_actions": "Actions",
+      "empty": "Aucun utilisateur système trouvé.",
+      "role_admin": "Administrateur",
+      "role_jury": "Membre du Jury",
+      "role_director": "Réalisateur",
+      "role_user": "Participant",
+      "actions": {
+        "edit": "Modifier le profil",
+        "delete": "Supprimer l'utilisateur"
+      }
+    }
+  },
+  "films": {
+    "title": "Gérer les films",
+    "empty": "Aucun film trouvé.",
+    "col_title": "Titre du film",
+    "col_name": "Réalisateur",
+    "col_status": "Statut",
+    "col_actions": "Actions",
+    "status": {
+      "approved": "Approuvé",
+      "official_selection": "Sélection Officielle",
+      "rejected": "Refusé",
+      "pending": "En attente",
+      "in_review": "En cours d'examen"
+    }
+  },
+  
+  "jury_register": {
+    "title": "Finalisez votre inscription",
+    "subtitle": "Vous avez été invité à rejoindre le jury MarsAI. Suivez les instructions ci-dessous pour activer votre compte.",
+    "step_2": "Créez un mot de passe sécurisé contenant au moins une majuscule, un chiffre et un caractère spécial pour accéder au tableau de bord du jury."
+  }
 }

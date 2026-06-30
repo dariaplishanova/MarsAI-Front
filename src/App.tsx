@@ -7,16 +7,20 @@ import LoginPage from './pages/auth/LoginPage';
 import JuryDashboard from './pages/jury/JuryDashboard';
 import { FilmUpload } from './pages/submission/FilmUpload';
 import { Home } from './pages/home/Home';
+import JuryRegisterPage from './pages/auth/JuryRegisterPage';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 
 export default function App() {
   return (
     <div className="bg-background text-foreground flex min-h-screen flex-col">
       <Navbar />
 
-      <main className="flex-grow">
+      <main className="grow">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register/:token" element={<JuryRegisterPage />} />
+          <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
 
           <Route path="/submit" element={<FilmUpload />} />
 

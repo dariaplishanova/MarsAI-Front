@@ -7,7 +7,7 @@
   "nav.language": "Select Language",
   "nav.super-admin": "Super-Admin",
   "nav.submit": "Submit Your Film",
-  
+
   "common.save": "Save",
   "common.cancel": "Cancel",
   "common.next": "Next",
@@ -25,6 +25,7 @@
   "common.validated": "Approved",
   "common.pending": "Pending",
   "common.rejected": "Rejected",
+
 
   "hero.title": "Marseille 2026: The future in 60 seconds",
   "hero.subtitle": "Deadline: April 15, 2026",
@@ -53,6 +54,7 @@
   "button.logout": "Log out",
   "button.connect": "Login",
   "button.signin": "Sign in",
+  "button.invite_jury": "+ Invite Jury",
 
   "form.title": "Sign In",
   "form.subtitle": "Sign in to your account",
@@ -100,7 +102,7 @@
   "submit.final": "Submit Film",
   "submit.final.ready": "Ready to make history in generative cinema?",
   "submit.validation.error": "Please fill in all required fields before continuing.",
-  
+
   "submit.step1.title": "Identity",
   "submit.step1.description": "Your personal information",
   "submit.step1.civility": "Title",
@@ -219,13 +221,13 @@
   "jury.dashboard.loading": "Loading films...",
   "jury.dashboard.no_films_found": "No films found.",
   "jury.dashboard.server_error": "Unable to connect to the server.",
-  
+
   "jury.sidebar.title": "Films to evaluate",
   "jury.sidebar.films_button": "Films",
   "jury.sidebar.evaluated_count": "0/{{total}} films evaluated",
-  
+
   "jury.evaluator.select_film": "Select a film",
-  
+
   "jury.video.director": "Director",
   "jury.video.language": "Language",
   "jury.video.duration": "Duration",
@@ -321,10 +323,70 @@
   "errors.invalid_festival": "Invalid festival ID",
   "errors.invalid_email": "Please enter a valid email address",
   "errors.min_2_chars": "This field must contain at least 2 characters",
+  "errors.pass_special_char": "Password must contain at least one special character",
 
   "pagination.displaying": "Displaying",
   "pagination.of": "out of",
   "pagination.films": "films",
   "pagination.page": "Page",
-  "pagination.to": "to"
+  "pagination.to": "to",
+
+  "admin": {
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "films": "Manage Movies",
+      "users": "Manage Users",
+      "menu_button": "Menu",
+      "logout": "Sign Out"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "loading": "Loading dashboard data...",
+      "total_participants": "Total Participants",
+      "total_films": "Total Submitted Films"
+    },
+    "collaborators": {
+      "title": "Film Crew & Production"
+    },
+    "evaluations": {
+      "title": "Jury Reviews",
+      "none": "The jury has not evaluated this movie yet."
+    },
+    "users": {
+      "title": "Manage Users",
+      "col_name": "Name / Surname",
+      "col_email": "Email Address",
+      "col_role": "Platform Role",
+      "col_actions": "Actions",
+      "empty": "No registered system users found.",
+      "role_admin": "Administrator",
+      "role_jury": "Jury Member",
+      "role_director": "Director",
+      "role_user": "Participant",
+      "actions": {
+        "edit": "Edit profile",
+        "delete": "Remove user"
+      }
+    }
+  },
+  "films": {
+    "title": "Manage Submissions",
+    "empty": "No movie submissions found.",
+    "col_title": "Movie Title",
+    "col_name": "Director",
+    "col_status": "Status Value",
+    "col_actions": "Actions",
+    "status": {
+      "approved": "Approved",
+      "official_selection": "Official Selection",
+      "rejected": "Rejected",
+      "pending": "Pending Review",
+      "in_review": "Under Review"
+    }
+  },
+  "jury_register": {
+    "title": "Complete your registration",
+    "subtitle": "You have been invited to join the MarsAI jury. Follow the instructions below to activate your account.",
+    "step_2": "Create a secure password with at least one uppercase letter, one number, and one special character to access the jury dashboard."
+  }
 }

@@ -7,6 +7,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const storedToken = localStorage.getItem('token');
   const navigate = useNavigate();
 
+  const [token, setToken] =useState<string | null>(storedToken)
+
   if (storedToken && !isTokenValid(storedToken)) {
     localStorage.removeItem('token');
   }
@@ -15,6 +17,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = (token: string) => {
     localStorage.setItem('token', token);
+    setToken(token);
     setIsAuthenticated(true);
 
     navigate('/');
@@ -23,17 +26,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = () => {
     navigate('/');
     localStorage.removeItem('token');
+    setToken(null);
     setIsAuthenticated(false);
   };
 
   // Memoize the value to keep your frontend rendering performant and clean
   const contextValue = useMemo(
     () => ({
+      token,
       isAuthenticated,
       login,
       logout,
     }),
-    [isAuthenticated, login, logout]
+    [token, isAuthenticated, login, logout]
   );
 
   return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
