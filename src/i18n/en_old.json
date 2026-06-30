@@ -1,0 +1,273 @@
+{
+  "nav.home": "Home",
+  "nav.admin": "Administration",
+  "nav.jury": "Jury Interface",
+  "nav.gallery": "Gallery",
+  "nav.back": "Back",
+  "nav.language": "Select Language",
+  "nav.super-admin": "Super-Admin",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "common.next": "Next",
+  "common.previous": "Previous",
+  "common.submit": "Submit",
+  "common.loading": "Loading...",
+  "common.required": "Required",
+  "common.optional": "Optional",
+  "common.search": "Search...",
+  "common.filter": "Filter",
+  "common.clear": "Clear",
+  "common.edit": "Edit",
+  "common.delete": "Delete",
+  "common.add": "Add",
+  "common.validated": "Approved",
+  "common.pending": "Pending",
+  "common.rejected": "Rejected",
+  "landing": {
+    "program": {
+      "title": "The marsAI Festival 2026",
+      "subtitle": "International Festival on Generative AI - June 12-13, 2026 in Marseille",
+      "cards": {
+        "competition": {
+          "title": "Film Competition",
+          "description": "Screening of finalist films in competition",
+          "date": "June 12 - 2:00 PM",
+          "capacity": "500 seats"
+        },
+        "masterclass": {
+          "title": "Masterclass",
+          "description": "Practical workshops with AI experts",
+          "date": "June 12 - 10:00 AM",
+          "capacity": "200 seats"
+        },
+        "conference": {
+          "title": "Conferences",
+          "description": "Panels on the future of AI cinema",
+          "date": "June 12-13",
+          "capacity": "800 seats"
+        },
+        "night": {
+          "title": "marsAI Night",
+          "description": "Closing party & Awards ceremony",
+          "date": "June 13 - 7:00 PM",
+          "capacity": "1000 seats"
+        }
+      }
+    },
+    "cta": {
+      "title": "3,000 Expected Visitors",
+      "description": "Join us for 2 days of exceptional events dedicated to generative AI and the cinema of tomorrow.",
+      "button": "Register for Events"
+    }
+  },
+  "form.footer": "Don't have an account?",
+  "form.event": "Register for Events",
+  "form.connection.error": "Connection error",
+  "errors": {
+    "required": "This field is required",
+    "tooShort": "This field must contain at least 2 characters",
+    "invalidEmail": "Please enter a valid email address",
+    "invalidUrl": "Please enter a valid URL (must start with https://)",
+    "fileRequired": "Please upload a file",
+    "fileTooLarge": "The file is too large (maximum 5MB)",
+    "invalidFileType": "Invalid file format. Only JPEG, PNG, and WEBP are accepted",
+    "maxFiles": "You cannot upload more than 3 images",
+    "videoRequired": "Please upload a video file",
+    "videoTooLarge": "The video file is too large (maximum 500MB)",
+    "invalidVideoType": "Invalid video format. Only MP4, WebM, and MOV are accepted",
+    "invalid_date": "Please enter a valid date",
+    "select_option": "Please select an option",
+    "password_too_short": "Password must be at least 6 characters",
+    "password_complexity": "Password must contain uppercase and numbers",
+    "max_length": "Maximum 300 characters allowed",
+    "pass_min_8": "Password must be at least 8 characters long",
+    "pass_uppercase": "Password must contain at least one uppercase letter",
+    "pass_number": "Password must contain at least one number",
+    "invalid_festival": "Invalid festival ID"
+  },
+  "submit.title": "Film Submission",
+  "submit.hero.title": "Be the architect of tomorrow's world.",
+  "submit.step": "Step",
+  "submit.progress": "Progress",
+  "submit.step1.age.error": "You must be at least 18 years old",
+  "submit.step1.role": "Profession",
+  "submit.step1.role.placeholder": "Director, Artist, Developer...",
+  "submit.step1.mobile": "Mobile",
+  "submit.step1.address": "Address",
+  "submit.step1.zip": "Postal Code",
+  "submit.step1.city": "City",
+  "submit.step1.social": "Online Reputation & Social Media (Optional)",
+  "submit.step1.question": "How did you hear about MarsAI?",
+  "submit.step2.title.en": "Title (English)",
+  "submit.step2.duration.error": "Film must be 60 seconds or less",
+  "submit.step2.synopsis.fr": "Synopsis (French)",
+  "submit.step2.synopsis.en": "Synopsis (English)",
+  "submit.step2.synopsis.placeholder": "Describe your film...",
+  "submit.step2.chars": "characters",
+  "submit.step4.description": "Files and multimedia content",
+  "submit.step4.youtube": "YouTube URL",
+  "submit.step4.poster": "Film Poster",
+  "submit.step4.poster.hint": "JPG format, max 2MB",
+  "submit.step4.subtitles": "Subtitles File",
+  "submit.step4.subtitles.hint": "SRT format",
+  "submit.step5.collaborators": "Team Members",
+  "submit.step5.name": "Name",
+  "submit.success": "Your film has been submitted successfully!",
+  "submit.final": "Submit Film",
+  "submit.final.ready": "Ready to make history in generative cinema?",
+  "submit.previous": "Previous",
+  "submit.next": "Next",
+  "submit.submit": "Submit Film",
+  "placeholder.submitform1.mobile": "+1 555 123 4567",
+  "placeholder.submitform1.address": "123 Main Street",
+  "placeholder.submitform1.zip": "62704",
+  "placeholder.submitform1.city": "Springfield",
+  "placeholder.submitform1.job": "Software Engineer",
+  "placeholder.submitform1.youtubelink": "https://www.youtube.com/@username",
+  "placeholder.submitform1.instagramlink": "https://www.instagram.com/username",
+  "placeholder.submitform1.facebooklink": "https://www.facebook.com/username",
+  "placeholder.submitform1.linkedinlink": "https://www.linkedin.com/in/username",
+  "placeholder.submitform1.twitterlink": "https://twitter.com/username",
+  "placeholder.submitform1.select": "Select an option",
+  "submit.step1.source.search": "Web Search (Google, Bing, etc.)",
+  "submit.step1.source.word_of_mouth": "From a colleague",
+  "submit.step1.source.press": "Press / Media",
+  "submit.step1.source.festival": "At another film festival",
+  "submit.step1.source.partner": "Through a partner organization",
+  "submit.step1.source.other": "Other",
+  "placeholder.submitform2.title.en": "English title",
+  "placeholder.submitform2.duration": "60",
+  "placeholder.submitform2.tag": "Ecology, Technology, Humanity, Innovation...",
+  "placeholder.submitform2.synopsis.en": "Describe your film in a few sentences...",
+  "submit.step2.tags": "Semantic tags 'Desirable Futures'",
+  "submit.step2.synopsis.label.en": "English synopsis",
+  "submit.step3.methodology": "Creative Methodology",
+  "submit.step3.methodology.placeholder": "Describe your creative process...",
+  "submit.step4.youtube.label": "YouTube URL of the film",
+  "placeholder.submitform4.youtube": "https://youtube.com/watch?v=...",
+  "submit.step4.youtube.hint": "Format: Public or Unlisted",
+  "submit.step4.subtitles.checkbox": "Contains voiceover or text requiring subtitles",
+  "submission": {
+    "success_title": "Success!",
+    "success_message": "Your movie has been submitted successfully.",
+    "close_btn": "Return to Home",
+    "submit": "Submit",
+    "sending": "Sending..."
+  },
+  "jury": {
+    "dashboard": {
+      "title": "marsAI Jury Interface",
+      "subtitle": "Excellence at the tip of your cursor",
+      "mobile_title": "marsAI Jury",
+      "loading": "Loading films...",
+      "no_films_found": "No films found.",
+      "server_error": "Unable to connect to the server."
+    },
+    "sidebar": {
+      "films_button": "Films",
+      "title": "Films to evaluate",
+      "evaluated_count": "0/{{total}} films evaluated"
+    },
+    "evaluator": {
+      "select_film": "Select a film"
+    },
+    "video": {
+      "director": "Director",
+      "language": "Language",
+      "duration": "Duration",
+      "seconds": "s",
+      "status_in_review": "In review",
+      "unsupported": "Your browser does not support the video tag.",
+      "synopsis_title": "Synopsis",
+      "no_synopsis": "No synopsis provided."
+    },
+    "gallery": {
+      "title": "Media Gallery",
+      "screenshot": "Screenshot {{number}}"
+    },
+    "ai_card": {
+      "title": "AI Identity Card",
+      "subtitle": "Tools and methodology used",
+      "classification_type": "AI Classification Type",
+      "100_ai": "100% AI",
+      "hybrid": "Hybrid Production",
+      "tools_used": "Tools Used (Stack)",
+      "not_provided": "Not provided",
+      "methodology": "Creative Methodology",
+      "no_methodology": "No detailed methodology provided."
+    },
+    "rating": {
+      "title": "Your Evaluation",
+      "average_score": "Average Score (Rule of 3)",
+      "score_breakdown": "Creativity: {{creativity}} | Technical: {{technical}} | Narrative: {{narrative}}",
+      "creativity": {
+        "label": "1. Creativity & Innovation",
+        "desc": "Originality of the concept, innovative use of AI"
+      },
+      "technical": {
+        "label": "2. Technical Quality",
+        "desc": "Mastery of AI tools, visual and sound quality"
+      },
+      "narrative": {
+        "label": "3. Narrative & Impact",
+        "desc": "Coherence of the story, emotion, message"
+      },
+      "scale": {
+        "low": "1 - Poor",
+        "medium": "Average",
+        "high": "10 - Excellent"
+      },
+      "comments": {
+        "label": "Private Internal Comments",
+        "placeholder": "Share your thoughts for deliberation...",
+        "hint": "These comments are confidential"
+      },
+      "messages": {
+        "success": "Evaluation successfully saved!",
+        "error_save": "Error while saving.",
+        "error_server": "Server connection error."
+      },
+      "buttons": {
+        "submitting": "Submitting...",
+        "submit": "Submit Rating"
+      }
+    }
+  },
+  "admin": {
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "films": "Films",
+      "users": "Users",
+      "events": "Events",
+      "newsletter": "Newsletter"
+    },
+    "dashboard": {
+      "title": "Overview",
+      "total_participants": "Total Participants",
+      "total_films": "Total Films",
+      "loading": "Loading statistics..."
+    }
+  },
+  "films": {
+    "title": "Manage Films",
+    "col_title": "Title",
+    "col_name": "Director",
+    "col_status": "Status",
+    "col_actions": "Actions",
+    "empty": "No films found.",
+    "status": {
+      "pending": "Pending",
+      "in_review": "In Review",
+      "approved": "Approved",
+      "official_selection": "Official Selection",
+      "rejected": "Rejected"
+    }
+  },
+  "footer.status": "Status",
+  "footer.status.operational": "Systems Operational",
+  "youtube.name": "YouTube",
+  "instagram.name": "Instagram",
+  "linkedin.name": "LinkedIn",
+  "facebook.name": "Facebook",
+  "twitter.name": "Twitter"
+}
