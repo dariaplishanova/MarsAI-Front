@@ -90,9 +90,9 @@ export function FilmUpload() {
     }
 
     formData.append('collaborators', JSON.stringify(data.collaborators ?? []));
-
+    const API_URL = import.meta.env.VITE_API_URL;
     try {
-      const response = await fetch('http://localhost:3000/submissions', {
+      const response = await fetch(`${API_URL}/submissions`, {
         method: 'POST',
         body: formData,
       });
