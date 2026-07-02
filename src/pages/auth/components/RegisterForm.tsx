@@ -22,26 +22,19 @@ const Register = ({ invitedEmail }: RegisterFormProps) => {
   const {
     register,
     handleSubmit,
-    setValue, // Added to update form state if invitedEmail changes dynamically
     formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       firstname: '',
       lastname: '',
-      email: invitedEmail, // 1. Map it here to satisfy validation
+      email: invitedEmail, 
       password: '',
     },
   });
 
-  // Watch for changes to the prop and keep the form in sync
-  useEffect(() => {
-    setValue('email', invitedEmail);
-  }, [invitedEmail, setValue]);
-
   const onSubmit = async (data: RegisterFormData) => {
     const API_URL = import.meta.env.VITE_API_URL;
-    // 2. data already includes the email now!
     try {
       setLoading(true);
 
@@ -136,10 +129,9 @@ const Register = ({ invitedEmail }: RegisterFormProps) => {
               className="text-muted-foreground absolute top-1/2 left-3 -translate-y-1/2"
               size={18}
             />
-            {/* 3. Added the register hook here so RHF tracks it even if disabled */}
             <Input 
               id="email" 
-              disabled 
+              readOnly
               className="pl-10" 
               {...register('email')}
             />
