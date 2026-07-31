@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTranslation } from 'react-i18next'; // Imported for internationalization
+import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
+// Imported for internationalization
 import Button from '@/components/ui/Button';
 import Form, { ErrorParagraph, FormGroup, Input, Label } from '@/components/ui/Form';
 import Popup from '@/components/ui/Popup';
@@ -36,24 +38,32 @@ export default function ForgotPasswordPopup({ open, onClose }: ForgotPasswordPop
     try {
       setLoading(true);
 
-      const response = await fetch(`${API_URL}/auth/forgot-password`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      await toast.promise(
+        fetch(`${API_URL}/auth/forgot-password`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }).then(async response => {
+          const result = await response.json();
 
-      const result = await response.json();
+          if (!response.ok) {
+            throw new Error(result.message);
+          }
 
-      if (!response.ok) {
-        alert(result.message || t('auth.forgot_password_failed', 'Demand failed'));
-        return;
-      }
-
-      alert(t('auth.email_sent', 'Email sent'));
-      reset();
-      onClose(); 
+          return result;
+        }),
+        {
+          loading: t('toast.auth.passwordResetSending'),
+          success: () => {
+            reset();
+            onClose();
+            return t('toast.auth.passwordResetSent');
+          },
+          error: t('toast.auth.passwordResetFailed'),
+        }
+      );
     } catch (err) {
       console.error(err);
     } finally {
@@ -63,7 +73,7 @@ export default function ForgotPasswordPopup({ open, onClose }: ForgotPasswordPop
 
   return (
     <Popup className="bg-white" open={open} onClose={onClose}>
-      <Form noValidate onSubmit={handleSubmit(onSubmit, (errors) => console.log('Validation errors:', errors))}>
+      <Form noValidate onSubmit={handleSubmit(onSubmit, errors => console.log('Validation errors:', errors))}>
         <FormGroup>
           <Label htmlFor="email">{t('form.email', 'Email')}</Label>
           <Input
@@ -71,8 +81,8 @@ export default function ForgotPasswordPopup({ open, onClose }: ForgotPasswordPop
             type="email"
             placeholder="email@example.com"
             aria-invalid={!!errors.email}
-            {...register('email', { 
-              required: t('validation.email_required', 'Email is required') 
+            {...register('email', {
+              required: t('validation.email_required', 'Email is required'),
             })}
           />
           {errors.email && <ErrorParagraph>{errors.email.message}</ErrorParagraph>}

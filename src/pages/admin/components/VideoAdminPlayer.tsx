@@ -7,10 +7,9 @@ export default function VideoPlayer({ film }: { film: FilmData }) {
 
   return (
     <Card variant="dashboard" className="shadow-sm">
-      
       <div className="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-inner">
-        <video 
-          controls 
+        <video
+          controls
           controlsList="nodownload"
           className="h-full w-full object-contain"
           src={film.video_url}
@@ -20,7 +19,6 @@ export default function VideoPlayer({ film }: { film: FilmData }) {
           {t('jury.video.unsupported')}
         </video>
       </div>
-      
     </Card>
   );
 }

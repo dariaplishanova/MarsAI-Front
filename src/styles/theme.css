@@ -8,47 +8,47 @@
   --text-lg: 1rem;
   --text-xl: 1.5rem;
   --text-2xl: 2rem;
-  
+
   /* --- The New Blush/Coral Palette --- */
-  
+
   /* Main Canvas: The exact light hex from your image */
-  --background: #FCF8F8;
+  --background: #fcf8f8;
   /* Main Text: A warm, dark slate/brown for high readability */
-  --foreground: #4A3B3B; 
-  
+  --foreground: #4a3b3b;
+
   /* Cards & Modals: Pure White for clean contrast */
   --card: #ffffff;
-  --card-foreground: #4A3B3B;
+  --card-foreground: #4a3b3b;
   --popover: #ffffff;
-  --popover-foreground: #4A3B3B;
-  
+  --popover-foreground: #4a3b3b;
+
   /* Primary Action: The solid coral/pink at the bottom of your image */
-  --primary: #F4A3A4;
+  --primary: #f4a3a4;
   --primary-foreground: #ffffff;
-  
+
   /* Secondary Elements: The mid-tone blush */
-  --secondary: #F5D6D6;
-  --secondary-foreground: #4A3B3B;
-  
+  --secondary: #f5d6d6;
+  --secondary-foreground: #4a3b3b;
+
   /* Muted Elements: The light soft pink */
-  --muted: #F9E8E8;
-  --muted-foreground: #6B5E5E;
-  
+  --muted: #f9e8e8;
+  --muted-foreground: #6b5e5e;
+
   /* Accents: Matching the primary coral */
-  --accent: #F4A3A4;
+  --accent: #f4a3a4;
   --accent-foreground: #ffffff;
-  
+
   /* Alerts/Errors */
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  
+
   /* Borders and Inputs */
-  --border: #F5D6D6;
+  --border: #f5d6d6;
   --input: transparent;
   --input-background: #ffffff;
-  --switch-background: #F5D6D6;
-  --ring: #F4A3A4; 
-  
+  --switch-background: #f5d6d6;
+  --ring: #f4a3a4;
+
   /* Charts */
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
@@ -56,27 +56,27 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  
+
   /* Sidebar */
   --sidebar: #ffffff;
-  --sidebar-foreground: #4A3B3B;
-  --sidebar-primary: #F4A3A4;
+  --sidebar-foreground: #4a3b3b;
+  --sidebar-primary: #f4a3a4;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #F9E8E8;
-  --sidebar-accent-foreground: #4A3B3B;
-  --sidebar-border: #F5D6D6;
-  --sidebar-ring: #F4A3A4;
+  --sidebar-accent: #f9e8e8;
+  --sidebar-accent-foreground: #4a3b3b;
+  --sidebar-border: #f5d6d6;
+  --sidebar-ring: #f4a3a4;
 
   /* The Deep Burgundy Accent (Rich, elegant contrast) */
-  --accent-burgundy: #8B3A42;
+  --accent-burgundy: #8b3a42;
   --accent-burgundy-foreground: #ffffff;
-  
+
   /* The Earthy Rust Accent (Natural, terracotta pop) */
-  --accent-rust: #C25946;
+  --accent-rust: #c25946;
   --accent-rust-foreground: #ffffff;
-  
+
   /* The Dark Slate Accent (Using your main text color as a solid block) */
-  --accent-slate: #4A3B3B;
+  --accent-slate: #4a3b3b;
   --accent-slate-foreground: #ffffff;
 }
 
@@ -121,10 +121,10 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-accent-burgundy: var(--accent-burgundy);
   --color-accent-burgundy-foreground: var(--accent-burgundy-foreground);
-  
+
   --color-accent-rust: var(--accent-rust);
   --color-accent-rust-foreground: var(--accent-rust-foreground);
-  
+
   --color-accent-slate: var(--accent-slate);
   --color-accent-slate-foreground: var(--accent-slate-foreground);
 }

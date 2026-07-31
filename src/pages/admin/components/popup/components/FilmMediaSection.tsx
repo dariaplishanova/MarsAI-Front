@@ -1,5 +1,4 @@
 import ImageGallery from '@/pages/jury/components/ImageGallery';
-
 import { FilmData } from '@/types/home';
 import ThumbnailCard from '../../ThumbnailCard';
 import VideoAdminPlayer from '../../VideoAdminPlayer';

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import Form, { ErrorParagraph, FormGroup, Input, Label } from '@/components/ui/Form';
 import { useAuth } from '@/hooks/useAuth';
@@ -39,13 +40,15 @@ const Login = () => {
 
       const result = await response.json();
       if (!response.ok) {
-        alert(result.message || 'Erreur de connexion');
+        toast.error(t('toast.auth.loginFailed'));
         return;
       }
 
       login(result.token);
+      toast.success(t('toast.auth.loginSuccess'));
     } catch (err) {
       console.error('Erreur :', err);
+      toast.error(t('toast.common.networkError'));
     } finally {
       setLoading(false);
     }

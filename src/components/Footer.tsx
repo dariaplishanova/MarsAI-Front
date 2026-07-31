@@ -6,15 +6,12 @@ export function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="mt-auto border-t border-border bg-card">
+    <footer className="border-border bg-card mt-auto border-t">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          
           <div className="space-y-4">
             <MarsAILogo />
-            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              {t('footer.tagline')}
-            </p>
+            <p className="text-muted-foreground max-w-xs text-sm leading-relaxed">{t('footer.tagline')}</p>
           </div>
 
           <div className="space-y-4">

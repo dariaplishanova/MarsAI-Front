@@ -6,9 +6,9 @@ import FilmCollaborators from './components/FilmCollaborators';
 import FilmDetails from './components/FilmDetails';
 import FilmHeader from './components/FilmHeader';
 import FilmMediaSection from './components/FilmMediaSection';
+import FilmRatings from './components/FilmRating';
 import FilmStats from './components/FilmStats';
 import FilmSynopsis from './components/FilmSynopsis';
-import FilmRatings from './components/FilmRating';
 
 export default function AdminFilmPopup({ open, onClose, film }: AdminFilmPopupProps) {
   if (!film) return null;

@@ -19,4 +19,3 @@ export interface CollaboratorType {
   email: string;
   movie_id?: number;
 }
-

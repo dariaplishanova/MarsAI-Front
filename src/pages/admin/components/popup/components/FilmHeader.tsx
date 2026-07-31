@@ -1,5 +1,5 @@
-import Badge from '@/components/ui/Badge';
 import { useTranslation } from 'react-i18next';
+import Badge from '@/components/ui/Badge';
 import { FilmData } from '@/types/home';
 
 type Props = {
@@ -18,20 +18,18 @@ export default function FilmHeader({ film }: Props) {
   };
 
   return (
-    <div className="flex flex-col gap-4 border-b border-border pb-4 md:flex-row md:items-center md:justify-between">
+    <div className="border-border flex flex-col gap-4 border-b pb-4 md:flex-row md:items-center md:justify-between">
       <div>
         <h2 className="text-2xl font-bold tracking-tight">{film.title}</h2>
         <p className="text-muted-foreground mt-1 text-sm">
           {t('films.col_name', 'Réalisateur')}:{' '}
-          <span className="font-medium text-foreground">
+          <span className="text-foreground font-medium">
             {film.director_firstname ?? ''} {film.director_lastname ?? ''}
           </span>
         </p>
       </div>
 
-      <Badge className={statusStyles[film.status] ?? ''}>
-        {t(`films.status.${film.status}`)}
-      </Badge>
+      <Badge className={statusStyles[film.status] ?? ''}>{t(`films.status.${film.status}`)}</Badge>
     </div>
   );
 }

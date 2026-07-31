@@ -9,22 +9,23 @@ export default function VideoPlayer({ film }: { film: FilmData }) {
     <Card variant="dashboard" className="shadow-sm">
       <div className="mb-6 flex items-start justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground md:text-3xl">{film.title}</h1>
-          <p className="mt-1 mb-2 text-base font-medium text-accent-burgundy">
-            {t('jury.video.director')}: {`${film.director_firstname} ${film.director_lastname}` }
+          <h1 className="text-foreground text-2xl font-bold md:text-3xl">{film.title}</h1>
+          <p className="text-accent-burgundy mt-1 mb-2 text-base font-medium">
+            {t('jury.video.director')}: {`${film.director_firstname} ${film.director_lastname}`}
           </p>
-          <p className="text-sm text-muted-foreground">
-            {t('jury.video.language')}: {film.language} • {t('jury.video.duration')}: {film.duration}{t('jury.video.seconds')}
+          <p className="text-muted-foreground text-sm">
+            {t('jury.video.language')}: {film.language} • {t('jury.video.duration')}: {film.duration}
+            {t('jury.video.seconds')}
           </p>
         </div>
         <span className="bg-primary/10 text-primary border-primary/20 rounded-full border px-3 py-1 text-xs font-medium">
           {film.status === 'in_review' ? t('jury.video.status_in_review') : film.status}
         </span>
       </div>
-      
+
       <div className="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-inner">
-        <video 
-          controls 
+        <video
+          controls
           controlsList="nodownload"
           className="h-full w-full object-contain"
           src={film.video_url}
@@ -34,12 +35,10 @@ export default function VideoPlayer({ film }: { film: FilmData }) {
           {t('jury.video.unsupported')}
         </video>
       </div>
-      
+
       <div className="mt-4">
-        <h3 className="font-semibold text-foreground">{t('jury.video.synopsis_title')}</h3>
-        <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
-          {film.synopsis}
-        </p>
+        <h3 className="text-foreground font-semibold">{t('jury.video.synopsis_title')}</h3>
+        <p className="text-muted-foreground mt-1 text-sm leading-relaxed">{film.synopsis}</p>
       </div>
     </Card>
   );

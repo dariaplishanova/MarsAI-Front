@@ -10,15 +10,20 @@ export default function AiIdentityCard({ film }: { film: FilmData }) {
     <Card variant="dashboard" className="shadow-sm">
       <div className="text-primary mb-1 flex items-center gap-2">
         <Brain className="size-5" />
-        <h2 className="text-lg font-semibold text-foreground">{t('jury.ai_card.title')}</h2>
+        <h2 className="text-foreground text-lg font-semibold">{t('jury.ai_card.title')}</h2>
       </div>
-      <p className="mb-6 text-sm text-muted-foreground">{t('jury.ai_card.subtitle')}</p>
+      <p className="text-muted-foreground mb-6 text-sm">{t('jury.ai_card.subtitle')}</p>
 
       <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
         {[
           {
             label: t('jury.ai_card.classification_type'),
-            value: film.ia_type === '100' ? t('jury.ai_card.100_ai') : film.ia_type === 'hybrid' ? t('jury.ai_card.hybrid') : film.ia_type,
+            value:
+              film.ia_type === '100'
+                ? t('jury.ai_card.100_ai')
+                : film.ia_type === 'hybrid'
+                  ? t('jury.ai_card.hybrid')
+                  : film.ia_type,
             active: !!film.ia_type,
           },
           {
@@ -33,7 +38,7 @@ export default function AiIdentityCard({ film }: { film: FilmData }) {
               item.active ? 'border-primary/50 bg-primary/5' : 'border-border bg-muted/30'
             }`}
           >
-            <span className="mb-1 block text-xs text-muted-foreground">{item.label}</span>
+            <span className="text-muted-foreground mb-1 block text-xs">{item.label}</span>
             <span className={`text-sm font-medium ${item.active ? 'text-foreground' : 'text-muted-foreground'}`}>
               {item.value}
             </span>

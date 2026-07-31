@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import Form, { ErrorParagraph, FormGroup, Input, Label } from '@/components/ui/Form';
 import Popup from '@/components/ui/Popup';
@@ -15,6 +17,7 @@ interface InviteJuryFormData {
 }
 
 export default function InviteJuryPopup({ open, onClose }: InviteJuryPopupProps) {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { token } = useAuth();
 
@@ -45,18 +48,19 @@ export default function InviteJuryPopup({ open, onClose }: InviteJuryPopupProps)
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
+      await response.json();
 
       if (!response.ok) {
-        alert(result.message || 'Invite failed');
+        toast.error(t('toast.user.inviteFailed'));
         return;
       }
 
-      alert('Invitation sent');
+      toast.success(t('toast.user.inviteSent'));
       reset();
       onClose();
     } catch (err) {
       console.error(err);
+      toast.error(t('toast.common.networkError'));
     } finally {
       setLoading(false);
     }

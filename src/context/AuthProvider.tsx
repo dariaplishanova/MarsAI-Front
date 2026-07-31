@@ -7,7 +7,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const storedToken = localStorage.getItem('token');
   const navigate = useNavigate();
 
-  const [token, setToken] =useState<string | null>(storedToken)
+  const [token, setToken] = useState<string | null>(storedToken);
 
   if (storedToken && !isTokenValid(storedToken)) {
     localStorage.removeItem('token');
