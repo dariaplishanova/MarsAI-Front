@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Edit, Mail, Shield, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { useFetch } from '@/hooks/useFetch';
@@ -24,21 +25,34 @@ export default function UsersPage() {
   if (error) return <div className="text-destructive p-8 text-center text-sm">{error}</div>;
 
   const handleDeleteUser = async (userId: number) => {
-    if (!confirm(t('admin.users.confirm_delete', 'Voulez-vous vraiment supprimer cet utilisateur ?'))) return;
+    if (!window.confirm(t('admin.users.confirm_delete'))) return;
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
-        method: 'DELETE',
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      });
-      if (response.ok) {
-        alert(t('admin.users.delete_success', 'Utilisateur supprimé avec succès.'));
-        refetch();
-      }
-    } catch (err) {
-      console.error(err);
+      await toast.promise(
+        fetch(`${import.meta.env.VITE_API_URL}/users/${userId}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }).then(response => {
+          if (!response.ok) {
+            throw new Error();
+          }
+
+          return response;
+        }),
+        {
+          loading: t('toast.common.loading'),
+          success: t('toast.user.deleted'),
+          error: t('toast.common.error'),
+        }
+      );
+
+      refetch();
+    } catch (error) {
+      console.error(error);
     }
   };
-
   const allUsers = users ?? [];
 
   return (

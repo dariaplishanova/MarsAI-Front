@@ -13,7 +13,7 @@
     background: #fcf7f7;
   }
   .scrollbar::-webkit-scrollbar-thumb {
-    background: #fcf7f7 ;
+    background: #fcf7f7;
     border-radius: 100vh;
     border: 3px solid #fcf7f7;
   }

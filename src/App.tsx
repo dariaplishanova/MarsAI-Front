@@ -1,14 +1,15 @@
 import { Navigate, Route, Routes } from 'react-router';
+import { Toaster } from 'sonner';
 import { Footer } from './components/Footer';
 import { Navbar } from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import JuryRegisterPage from './pages/auth/JuryRegisterPage';
 import LoginPage from './pages/auth/LoginPage';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
+import { Home } from './pages/home/Home';
 import JuryDashboard from './pages/jury/JuryDashboard';
 import { FilmUpload } from './pages/submission/FilmUpload';
-import { Home } from './pages/home/Home';
-import JuryRegisterPage from './pages/auth/JuryRegisterPage';
-import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 
 export default function App() {
   return (
@@ -47,6 +48,15 @@ export default function App() {
       </main>
 
       <Footer />
+      <Toaster
+        position="top-left"
+        theme="system"
+        richColors
+        closeButton
+        duration={3000}
+        visibleToasts={3}
+        expand={false}
+      />
     </div>
   );
 }

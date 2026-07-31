@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { LayoutDashboard, Film, Users } from 'lucide-react';
+import { Film, LayoutDashboard, Users } from 'lucide-react';
 import AdminSidebarContent from './components/AdminSidebarContent';
 import DashboardPage from './components/DashboardPage';
 import FilmsPage from './components/FilmsPage';
 import MobileSidebar from './components/MobileSideBar';
 import UsersPage from './components/UsersPage';
-
 
 const ADMIN_PAGES = [
   { id: 'dashboard', labelKey: 'admin.sidebar.dashboard', icon: LayoutDashboard },
@@ -18,40 +17,33 @@ export default function AdminDashboard() {
 
   const renderPageContent = () => {
     switch (activePageId) {
-      case 'dashboard': return <DashboardPage />;
-      case 'films': return <FilmsPage />;
-      case 'users': return <UsersPage />;
-      default: return <DashboardPage />;
+      case 'dashboard':
+        return <DashboardPage />;
+      case 'films':
+        return <FilmsPage />;
+      case 'users':
+        return <UsersPage />;
+      default:
+        return <DashboardPage />;
     }
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-background">
-      
-      <header className="flex items-center justify-between border-b border-border bg-card px-4 py-4 md:hidden">
-        <h2 className="text-lg font-bold text-foreground">Admin <span className="text-primary">marsAI</span></h2>
-        
-        <MobileSidebar 
-          pages={ADMIN_PAGES}
-          activePageId={activePageId}
-          onSelectPage={setActivePageId}
-        />
+    <div className="bg-background flex min-h-screen flex-col">
+      <header className="border-border bg-card flex items-center justify-between border-b px-4 py-4 md:hidden">
+        <h2 className="text-foreground text-lg font-bold">
+          Admin <span className="text-primary">marsAI</span>
+        </h2>
+
+        <MobileSidebar pages={ADMIN_PAGES} activePageId={activePageId} onSelectPage={setActivePageId} />
       </header>
 
       <div className="flex flex-1">
-        
-        <aside className="hidden w-64 border-r border-border bg-card p-6 md:block">
-          <AdminSidebarContent
-            pages={ADMIN_PAGES}
-            activePageId={activePageId}
-            onSelectPage={setActivePageId}
-          />
+        <aside className="border-border bg-card hidden w-64 border-r p-6 md:block">
+          <AdminSidebarContent pages={ADMIN_PAGES} activePageId={activePageId} onSelectPage={setActivePageId} />
         </aside>
 
-        <main className="flex-1 overflow-y-auto bg-background">
-          {renderPageContent()}
-        </main>
-        
+        <main className="bg-background flex-1 overflow-y-auto">{renderPageContent()}</main>
       </div>
     </div>
   );

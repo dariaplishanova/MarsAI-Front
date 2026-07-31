@@ -1,6 +1,6 @@
+import { ComponentType } from 'react';
 import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
-import { ComponentType } from 'react';
 
 type AdminPage = {
   id: string;
@@ -26,27 +26,21 @@ export default function AdminSidebarContent({
   const baseButton =
     'flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-left transition-all duration-200';
 
-  const activeButton =
-    'border-primary bg-primary/10 font-semibold text-primary shadow-sm';
+  const activeButton = 'border-primary bg-primary/10 font-semibold text-primary shadow-sm';
 
-  const inactiveButton =
-    'border-transparent text-muted-foreground hover:bg-muted hover:text-foreground';
+  const inactiveButton = 'border-transparent text-muted-foreground hover:bg-muted hover:text-foreground';
 
   return (
-    <div className="flex h-full flex-col justify-between bg-card text-card-foreground">
+    <div className="bg-card text-card-foreground flex h-full flex-col justify-between">
       {/* Header */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold tracking-tight text-foreground">
-            {t('admin.sidebar.brand_prefix', 'Admin')}{' '}
-            <span className="text-primary">marsAI</span>
+          <h2 className="text-foreground text-xl font-bold tracking-tight">
+            {t('admin.sidebar.brand_prefix', 'Admin')} <span className="text-primary">marsAI</span>
           </h2>
 
           {onCloseMobileSidebar && (
-            <button
-              onClick={onCloseMobileSidebar}
-              className="rounded-lg p-1.5 hover:bg-muted md:hidden"
-            >
+            <button onClick={onCloseMobileSidebar} className="hover:bg-muted rounded-lg p-1.5 md:hidden">
               <X className="h-5 w-5" />
             </button>
           )}
@@ -54,7 +48,7 @@ export default function AdminSidebarContent({
 
         {/* Navigation */}
         <nav className="space-y-1.5">
-          {pages.map((page) => {
+          {pages.map(page => {
             const isActive = activePageId === page.id;
             const Icon = page.icon;
 
@@ -65,18 +59,10 @@ export default function AdminSidebarContent({
                   onSelectPage(page.id);
                   onCloseMobileSidebar?.();
                 }}
-                className={`${baseButton} ${
-                  isActive ? activeButton : inactiveButton
-                }`}
+                className={`${baseButton} ${isActive ? activeButton : inactiveButton}`}
               >
-                <Icon
-                  className={`h-5 w-5 ${
-                    isActive ? 'text-primary' : 'text-muted-foreground'
-                  }`}
-                />
-                <span className="text-sm font-medium">
-                  {t(page.labelKey)}
-                </span>
+                <Icon className={`h-5 w-5 ${isActive ? 'text-primary' : 'text-muted-foreground'}`} />
+                <span className="text-sm font-medium">{t(page.labelKey)}</span>
               </button>
             );
           })}
@@ -84,7 +70,7 @@ export default function AdminSidebarContent({
       </div>
 
       {/* Footer placeholder (optional) */}
-      <div className="border-t border-border pt-4" />
+      <div className="border-border border-t pt-4" />
     </div>
   );
 }

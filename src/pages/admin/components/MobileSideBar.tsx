@@ -17,7 +17,6 @@ export default function MobileSidebar({ pages, activePageId, onSelectPage }: Mob
 
   return (
     <div className="md:hidden">
-      
       <Button
         variant="outline"
         onClick={() => setIsOpen(true)}
@@ -34,7 +33,7 @@ export default function MobileSidebar({ pages, activePageId, onSelectPage }: Mob
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
+              className="bg-background/80 fixed inset-0 z-40 backdrop-blur-sm"
             />
 
             <motion.div
@@ -42,9 +41,9 @@ export default function MobileSidebar({ pages, activePageId, onSelectPage }: Mob
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
-              className="fixed bottom-0 left-0 top-0 z-50 flex w-4/5 max-w-sm flex-col border-r border-border bg-card p-6 shadow-2xl"
+              className="border-border bg-card fixed top-0 bottom-0 left-0 z-50 flex w-4/5 max-w-sm flex-col border-r p-6 shadow-2xl"
             >
-              <AdminSidebarContent 
+              <AdminSidebarContent
                 pages={pages}
                 activePageId={activePageId}
                 onSelectPage={onSelectPage}
