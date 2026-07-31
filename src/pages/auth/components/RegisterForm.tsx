@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react'; // Added useEffect to handle dynamic prop updates if needed
+import { useEffect, useState } from 'react';
+// Added useEffect to handle dynamic prop updates if needed
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import Form, { ErrorParagraph, FormGroup, Input, Label } from '@/components/ui/Form';
 import { useAuth } from '@/hooks/useAuth';
@@ -28,7 +30,7 @@ const Register = ({ invitedEmail }: RegisterFormProps) => {
     defaultValues: {
       firstname: '',
       lastname: '',
-      email: invitedEmail, 
+      email: invitedEmail,
       password: '',
     },
   });
@@ -41,24 +43,26 @@ const Register = ({ invitedEmail }: RegisterFormProps) => {
       const response = await fetch(`${API_URL}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data), 
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
 
       if (!response.ok) {
-        alert(result.message || 'Erreur de connexion');
+        toast.error(t('toast.auth.registerFailed'));
         return;
       }
 
       if (!result.token) {
-        alert(result.message || 'Erreur de connexion');
+        toast.error(t('toast.auth.registerFailed'));
         return;
       }
 
       login(result.token);
+      toast.success(t('toast.auth.registerSuccess'));
     } catch (err) {
       console.error('Erreur :', err);
+      toast.error(t('toast.common.networkError'));
     } finally {
       setLoading(false);
     }
@@ -129,12 +133,7 @@ const Register = ({ invitedEmail }: RegisterFormProps) => {
               className="text-muted-foreground absolute top-1/2 left-3 -translate-y-1/2"
               size={18}
             />
-            <Input 
-              id="email" 
-              readOnly
-              className="pl-10" 
-              {...register('email')}
-            />
+            <Input id="email" readOnly className="pl-10" {...register('email')} />
           </div>
           {errors.email && <ErrorParagraph>{errors.email.message}</ErrorParagraph>}
         </FormGroup>

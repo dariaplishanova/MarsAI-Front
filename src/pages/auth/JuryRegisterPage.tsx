@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 import { MailCheck, ShieldCheck } from 'lucide-react';
+import { toast } from 'sonner';
 import RegisterForm from './components/RegisterForm';
 
 export default function JuryRegisterPage() {
@@ -12,19 +13,24 @@ export default function JuryRegisterPage() {
 
   useEffect(() => {
     const verifyInvite = async () => {
-      const res = await fetch(`${API_URL}/auth/verify-invite/${token}`);
+      try {
+        const res = await fetch(`${API_URL}/auth/verify-invite/${token}`);
 
-      if (!res.ok) {
-        alert('could not verify');
-        return
+        if (!res.ok) {
+          toast.error(t('toast.auth.inviteVerificationFailed'));
+          return;
+        }
+
+        const result = await res.json();
+        setInvitedEmail(result.email);
+      } catch (error) {
+        console.error('Invite verification failed:', error);
+        toast.error(t('toast.common.networkError'));
       }
-
-      const result = await res.json()
-      setInvitedEmail(result.email)
     };
 
-    verifyInvite()
-  }, [token]);
+    verifyInvite();
+  }, [token, t]);
 
   return (
     <div className="flex min-h-screen w-full flex-col md:flex-row">
@@ -36,14 +42,13 @@ export default function JuryRegisterPage() {
         </div>
 
         <div className="z-10 mt-8 max-w-md space-y-6">
-          <h1 className="text-4xl font-bold text-foreground md:text-6xl">{t('jury_register.title')}</h1>
+          <h1 className="text-foreground text-4xl font-bold md:text-6xl">{t('jury_register.title')}</h1>
 
           <h2 className="text- text-foreground">{t('jury_register.subtitle')}</h2>
 
           <div className="space-y-4 rounded-2xl bg-white/10 p-6 backdrop-blur-sm">
-
             <div className="flex items-start gap-3">
-              <ShieldCheck className="mt-1 text-foreground" size={20} />
+              <ShieldCheck className="text-foreground mt-1" size={20} />
               <p className="text-foreground">{t('jury_register.step_2')}</p>
             </div>
           </div>

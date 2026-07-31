@@ -30,7 +30,7 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="bg-white flex w-full justify-evenly border py-7 shadow-xl shadow-white/5">
+    <section className="flex w-full justify-evenly border bg-white py-7 shadow-xl shadow-white/5">
       {stats.map((stat, index) => (
         <StatCard key={index} {...stat} />
       ))}

@@ -1,6 +1,6 @@
+import { useTranslation } from 'react-i18next';
 import { ImageIcon } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
-import { useTranslation } from 'react-i18next';
 
 type Props = {
   thumbnail?: string;
@@ -15,18 +15,16 @@ export default function ThumbnailCard({ thumbnail }: Props) {
 
   return (
     <Card variant="dashboard" className="mt-6 shadow-sm">
-      <div className="mb-4 flex items-center gap-2 text-primary">
+      <div className="text-primary mb-4 flex items-center gap-2">
         <ImageIcon className="size-5" />
-        <h3 className="text-lg font-semibold text-foreground">
-          {t('jury.thumbnail.title', 'Thumbnail')}
-        </h3>
+        <h3 className="text-foreground text-lg font-semibold">{t('jury.thumbnail.title', 'Thumbnail')}</h3>
       </div>
 
-      <div className="overflow-hidden rounded-lg border border-border">
+      <div className="border-border overflow-hidden rounded-lg border">
         <img
           src={thumbnail}
           alt={t('jury.thumbnail.alt', 'Film thumbnail')}
-          className="w-full object-cover cursor-pointer transition-transform duration-300 hover:scale-105"
+          className="w-full cursor-pointer object-cover transition-transform duration-300 hover:scale-105"
           onClick={() => window.open(thumbnail, '_blank')}
         />
       </div>

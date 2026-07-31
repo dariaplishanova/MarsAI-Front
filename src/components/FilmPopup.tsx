@@ -20,9 +20,7 @@ export default function FilmPopup({ open, onClose, film }: FilmPopupProps) {
         </p>
       </div>
 
-      <div>
-        
-      </div>
+      <div></div>
 
       <div className="border-border relative mb-6 aspect-video w-full overflow-hidden rounded-xl border bg-black shadow-lg">
         <video

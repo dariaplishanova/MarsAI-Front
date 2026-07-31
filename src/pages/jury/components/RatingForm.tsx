@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
 import { Send, Star } from 'lucide-react';
+import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { FormGroup, Label, TextArea } from '@/components/ui/Form';
@@ -21,9 +21,10 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
     const token = localStorage.getItem('token');
 
     if (!token) {
+      toast.error(t('toast.common.unauthorized'));
       setSubmitMessage({
         type: 'error',
-        text: t('jury.rating.messages.error_session') || 'Session expirée. Veuillez vous reconnecter.',
+        text: t('toast.common.unauthorized'),
       });
       return;
     }
@@ -34,9 +35,10 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
     const userData = decodedToken(token);
 
     if (!userData || !userData.userId) {
+      toast.error(t('toast.common.unauthorized'));
       setSubmitMessage({
         type: 'error',
-        text: 'Utilisateur introuvable. Veuillez vous reconnecter.',
+        text: t('toast.common.unauthorized'),
       });
       return;
     }
@@ -63,17 +65,20 @@ export default function RatingForm({ filmId }: { filmId: string | number }) {
         body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
+      await response.json();
 
       if (response.ok) {
-        setSubmitMessage({ type: 'success', text: t('jury.rating.messages.success') });
+        toast.success(t('toast.vote.submitted'));
+        setSubmitMessage({ type: 'success', text: t('toast.vote.submitted') });
         setComment('');
       } else {
-        setSubmitMessage({ type: 'error', text: data.message || t('jury.rating.messages.error_save') });
+        toast.error(t('toast.common.error'));
+        setSubmitMessage({ type: 'error', text: t('toast.common.error') });
       }
     } catch (error) {
       console.error('Error submitting rating:', error);
-      setSubmitMessage({ type: 'error', text: t('jury.rating.messages.error_server') });
+      toast.error(t('toast.common.networkError'));
+      setSubmitMessage({ type: 'error', text: t('toast.common.networkError') });
     } finally {
       setIsSubmitting(false);
     }

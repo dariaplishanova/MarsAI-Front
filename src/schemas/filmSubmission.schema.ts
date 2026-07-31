@@ -17,7 +17,10 @@ export const filmSubmissionSchema = (t: TFunction) => {
     aiClassification: z.string().min(1, { message: t('errors.required') }),
     techStack: z.string().min(2, { message: t('errors.required') }),
     title: z.string().min(2, { message: t('errors.required') }),
-    synopsis: z.string().trim().min(10, { message: t('errors.required') }),
+    synopsis: z
+      .string()
+      .trim()
+      .min(10, { message: t('errors.required') }),
     duration: z.coerce.number().min(1, { message: t('errors.required') }),
     language: z.string().min(2, { message: t('errors.required') }),
     video: z
@@ -34,7 +37,7 @@ export const filmSubmissionSchema = (t: TFunction) => {
       .refine(file => file?.size <= MAX_FILE_SIZE, t('errors.fileTooLarge'))
       .refine(file => ACCEPTED_IMAGE_TYPES.includes(file?.type), t('errors.invalidFileType')),
     gallery: z
-      .array(z.any()) 
+      .array(z.any())
       .max(3, { message: t('errors.maxFiles') })
       .optional(),
     collaborators: z

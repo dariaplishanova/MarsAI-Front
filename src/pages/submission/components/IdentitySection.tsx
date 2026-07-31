@@ -2,8 +2,8 @@ import { useFormContext } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Card } from '@/components/ui/Card';
 import { ErrorParagraph, FormGroup, Input, Label, Select } from '@/components/ui/Form';
-import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
 import RadioGroup, { RadioGroupItem } from '@/components/ui/RadioGroup';
+import { FilmSubmissionData } from '@/schemas/filmSubmission.schema';
 
 export default function IdentitySection() {
   const { t } = useTranslation();
@@ -31,14 +31,14 @@ export default function IdentitySection() {
         <Label className="text-base font-semibold">
           {t('submit.step1.civility')} <span className="text-primary">*</span>
         </Label>
-        <RadioGroup className="flex gap-6" >
+        <RadioGroup className="flex gap-6">
           <div className="flex items-center space-x-2">
-            <RadioGroupItem value="M." id="m" {...register('civility')}/>
+            <RadioGroupItem value="M." id="m" {...register('civility')} />
             <Label htmlFor="m" className="cursor-pointer font-normal">
               {t('submit.step1.civility1')}
             </Label>
           </div>
-          <div className="flex items-center space-x-2" >
+          <div className="flex items-center space-x-2">
             <RadioGroupItem value="Mme" id="mme" {...register('civility')} />
             <Label htmlFor="mme" className="cursor-pointer font-normal">
               {t('submit.step1.civility2')}

@@ -4,6 +4,7 @@ import { NavLink } from 'react-router';
 import { LogIn, LogOut, Menu, X } from 'lucide-react';
 import { jwtDecode } from 'jwt-decode';
 import { AnimatePresence, motion } from 'motion/react';
+import { toast } from 'sonner';
 import { useAuth } from '../hooks/useAuth';
 import { decodedToken } from '../utils/jwt.utils';
 import { MarsAILogo } from './MarsAILogo';
@@ -28,6 +29,11 @@ export function Navbar() {
   const { t } = useTranslation();
   const { isAuthenticated, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    logout();
+    toast.success(t('toast.auth.logoutSuccess'));
+  };
 
   const token = localStorage.getItem('token');
 
@@ -83,7 +89,7 @@ export function Navbar() {
           {renderNavLinks()}
 
           {isAuthenticated ? (
-            <Button onClick={logout} variant="destructive">
+            <Button onClick={handleLogout} variant="destructive">
               <LogOut className="mr-1.5 h-4 w-4" />
               {t('button.logout')}
             </Button>
@@ -113,7 +119,7 @@ export function Navbar() {
             <div className="flex flex-col gap-2 p-4">
               {renderNavLinks(() => setMobileMenuOpen(false))}
               {isAuthenticated ? (
-                <Button onClick={logout} variant="destructive">
+                <Button onClick={handleLogout} variant="destructive">
                   <LogOut className="mr-1.5 h-4 w-4" />
                   {t('button.logout')}
                 </Button>

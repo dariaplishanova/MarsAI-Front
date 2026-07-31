@@ -25,8 +25,9 @@ export default function Pagination({ totalPosts, postsPerPage, currentPage, setC
         <span className="text-primary font-bold">
           {startingDisplayCount}-{currentDisplayCount}
         </span>{' '}
-        {t('pagination.of')} <span className="text-primary font-bold">{totalPosts}</span> {t('pagination.films')}{' '}
-        ({t('pagination.page')} <span className="text-primary font-bold">{currentPage}</span> {t('pagination.to')} {totalPages})
+        {t('pagination.of')} <span className="text-primary font-bold">{totalPosts}</span> {t('pagination.films')} (
+        {t('pagination.page')} <span className="text-primary font-bold">{currentPage}</span> {t('pagination.to')}{' '}
+        {totalPages})
       </p>
 
       <div className="flex items-center gap-3">

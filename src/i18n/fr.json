@@ -1,4 +1,50 @@
 {
+  "toast": {
+    "auth": {
+      "loginSuccess": "Bienvenue ! Vous êtes connecté.",
+      "loginFailed": "Adresse e-mail ou mot de passe incorrect.",
+      "registerSuccess": "Votre compte a été créé avec succès.",
+      "registerFailed": "Impossible de créer votre compte. Veuillez réessayer.",
+      "logoutSuccess": "Vous avez été déconnecté.",
+      "passwordResetSending": "Envoi de l'e-mail de réinitialisation...",
+      "passwordResetSent": "Un e-mail de réinitialisation a été envoyé.",
+      "passwordResetSuccess": "Votre mot de passe a été modifié avec succès.",
+      "passwordResetFailed": "Impossible de modifier votre mot de passe. Veuillez réessayer.",
+      "inviteVerificationFailed": "Cette invitation est invalide ou a expiré."
+    },
+    "movie": {
+      "created": "Le film a été soumis avec succès.",
+      "updated": "Le film a été mis à jour avec succès.",
+      "deleted": "Le film a été supprimé."
+    },
+    "director": {
+      "created": "Le réalisateur a été ajouté avec succès.",
+      "updated": "Les informations du réalisateur ont été mises à jour.",
+      "deleted": "Le réalisateur a été supprimé."
+    },
+    "festival": {
+      "created": "Le festival a été créé avec succès.",
+      "updated": "Le festival a été mis à jour avec succès.",
+      "deleted": "Le festival a été supprimé."
+    },
+    "user": {
+      "deleted": "L'utilisateur a été supprimé.",
+      "inviteSent": "L'invitation a été envoyée avec succès.",
+      "inviteFailed": "Impossible d'envoyer l'invitation. Veuillez réessayer."
+    },
+    "vote": {
+      "submitted": "Votre vote a bien été enregistré."
+    },
+    "common": {
+      "success": "Action réalisée avec succès.",
+      "error": "Une erreur est survenue. Veuillez réessayer.",
+      "networkError": "Impossible de contacter le serveur. Vérifiez votre connexion et réessayez.",
+      "unauthorized": "Votre session a expiré. Veuillez vous reconnecter.",
+      "forbidden": "Vous n'avez pas les droits nécessaires pour effectuer cette action.",
+      "loading": "Veuillez patienter..."
+    }
+  },
+
   "nav.home": "Accueil",
   "nav.admin": "Administration",
   "nav.jury": "Interface Jury",
@@ -369,7 +415,17 @@
       "actions": {
         "edit": "Modifier le profil",
         "delete": "Supprimer l'utilisateur"
-      }
+      },
+      "confirm_delete": "Voulez-vous vraiment supprimer cet utilisateur ?",
+      "delete_success": "L'utilisateur a été supprimé avec succès.",
+      "delete_error": "Impossible de supprimer l'utilisateur.",
+      "delete_loading": "Suppression de l'utilisateur...",
+      "network_error": "Une erreur est survenue. Veuillez réessayer."
+    },
+    "movies": {
+      "status_update_loading": "Mise à jour du statut du film...",
+      "status_update_success": "Le statut du film a été mis à jour avec succès.",
+      "status_update_error": "Impossible de mettre à jour le statut du film."
     }
   },
   "films": {
@@ -387,10 +443,15 @@
       "in_review": "En cours d'examen"
     }
   },
-  
+
   "jury_register": {
     "title": "Finalisez votre inscription",
     "subtitle": "Vous avez été invité à rejoindre le jury MarsAI. Suivez les instructions ci-dessous pour activer votre compte.",
     "step_2": "Créez un mot de passe sécurisé contenant au moins une majuscule, un chiffre et un caractère spécial pour accéder au tableau de bord du jury."
+  },
+  "auth": {
+    "forgot_password_loading": "Envoi de l'e-mail de réinitialisation...",
+    "email_sent": "L'e-mail de réinitialisation du mot de passe a été envoyé.",
+    "forgot_password_failed": "Impossible d'envoyer l'e-mail de réinitialisation."
   }
 }

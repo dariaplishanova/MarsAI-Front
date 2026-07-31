@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { AlertCircle, Send } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import Form from '@/components/ui/Form';
 import i18n from '@/i18n';
@@ -103,9 +104,11 @@ export function FilmUpload() {
       }
 
       setShowSuccess(true);
+      toast.success(t('toast.movie.created'));
     } catch (error: any) {
       console.error('Submission failed:', error);
-      setServerError(error.message);
+      setServerError(t('toast.common.networkError'));
+      toast.error(t('toast.common.networkError'));
     }
   };
 

@@ -1,10 +1,13 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { toast } from 'sonner';
 import Button from '@/components/ui/Button';
 import Form, { FormGroup, Input, Label } from '@/components/ui/Form';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 export default function ResetPasswordPage() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { token } = useParams();
 
@@ -26,28 +29,26 @@ export default function ResetPasswordPage() {
     try {
       setLoading(true);
 
-      const response = await fetch(
-        `${API_URL}/auth/reset-password/${token}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch(`${API_URL}/auth/reset-password/${token}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-      const result = await response.json();
+      await response.json();
 
       if (!response.ok) {
-        alert(result.message || 'Reset failed');
+        toast.error(t('toast.auth.passwordResetFailed'));
         return;
       }
 
-      alert('Password reset successful');
+      toast.success(t('toast.auth.passwordResetSuccess'));
       reset();
     } catch (err) {
       console.error(err);
+      toast.error(t('toast.common.networkError'));
     } finally {
       setLoading(false);
     }

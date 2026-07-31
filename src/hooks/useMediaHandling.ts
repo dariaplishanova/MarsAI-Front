@@ -22,9 +22,13 @@ export function useMediaHandling() {
     const newFiles = Array.from(e.target.files || []);
     if (newFiles.length === 0) return;
 
-    const existingFiles = Array.isArray(gallery) ? gallery : gallery && 'length' in gallery && typeof gallery !== 'string' ? Array.from(gallery as FileList) : [];
+    const existingFiles = Array.isArray(gallery)
+      ? gallery
+      : gallery && 'length' in gallery && typeof gallery !== 'string'
+        ? Array.from(gallery as FileList)
+        : [];
     const combinedFiles = [...existingFiles, ...newFiles].slice(0, 3);
-    
+
     setValue('gallery', combinedFiles, { shouldValidate: true });
     e.target.value = '';
   };

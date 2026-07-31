@@ -11,7 +11,7 @@ export const registerSchema = (t: TFunction) =>
       .min(8, t('errors.pass_min_8'))
       .regex(/[A-Z]/, t('errors.pass_uppercase'))
       .regex(/[0-9]/, t('errors.pass_number'))
-      .regex(/[!@#$%^&*]/, t('errors.pass_special_char'))
+      .regex(/[!@#$%^&*]/, t('errors.pass_special_char')),
   });
 
 // THE MAGIC EXPORT: Extract the Type from the schema

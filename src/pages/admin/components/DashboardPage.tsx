@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { useFetch } from '@/hooks/useFetch';
+import { Film, Users } from 'lucide-react';
 import { Card } from '@/components/ui/Card';
-import { Users, Film } from 'lucide-react';
+import { useFetch } from '@/hooks/useFetch';
 
 export default function DashboardPage() {
   const { t } = useTranslation();
@@ -33,33 +33,29 @@ export default function DashboardPage() {
 
   return (
     <div className="px-4 py-6 md:p-8">
-      <h1 className="mb-6 text-xl font-bold text-foreground md:mb-8 md:text-2xl">
-        {t('admin.dashboard.title')}
-      </h1>
+      <h1 className="text-foreground mb-6 text-xl font-bold md:mb-8 md:text-2xl">{t('admin.dashboard.title')}</h1>
 
       {/* Defaults to dynamic single column stack on mobile, converts to flex layout inline on desktop spaces */}
-      <div className="grid grid-cols-1 gap-4 md:flex md:gap-6"> 
-        
+      <div className="grid grid-cols-1 gap-4 md:flex md:gap-6">
         <Card variant="dashboard" className="flex w-full flex-row items-center gap-4 md:w-64">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <div className="bg-primary/10 text-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
             <Users size={24} />
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t('admin.dashboard.total_participants')}</p>
-            <p className="text-2xl font-bold text-foreground">{totalUsers}</p>
+            <p className="text-muted-foreground text-sm">{t('admin.dashboard.total_participants')}</p>
+            <p className="text-foreground text-2xl font-bold">{totalUsers}</p>
           </div>
         </Card>
 
         <Card variant="dashboard" className="flex w-full flex-row items-center gap-4 md:w-64">
-          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <div className="bg-primary/10 text-primary flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
             <Film size={24} />
           </div>
           <div>
-            <p className="text-sm text-muted-foreground">{t('admin.dashboard.total_films')}</p>
-            <p className="text-2xl font-bold text-foreground">{totalFilms}</p>
+            <p className="text-muted-foreground text-sm">{t('admin.dashboard.total_films')}</p>
+            <p className="text-foreground text-2xl font-bold">{totalFilms}</p>
           </div>
         </Card>
-
       </div>
     </div>
   );

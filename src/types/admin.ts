@@ -1,4 +1,4 @@
-import { FilmData } from "./home";
+import { FilmData } from './home';
 
 export interface AdminFilmPopupProps {
   film: FilmData | null;

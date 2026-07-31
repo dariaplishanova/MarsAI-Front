@@ -1,12 +1,12 @@
-import { JWTPayload } from "@/types/auth";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
+import { JWTPayload } from '@/types/auth';
 
-export function decodedToken(token:string): JWTPayload | null {
-    try {
+export function decodedToken(token: string): JWTPayload | null {
+  try {
     return jwtDecode<JWTPayload>(token);
   } catch {
     return null;
-  } 
+  }
 }
 
 export function isTokenValid(token: string): boolean {
