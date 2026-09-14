@@ -50,6 +50,7 @@ src/
 ├── App.css       # Application styles
 ├── main.tsx      # Application entry point
 └── setupTests.ts # Test configuration
+```text
 
 Getting started
 Prerequisites
