@@ -110,7 +110,7 @@ This repository contains the frontend application for MarsAI.
 The backend is maintained in a separate repository.
 
 **Backend repository:**  
-<BACKEND_REPOSITORY_URL>
+https://github.com/dariaplishanova/MarsAI-Back
 
 ## Project status
 
