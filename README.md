@@ -53,60 +53,73 @@ src/
 ```
 
 ## Getting started
-Prerequisites
+
+### Prerequisites
 
 Make sure you have installed:
 
-Node.js
-npm
-Installation
+- [Node.js](https://nodejs.org/)
+- npm
+
+### Installation
 
 Clone the repository:
 
+```bash
 git clone <FRONTEND_REPOSITORY_URL>
+```
 
 Navigate to the project:
 
+```bash
 cd <PROJECT_FOLDER>
+```
 
 Install the dependencies:
 
+```bash
 npm install
-Environment variables
+```
 
-If environment variables are required, create a .env file in the project root.
+### Environment variables
+
+If environment variables are required, create a `.env` file in the project root.
 
 Example:
 
+```env
 VITE_API_URL=<BACKEND_API_URL>
+```
 
-Do not commit sensitive information or private credentials to the repository.
+> Do not commit sensitive information or private credentials to the repository.
 
-Run the application
+### Run the application
 
 Start the development server:
 
+```bash
 npm run dev
+```
 
 The application will be available at the local address provided by the development server.
 
-Backend
+## Backend
 
-This repository contains the frontend application.
+This repository contains the frontend application for MarsAI.
 
-The MarsAI backend is maintained in a separate repository.
+The backend is maintained in a separate repository.
 
-Backend repository:
+**Backend repository:**  
 <BACKEND_REPOSITORY_URL>
 
-Project status
+## Project status
 
 This project was developed as part of the DWWM training program for a real-world client project.
 
 The frontend depends on the backend API and associated services for some features.
 
-Author
+## Author
 
-Daria Plishanova
+**Daria Plishanova**
 
-Developed as part of the DWWM training at La Plateforme_.
+Developed as part of the DWWM training at **La Plateforme_**.
